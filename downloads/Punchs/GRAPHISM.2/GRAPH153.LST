@@ -1,0 +1,25 @@
+' ST MAGAZINE 35
+' BASSE RESOLUTION
+' GFA 3.0
+' MICHEL GOUX
+' Apparition d'une image DEGAS/DEGAS ELITE sous forme de spirale
+'
+RESERVE 32034
+ecran2%=GEMDOS(72,L:32034)
+FILESELECT "a:\*.PI1","",nom$
+BLOAD nom$,ecran2%
+VOID XBIOS(6,L:ecran2%+2)
+module=179
+angle%=45
+REPEAT
+  x=159+module*COSQ(angle%)
+  y=99+module*SINQ(angle%)
+  VOID XBIOS(5,L:ecran2%+34,L:-1,W:-1)
+  GET x,y,x+4,y+4,case$
+  VOID XBIOS(5,L:XBIOS(2),L:-1,W:-1)
+  PUT x,y,case$
+  angle%=angle%+2
+  module=module-0.04
+UNTIL module<0
+VOID GEMDOS(73,L:ecran2%)
+~INP(2)

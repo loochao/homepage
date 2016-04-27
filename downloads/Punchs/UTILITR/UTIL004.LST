@@ -1,0 +1,24 @@
+' Auteur: Artie. ST Magazine nø29.
+' GfA Basic 3. Toutes r‚solutions.
+' Ce programme imprime sur l'‚cran la liste complŠte des fichiers contenus dans
+' une disquette (y compris les sous-r‚pertoires: c'est l… l'int‚rˆt !).
+'
+detail_directory
+PROCEDURE detail_directory
+  fin%=FSFIRST("A:\"+path$+"*.*",-1)
+  DO UNTIL fin%
+    IF LEFT$(CHAR{FGETDTA()+30})<>"."
+      PRINT LEFT$("A:\"+path$+CHAR{FGETDTA()+30}+" "+STRING$(60,"."),60)+STR$(BYTE{FGETDTA()+21},3)+STR$({FGETDTA()+26},9)+" octets"
+      IF BYTE{FGETDTA()+21} AND 16
+        path$=path$+CHAR{FGETDTA()+30}+"\"
+        detail_directory
+        fin%=FSFIRST("A:\"+LEFT$(path$,RINSTR(path$,"\",LEN(path$)-1))+"*.*",-1)
+        WHILE path$<>LEFT$(path$,RINSTR(path$,"\",LEN(path$)-1))+CHAR{FGETDTA()+30}+"\"
+          fin%=FSNEXT()
+        WEND
+        path$=LEFT$(path$,RINSTR(path$,"\",LEN(path$)-1))
+      ENDIF
+    ENDIF
+    fin%=FSNEXT()
+  LOOP
+RETURN

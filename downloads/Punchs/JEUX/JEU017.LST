@@ -1,0 +1,25 @@
+' ST MAGAZINE 35
+' HAUTE RESOLUTION
+' GFA 2.0
+' PIERRE COUPARD
+'
+x%=40
+snd$=CHR$(0)+CHR$(0)+CHR$(1)+CHR$(0)+CHR$(7)+CHR$(254)+CHR$(8)+CHR$(16)+CHR$(11)+CHR$(207)+CHR$(12)+CHR$(88)+CHR$(13)+CHR$(0)+CHR$(128)+CHR$(0)+CHR$(129)+CHR$(0)+CHR$(41)+CHR$(0)+CHR$(255)+CHR$(0)
+SOUND 1,15,0,-1
+WAVE 8,0
+DO
+  a$=SPACE$(INT(RND*57))+"*"+SPACE$(INT(RND*15))+"*"+SPACE$(5-INT(RND*5))+"*"
+  PRINT AT(1,25);a$
+  PRINT AT(x%,10);"V"
+  IF PEEK(XBIOS(&H22)+61)=4
+    SUB x%,1
+  ENDIF
+  IF PEEK(XBIOS(&H22)+61)=8
+    ADD x%,1
+  ENDIF
+  PAUSE 2
+  ADD score,2/(TRUNC(x%-40)+0.5)
+  EXIT IF POINT((x%*8)-4,166)=1
+LOOP
+VOID XBIOS(32,L:VARPTR(snd$))
+PRINT AT(25,1);"Votre score est de ";TRUNC(score);" pts ..."

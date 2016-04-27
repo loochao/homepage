@@ -1,0 +1,20 @@
+' La musique de l'espace...
+' D.E.S 1989, ST Magazine nø31.
+' GfA Basic 2 & 3, toutes r‚solutions.
+'
+FOR i%=0 TO 1200
+  IF i%<300
+    SOUND 1,15,#SIN(i%)*50+i%,1
+  ENDIF
+  IF i%<600 AND i%>300
+    SOUND 1,15,#i%*(i%*10)+i%,1
+  ENDIF
+  IF i%>600 AND i%<900
+    SOUND 1,15,#TAN(i%)*50+i%,1
+  ENDIF
+  IF i%>900
+    SOUND 1,15,#SIN(i%^2)*500,1
+  ENDIF
+NEXT i%
+SOUND 1,0
+EDIT

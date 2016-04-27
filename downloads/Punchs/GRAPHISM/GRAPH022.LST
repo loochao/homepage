@@ -1,0 +1,18 @@
+' Auteur: David Lannes. ST Magazine nø29.
+' GfA Basic 2 & 3, basse r‚solution.
+'
+FOR i=1 TO 15
+  FOR a=95 DOWNTO 1
+    COLOR i
+    CIRCLE 160,100,a
+    COLOR i-1
+    CIRCLE 160,100,95-a
+    EXIT IF a=48
+  NEXT a
+  FOR z=1 TO 95 STEP 2
+    COLOR i+2
+    BOX 160-z,110-z,160+z,90+z
+  NEXT z
+  DEFFILL i,1,1
+  FILL 1,1
+NEXT i

@@ -1,0 +1,26 @@
+<header class="site-header">
+
+  <div class="wrapper">
+    <a class="site-title" href="{{ site.baseurl }}/">
+      nicolas p. <strong>rougier</strong>
+    </a>
+    <nav class="site-nav">
+      <div class="trigger">
+        {% assign pages = site.pages | sort:"order"  %}
+        {% for p in pages %}
+        {% if p.title %}
+        {% if p.url == page.url %}
+        <a class="active" href="{{ p.url | prepend: site.baseurl }}">
+        {% else %}
+        <a class="page-link" href="{{ p.url | prepend: site.baseurl }}">
+        {% endif %}
+        {{p.title}}</a>
+        {% endif %}
+        {% endfor %}
+      </div>
+    </nav>
+    
+  </div>
+
+  
+</header>

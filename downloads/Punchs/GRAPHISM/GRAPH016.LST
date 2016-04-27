@@ -1,0 +1,23 @@
+' Auteur: DCCS
+' ST Magazine nø28.
+' GfA Basic 2 & 3, haute r‚solution.
+'
+Graphmode 3
+Setcolor 0,0
+Hidem
+While Inkey$=""
+  X=Int(Rnd*300)+100
+  Y=Int(Rnd*200)+100
+  For I=0 To 639
+    Line X,Y,I,0
+    Line X,Y,639-I,399
+  Next I
+  For I=0 To 399
+    Line X,Y,639,I
+    Line X,Y,0,399-I
+  Next I
+  Pause 80
+  Cls
+Wend
+Showm
+Setcolor 0,1

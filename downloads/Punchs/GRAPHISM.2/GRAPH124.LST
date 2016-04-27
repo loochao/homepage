@@ -1,0 +1,22 @@
+' ST Magazine nø34.
+' GfA Basic 3, basse r‚solution.
+'
+RANDOMIZE 55
+DO
+  x=RAND(7)+1
+  y=RAND(7)+1
+  p=RAND(8)+3
+  SETCOLOR 0,0
+  SETCOLOR 15,&H777
+  CLS
+  pas=0.2*p
+  REPEAT
+    ADD f,0.2
+    a=COS(x*(f/16))*160+160
+    b=SIN(y*(f/16))*100+100
+    c=COS(x*((f-pas)/16))*160+160
+    d=SIN(y*((f-pas)/16))*100+100
+    PSET a,b,15
+    PSET c,d,0
+  UNTIL INKEY$<>""
+LOOP

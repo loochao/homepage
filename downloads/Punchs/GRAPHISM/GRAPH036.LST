@@ -1,0 +1,20 @@
+' Auteur: Bighost. ST Magazine nø30.
+' GfA Basic 2 & 3. Basse r‚solution.
+'
+Hidem
+Form Input 40,A$
+Cls
+A$=Upper$(A$)
+Print A$
+Dim Tab$(10)
+For T=0 To 10
+  Get 0,T,319,T,Tab$(T)
+Next T
+For T=0 To 10
+  For Z=1 To 30
+    Inc A
+    Put 0,A,Tab$(T)
+  Next Z
+Next T
+Do
+Loop

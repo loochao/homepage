@@ -1,0 +1,20 @@
+' ZOCH, ST Magazine nø32.
+' Rouleau en GfA Basic 3 et basse r‚solution.
+'
+RESERVE 100000
+m%=MALLOC(42274)
+l%=MALLOC(32000)
+BLOAD "A:\IMAGES\TAHITI01.PI1",m% !  degas 320*200
+VOID XBIOS(6,L:m%+2)
+FOR a%=0 TO 199
+  BMOVE m%+34+(199-a%)*160,l%+a%*160,160
+NEXT a%
+a$=STRING$(10240,CHR$(0))
+BMOVE V:a$,m%+32034,10240
+FOR a%=-64 TO 199
+  BMOVE m%+34+a%*160,XBIOS(2)+a%*160,160
+  BMOVE l%+(118-a%)*160,XBIOS(2)+a%*160+160,6400  !  en 1 ligne s.v.p.
+  VSYNC  ! va + vite sans vsync
+NEXT a%
+VOID MFREE(m%)
+VOID MFREE(l%)

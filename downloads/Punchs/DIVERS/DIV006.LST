@@ -1,0 +1,25 @@
+' ST MAGAZINE 35
+' HAUTE RESOLUTION
+' GFA 2.0
+' PIERRE COUPARD
+'
+COLOR 1
+DRAW 6,4 TO 10,4 TO 10,6 TO 12,6 TO 12,7 TO 13,7 TO 13,9 TO 14,9 TO 14,10 TO 13,10 TO 13,12 TO 11,14 TO 9,14 TO 9,15 TO 7,15
+DRAW 7,15 TO 7,14 TO 5,14 TO 3,12 TO 3,10 TO 2,10 TO 2,9 TO 3,9 TO 3,7 TO 4,6 TO 6,6 TO 6,4 TO 9,4 TO 5,0 TO 4,0 TO 3,1
+FILL 7,9
+PLOT 1,1
+PLOT 0,3
+LINE 2,4,3,3
+COLOR 0
+PLOT 5,8
+DRAW 10,10 TO 10,11 TO 9,12
+GET 0,0,18,15,bombe$
+DO
+  INPUT "                                                                                Nombre de bombes … reproduire (1 … 8) ",b%
+  EXIT IF b%>0 AND b%<9
+LOOP
+CLS
+FOR n%=1 TO b%*16 STEP 16
+  PUT n%,(100+(50*((TRUNC(XBIOS(4)/2))*2)))-8,bombe$
+NEXT n%
+a=INP(2)

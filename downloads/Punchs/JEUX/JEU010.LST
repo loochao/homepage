@@ -1,0 +1,25 @@
+' ST Magazine nø34.
+' CARPENTIER Jean-No‰l
+' Basse r‚solution, GfA Basic 3.
+'
+VSETCOLOR 0,&H0
+VSETCOLOR 1,&H777
+t%=TIMER              !fixe le timer
+a$=SPACE$(30500)      !pour faire la grille du lyc‚e
+DEFMOUSE 5            !souris en croix
+EVERY 150 GOSUB affiche.la.tronche.du.prof   !plus c'est rapide plus c'est dur !
+REPEAT
+  IF MOUSEK=1 AND POINT(MOUSEX,MOUSEY)=col| !si bouton gauche et prof touch‚
+    ADD point%,(17-col|)/2  !augmente le score par rapport … la grosseur=couleur
+    WAVE 8,1,0,4032         !touch‚!!!!!!YAOUUUUU t'es content hein !?
+    BMOVE V:a$,XBIOS(2),30500
+  ENDIF
+UNTIL MOUSEK=2 OR (TIMER-t%)/200>30 !jusqu'… bouton droit ou 30 secondes
+PROCEDURE affiche.la.tronche.du.prof
+  BMOVE V:a$,XBIOS(2),30500
+  ATEXT 0,192,0,"'KILLPROF' by J.N.CARPENTIER. SCORE:"+STR$(point%)+" TEMPS:"+STR$((TIMER-t%)/200)
+  col|=RAND(13)+2         !grosseur prof=couleur prof
+  DEFFILL col|
+  PCIRCLE RAND(308),RAND(176),col|   !affiche la bestiole immonde
+RETURN
+' ========================================================================

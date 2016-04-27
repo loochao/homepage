@@ -1,0 +1,13 @@
+' ST Magazine nø31.
+' GfA Basic 3, haute r‚solution.
+'
+HIDEM
+DO
+  INC c&
+  p&=SHL(SUCC(RND*200),2)
+  FOR j&=0 TO SUB(p&,4) STEP 4
+    FOR i&=j& TO 32000 STEP p&
+      {ADD(XBIOS(2),i&)}=ODD(c&)
+    NEXT i&
+  NEXT j&
+LOOP

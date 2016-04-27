@@ -1,0 +1,25 @@
+' ST MAGAZINE 35
+' HAUTE RESOLUTION
+' GFA 2.0
+' S‚bastien DELESTAING
+'
+DIM im$(2)
+buf$=SPACE$(32066)
+buffer%=V:buf$
+FILESELECT "a:\*.pi3","",f$
+BLOAD f$,buffer%
+BMOVE buffer%+34,buffer%,32000
+FOR f%=0 TO 2
+  PBOX 0,0,640,400
+  FOR g%=0 TO 400
+    x%=INT(RND*(f%+1))
+    BMOVE buffer%+80*g%,XBIOS(2)+80*g%+x%,80-x%
+  NEXT g%
+  SGET im$(f%)
+NEXT f%
+REPEAT
+  INC g%
+  SPUT im$(g% MOD 3)
+  WAVE 8,1,0,INT(RND*2000)+2000
+  VSYNC
+UNTIL INKEY$<>""

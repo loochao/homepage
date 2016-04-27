@@ -1,0 +1,25 @@
+' ST MAGAZINE 35
+' BASSE RESOLUTION
+' GFA 3.0
+' PRINST
+'
+c$=MKI$(0)+MKI$(&H700)+MKI$(&H711)+MKI$(&H722)+MKI$(&H733)+MKI$(&H744)+MKI$(&H755)+MKI$(&H766)+MKI$(&H777)+MKI$(&H667)+MKI$(&H557)+MKI$(&H447)+MKI$(&H337)+MKI$(&H227)+MKI$(&H117)+MKI$(&H7)
+~XBIOS(6,L:V:c$)
+ph$="SALUT les artistes de l'atari ST, les puncheurs, les playeurs et tous les autres, vive cette super b‚cane, vive ST Mag, vive la france, et vive moi!"
+FOR t|=0 TO 255
+  PSET RAND(320),RAND(200),RAND(16)
+NEXT t|
+DO
+  r%=(-r%-1)*(r%<LEN(ph$))
+  PRINT AT(1,1);MID$(ph$,r%,1)
+  FOR x|=0 TO 7
+    an=(-an-0.0448)*(an<2*PI)
+    FOR y|=0 TO 7
+      c|=((-c|-1)*(c|<15))+1
+      PSET INT((30+y|*1.7)*SIN(an)+160),INT((30+y|*1.7)*COS(an)+100),(-c|)*(POINT(x|,y|)<>0)
+      PSET INT((45+y|*2.3)*SIN(an)+160),INT((45+y|*2.3)*COS(an)+100),(-c|)*(POINT(x|,y|)<>0)
+      PSET INT((20+y|*1.2)*SIN(an)+160),INT((20+y|*1.2)*COS(an)+100),(-c|)*(POINT(x|,y|)<>0)
+      PSET INT((65+y|*2.6)*SIN(an)+160),INT((65+y|*2.6)*COS(an)+100),(-c|)*(POINT(x|,y|)<>0)
+    NEXT y|
+  NEXT x|
+LOOP

@@ -1,0 +1,37 @@
+' ST Magazine nø28.
+' GfA Basic 2 & 3, basse r‚solution.
+'
+' LISTING EN 20 LIGNES
+' PAR SCHILDKNECHT FRANK.
+' CE LISTING EST
+' UN MINI EDITEUR DE NOTES MUSICALES
+' IL VOUS SUFFIT D'ENTRER LES NOTES
+' EN TOUTES LETTRES:
+' DO DO# RE RE# MI FA FA# SO SO# ...
+' PUIS DE TAPER DIRECTEMENT RETURN
+' LORSQUE VOUS AVEZ FINI VOTRE MELODIE.
+' REMARQUE: LA NOTE SOL S'ECRIT SO
+' LES DUREES SONT COMPRISES ENTRE 1 ET 9.
+' DE PLUS ON DOIT METTRE LA DUREE (IMPERATIF).
+' IL SUFFIT DE FAIRE COMME L'EXEMPLE : DO# 5
+' OU BIEN : SO 8   ETC...
+Dim Nte$(1000)
+For Nb%=0 To 1000
+  Input "NOTE ";Nte$(Nb%)
+  Exit If Nte$(Nb%)=""
+Next Nb%
+For N%=0 To Nb%
+  Restore Notes
+  For I%=1 To 12
+    Read Nte$
+    C%=4+(Instr(Nte$(N%),"#")=0)
+    T%=Val(Right$(Upper$(Nte$(N%)),1))
+    Mul T%,2
+    If Left$(Upper$(Nte$(N%)),C%)=Nte$+" "
+      Sound 1,15,I%,5,T%
+      Sound 0,0
+    Endif
+  Next I%
+Next N%
+Notes:
+Data DO,DO#,RE,RE#,MI,FA,FA#,SO,SO#,LA,LA#,SI

@@ -1,0 +1,22 @@
+' ST Magazine nø32.
+' GfA Basic 2 & 3, basse r‚solution.
+'
+SETCOLOR 15,&H777
+FOR i&=0 TO 250
+  COLOR RANDOM(16)
+  LINE RANDOM(320),RANDOM(200),RANDOM(320),RANDOM(200)
+NEXT i&
+DIM fg&(80)
+f%=V:fg&(0)
+ad%=XBIOS(3)+32000
+a$=SPACE$(16)
+FOR j%=XBIOS(3) TO ad% STEP 160
+  BMOVE j%,f%,160
+  g|=0
+  FOR i|=0 TO 159 STEP 8
+    p%=fg&(g|) OR fg&(SUCC(g|)) OR fg&(ADD(g|,2)) OR fg&(ADD(g|,3))
+    a$=STRING$(4,MKI$(p%))
+    BMOVE V:a$,ADD(j%,i|),8
+    ADD g|,4
+  NEXT i|
+NEXT j%

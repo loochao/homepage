@@ -1,0 +1,25 @@
+' Auteur: Eagleman
+' GFA-PUNCH ST MAGAZINE
+' En GfA 3 et en basse r‚solution
+' ST Magazine nø28.
+'
+DEFWRD "a-z"
+vi=5                ! vitesse
+ecr%=XBIOS(3)
+FILESELECT "*.PI?","",a$
+IF EXIST(a$)
+  DIM i(16033)
+  BLOAD a$,V:i(0)
+  VOID XBIOS(5,L:-1,L:-1,i(0))
+  VOID XBIOS(6,L:V:i(1))
+  BMOVE V:i(17),ecr%,32000
+  mx=317-320*(i(0)>0)
+  my=200-200*(i(0)>1)
+  DEFFILL 0,1,8
+  DO
+    x=RANDOM(mx)
+    z=RANDOM(vi)+1
+    RC_COPY ecr%,x,0,4,RANDOM(my-z)+1 TO ecr%,x,z
+    PBOX x,o,x+3,z-1
+  LOOP
+ENDIF

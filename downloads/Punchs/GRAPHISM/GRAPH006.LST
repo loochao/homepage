@@ -1,0 +1,20 @@
+' GfA Basic 3 et 1040 monochrome uniquement.
+' ST Magazine nø28.
+'
+DIM a$(18)
+FOR n%=1 TO 18
+  FOR cx%=50 TO 600 STEP 35
+    SETDRAW cx%,200,(cx%-50)/35*50+n%*0
+    FOR x%=1 TO 12
+      DRAW "fd 50 lt 150"
+    NEXT x%
+  NEXT cx%
+  SGET a$(n%)
+  CLS
+NEXT n%
+CLS
+DO
+  FOR n%=1 TO 18
+    SPUT a$(n%)
+  NEXT n%
+LOOP

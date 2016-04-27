@@ -1,0 +1,27 @@
+' AUTEUR ROUGIER NICOLAS. ST Magazine nø32.
+' BigBarre en GfA Basic 2 & 3, basse r‚solution uniquement.
+'
+DIM a&(50)
+DATA 1,2,3,4,5,6,7,17,27,37,47,57,67
+DATA 77,177,277,377,477,577,677,777
+DATA 776,775,774,773,772,771,770,760,750
+DATA 740,730,720,710,700,600,500,400
+DATA 300,200,100,0
+FOR i=0 TO 41
+  READ z
+  a&(i)=VAL("&H"+STR$(z))
+NEXT i
+DO
+  REPEAT
+    ADD pas,0.25
+    ADD bar,pas
+    FOR i=0 TO bar
+    NEXT i
+    FOR i|=0 TO 41
+      SDPOKE &HFF8240,a&(i|)
+    NEXT i|
+    VSYNC
+  UNTIL bar>160
+  MUL pas,-1
+  bar=160
+LOOP

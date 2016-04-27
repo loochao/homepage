@@ -1,0 +1,23 @@
+' Vincent Guesdon, ST Magazine nø34.
+' GfA BAsic 2 & 3, basse r‚solution.
+'
+vard=0.5
+vd=1
+REPEAT
+  ADD var,vard
+  IF var>=7 OR var<=0
+    vard=-vard
+  ENDIF
+  ADD v,vd
+  IF v=14 OR v=0
+    vd=-vd
+  ENDIF
+  FOR d=1 TO v^2
+  NEXT d
+  FOR f=-7 TO 7
+    a=ABS(f)
+    SETCOLOR 0,a,5,var
+  NEXT f
+  SETCOLOR 0,0
+  VSYNC
+UNTIL INKEY$<>""

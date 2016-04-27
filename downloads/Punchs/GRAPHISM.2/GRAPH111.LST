@@ -1,0 +1,24 @@
+' ST Magazine nø34.
+' QUIERS Jean-Philippe
+' GfA Basic 3, basse r‚solution
+'
+FOR n%=0 TO 7
+  SETCOLOR n%,n%,n%,n%
+  SETCOLOR n%+8,7-n%,7-n%,7-n%
+NEXT n%
+DIM x%(100),y%(100),c%(100)
+DO
+  a%=RAND(100)
+  INC c%(a%)
+  IF c%(a%)=16
+    x%(a%)=RAND(320)
+    y%(a%)=RAND(200)
+    c%(a%)=1
+  ENDIF
+  PSET x%(a%),y%(a%),c%(a%) MOD 16
+  IF RAND(2000)=1999
+    FOR n%=0 TO 79
+      PSET x%(a%)+(a%/12.5-4)*(n%\8),y%(a%)+(y%(0)/25-4)*(n%\8),8+n% MOD 8
+    NEXT n%
+  ENDIF
+LOOP

@@ -1,0 +1,27 @@
+' ST MAGAZINE 35
+' BASSE RESOLUTION
+' GFA 3.0
+' PRINST
+'
+DIM c$(3)
+c$(1)=MKI$(0)+MKI$(&H777)+MKI$(&H666)+MKI$(&H555)+MKI$(&H444)+MKI$(&H333)+MKI$(&H222)+MKI$(&H111)+MKI$(&H1)+MKI$(&H2)+MKI$(&H3)+MKI$(&H4)+MKI$(&H5)+MKI$(&H6)+MKI$(&H7)+MKI$(&H447)
+c$(2)=MKI$(0)+MKI$(&H777)+MKI$(&H776)+MKI$(&H775)+MKI$(&H774)+MKI$(&H773)+MKI$(&H772)+MKI$(&H771)+MKI$(&H100)+MKI$(&H200)+MKI$(&H300)+MKI$(&H400)+MKI$(&H500)+MKI$(&H600)+MKI$(&H700)+MKI$(&H767)
+c$(3)=MKI$(0)+MKI$(&H777)+MKI$(&H666)+MKI$(&H555)+MKI$(&H444)+MKI$(&H333)+MKI$(&H222)+MKI$(&H111)+MKI$(&H10)+MKI$(&H20)+MKI$(&H30)+MKI$(&H40)+MKI$(&H50)+MKI$(&H60)+MKI$(&H70)+MKI$(&H474)
+EVERY 10 GOSUB anim
+FOR t|=160 DOWNTO 0
+  c|=(-c|-1)*(c|<15)+1
+  PSET 0,0,c|
+  DEFFILL POINT(0,0)
+  PCIRCLE 160-t|,100-t|/1.6,t|
+  PCIRCLE 320-(160-t|),200-(100-t|/1.6),t|
+  PCIRCLE 320-(160-t|),100-t|/1.6,t|
+  PCIRCLE 160-t|,200-(100-t|/1.6),t|
+NEXT t|
+DO
+LOOP
+PROCEDURE anim
+  b|=VAL(INKEY$)
+  a|=-b|*(0<b|<3)+(-a|*(b|=0))
+  c$(a|)=MID$(c$(a|),1,2)+MID$(c$(a|),5,90)+MID$(c$(a|),3,2)
+  ~XBIOS(6,L:VARPTR(c$(a|)))
+RETURN

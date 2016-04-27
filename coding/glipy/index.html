@@ -1,0 +1,319 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="Docutils 0.4.1: http://docutils.sourceforge.net/" />
+<title>GliPy, The OpenGL IPython/Python terminal</title>
+<link rel="stylesheet" href="default.css" type="text/css" />
+</head>
+<body>
+<div class="document" id="glipy-the-opengl-ipython-python-terminal">
+<h1 class="title">GliPy, The OpenGL IPython/Python terminal</h1>
+<div class="contents topic">
+<p class="topic-title first"><a id="contents" name="contents">Contents</a></p>
+<ul class="simple">
+<li><a class="reference" href="#introduction" id="id1" name="id1">Introduction</a></li>
+<li><a class="reference" href="#installation" id="id2" name="id2">Installation</a></li>
+<li><a class="reference" href="#quick-start" id="id3" name="id3">Quick start</a></li>
+<li><a class="reference" href="#terminal" id="id4" name="id4">Terminal</a></li>
+<li><a class="reference" href="#editor" id="id5" name="id5">Editor</a></li>
+<li><a class="reference" href="#basic-numpy-support" id="id6" name="id6">Basic numpy support</a></li>
+<li><a class="reference" href="#extended-numpy-support" id="id7" name="id7">Extended numpy support</a></li>
+</ul>
+</div>
+<div class="section">
+<h1><a class="toc-backref" href="#id1" id="introduction" name="introduction">Introduction</a></h1>
+<p>One of Python's most useful features when associated with the numpy scientific
+package is its interactive interpreter.  This system allows very fast testing of
+ideas without the overhead of creating test files as is typical in most
+programming languages.  However, the interpreter supplied with the standard
+Python distribution is somewhat limited for extended interactive use since it
+does not provide visualization capabilities.  One can use additonal packages
+such as <a class="reference" href="http://matplotlib.sourceforge.net/">matplotlib</a> or mayavi <a class="reference" href="http://code.enthought.com/projects/mayavi">mlab</a> package, but those are more
+oriented towards static visualization.</p>
+<p>The goal of glipy is to create a comprehensive environment for interactive and
+exploratory computing. To support this goal, glipy has two main components:</p>
+<ul>
+<li><p class="first">An interactive Python terminal.</p>
+</li>
+<li><p class="first">An architecture for embedding various graphical elements directly within the
+terminal.</p>
+<img alt="glipy.png" src="glipy.png" />
+</li>
+</ul>
+</div>
+<div class="section">
+<h1><a class="toc-backref" href="#id2" id="installation" name="installation">Installation</a></h1>
+<p>Depending on your level of expertise and your resilience to bugs, you may
+install glipy from three different sources.</p>
+<p><strong>Installation using easy_install</strong></p>
+<p>If you have <tt class="docutils literal"><span class="pre">setuptools</span></tt> installed, the easiest way of getting glipy is to
+simply use <tt class="docutils literal"><span class="pre">easy_install</span></tt>:</p>
+<pre class="literal-block">
+$ easy_install glipy
+</pre>
+<p>That's it.</p>
+<p><strong>Installation from sources</strong></p>
+<p>If you don't want to use <tt class="docutils literal"><span class="pre">easy_install</span></tt>, or don't have it installed, just grab
+the latest stable build of GLiPy from <a class="reference" href="http://www.loria.fr/~rougier/coding/glipy/dist/glipy-beta.tar.gz">here</a>.  Then do the following:</p>
+<pre class="literal-block">
+$ tar -xzf glipy.tgz
+$ cd glipy
+$ python setup.py install
+</pre>
+<p>If you are installing to a location (like <tt class="docutils literal"><span class="pre">/usr/local</span></tt>) that requires higher
+permissions, you may need to run the last command with <tt class="docutils literal"><span class="pre">sudo</span></tt>.</p>
+<p><strong>Installing the development version</strong></p>
+<p>It is also possible to install the development version of glipy from the <a class="reference" href="https://launchpad.net/glipy/">Bazaar</a> source code repository.  To do this you will
+need to have Bazaar installed on your system.  Then just do:</p>
+<pre class="literal-block">
+$ bzr branch lp:glipy
+$ cd glipy
+$ python setup.py install
+</pre>
+</div>
+<div class="section">
+<h1><a class="toc-backref" href="#id3" id="quick-start" name="quick-start">Quick start</a></h1>
+<p>glipy is essentially an interactive terminal that can be started most simply by
+typing:</p>
+<pre class="literal-block">
+$ glipy &amp;
+</pre>
+<p>There is some availble command line options that can be consulted using the
+<tt class="docutils literal"><span class="pre">-h</span></tt> command line option.</p>
+</div>
+<div class="section">
+<h1><a class="toc-backref" href="#id4" id="terminal" name="terminal">Terminal</a></h1>
+<p>While you  may think that  you're face to  a regular terminal once  you started
+glipy, it is indeed  not the fact. The terminal is a  very light emulation of a
+regular  terminal using  the pyglet  package. Because  of this  emulation, most
+usual key bindings need to be  emulated while some others are just not emulated
+at all. The following readline key bindings are currently supported:</p>
+<blockquote>
+<dl class="docutils">
+<dt><strong>Control-A</strong></dt>
+<dd>Move text cursor to the start of the current line</dd>
+<dt><strong>Control-B</strong></dt>
+<dd>Move text cursor backward one character</dd>
+<dt><strong>Control-C</strong></dt>
+<dd>Abord current command line</dd>
+<dt><strong>Control-D</strong></dt>
+<dd>Exit if command line is empty, else delete forward character</dd>
+<dt><strong>Control-E</strong></dt>
+<dd>Move text cursor to the end of the current line</dd>
+<dt><strong>Control-F</strong></dt>
+<dd>Move text cursor forward one character</dd>
+<dt><strong>Control-K</strong></dt>
+<dd>Kill line from cursor position</dd>
+<dt><strong>Control-L</strong></dt>
+<dd>Clear terminal but the prompt line</dd>
+<dt><strong>Control-Y</strong></dt>
+<dd>Yank kill buffer at cursor position</dd>
+<dt><strong>Tab</strong></dt>
+<dd>Show possible completions fo the command line</dd>
+<dt><strong>Arrow up</strong></dt>
+<dd>Previous history command line</dd>
+<dt><strong>Arrow down</strong></dt>
+<dd>Next history command line</dd>
+</dl>
+</blockquote>
+</div>
+<div class="section">
+<h1><a class="toc-backref" href="#id5" id="editor" name="editor">Editor</a></h1>
+<p>glipy provides a very rudimentary text editor that can be invoked using the
+<tt class="docutils literal"><span class="pre">ed</span></tt> command when using the IPython shell. You can exit the editor anytime by
+pressing the <tt class="docutils literal"><span class="pre">escape</span></tt> key when the mouse pointer is over the editor
+sub-window. This saves the edited file with the provided filename and returns to
+the shell.</p>
+</div>
+<div class="section">
+<h1><a class="toc-backref" href="#id6" id="basic-numpy-support" name="basic-numpy-support">Basic numpy support</a></h1>
+<p>One of the main interest of glipy is to offer support for various graphic
+elements that can be embedded directly within the terminal. The numpy element
+offers support for the visualization of one to several numpy arrays.  If you
+want to quickly test glipy numpy support, just type:</p>
+<pre class="literal-block">
+&gt;&gt;&gt; numpy.random.random((50,50))
+</pre>
+<p>from within the terminal and you should see the following:</p>
+<blockquote>
+<img alt="screenshot-1.png" src="screenshot-1.png" />
+</blockquote>
+<p>What is happening behind the scene is that glipy provides numpy with a string
+representation of an array (using the <tt class="docutils literal"><span class="pre">numpy.set_string_function()</span></tt>) and uses
+this function (<tt class="docutils literal"><span class="pre">figure</span></tt>) to actually display the array using a set of default
+parameters (and returns an empty string).</p>
+<p>The displayed  figure is not  a simple image  but a live representation  of the
+array. If  you modify the  array, you'll see  immediate changes in  the graphic
+representation as well. For example, you can try:</p>
+<pre class="literal-block">
+&gt;&gt;&gt; z = numpy.random.random((50,50))
+&gt;&gt;&gt; z
+&gt;&gt;&gt; z[0:25,0:25] = 0
+</pre>
+<p>and observe that changes are taken into account immediately.</p>
+<blockquote>
+<img alt="screenshot-2.png" src="screenshot-2.png" />
+</blockquote>
+<p>When the mouse pointer is over the figure, you can interact in different ways:</p>
+<blockquote>
+<dl class="docutils">
+<dt><strong>Mouse scroll button</strong></dt>
+<dd>Zoom in and out the figure</dd>
+<dt><strong>Shift + mouse left button</strong></dt>
+<dd>Move the figure</dd>
+<dt><strong>Mouse left button click</strong></dt>
+<dd>If you click on an array, this will send a <tt class="docutils literal"><span class="pre">on_select</span></tt> event with the
+related array and coordinates. You can add a pyglet-like event handler to
+catch this event from within your code.</dd>
+<dt><strong>Escape</strong></dt>
+<dd>Center the figure if not centered, else, reset zoom level to 1.0.</dd>
+<dt><strong>Control-S</strong></dt>
+<dd>Save the figure using filename pattern <tt class="docutils literal"><span class="pre">screenshot-%2d.png</span></tt></dd>
+</dl>
+</blockquote>
+</div>
+<div class="section">
+<h1><a class="toc-backref" href="#id7" id="extended-numpy-support" name="extended-numpy-support">Extended numpy support</a></h1>
+<p>While the direct display of arrays is quite convenient, there are of course some
+cases where one needs more control over arrays layout or colors. glipy provides
+a way to do that using the <tt class="docutils literal"><span class="pre">figure</span></tt> command.</p>
+<p><strong>Layout</strong></p>
+<p>The basic usage is quite simple:</p>
+<pre class="literal-block">
+&gt;&gt;&gt; z1 = numpy.random.random((50,50))
+&gt;&gt;&gt; z2 = numpy.random.random((50,50))
+&gt;&gt;&gt; fig = figure(z1, z2)
+</pre>
+<p>The above command displays z1 and z2 side by side:</p>
+<blockquote>
+<img alt="screenshot-3.png" src="screenshot-3.png" />
+</blockquote>
+<p>but if you prefer to have z1 on top of z2, you can also write:</p>
+<pre class="literal-block">
+&gt;&gt;&gt; fig = figure([z2], [z1])
+</pre>
+<p>and get:</p>
+<blockquote>
+<img alt="screenshot-4.png" src="screenshot-4.png" />
+</blockquote>
+<p>Similarly, if you need to display several arrays on top of each others, you can
+write:</p>
+<pre class="literal-block">
+&gt;&gt;&gt; z1 = numpy.random.random((50,50))
+&gt;&gt;&gt; z2 = numpy.random.random((50,50))
+&gt;&gt;&gt; z3 = numpy.random.random((50,50))
+&gt;&gt;&gt; fig = figure([z1], [z2,z3])
+</pre>
+<p>and get:</p>
+<blockquote>
+<img alt="screenshot-5.png" src="screenshot-5.png" />
+</blockquote>
+<p>If you look more closely at the displayed arrays, you will notice that any cell
+of any arrays has the exact same size as any other cell. This is the result of the
+packing algorithm that computes place and size of for each array. But if arrays
+are of different sizes, the result may not pleasant or convenient like in the
+following example:</p>
+<pre class="literal-block">
+&gt;&gt;&gt; z1 = numpy.random.random((50,50))
+&gt;&gt;&gt; z2 = numpy.random.random((10,10))
+&gt;&gt;&gt; fig = figure(z1, z2)
+</pre>
+<p>One can see that z2 may be too small:</p>
+<blockquote>
+<img alt="screenshot-6.png" src="screenshot-6.png" />
+</blockquote>
+<p>One way to solve the problem is to indicate that the z2 array must be zoomed:</p>
+<pre class="literal-block">
+&gt;&gt;&gt; z1 = numpy.random.random((50,50))
+&gt;&gt;&gt; z2 = numpy.random.random((10,10))
+&gt;&gt;&gt; fig = figure(z1, (z2,5.0))
+</pre>
+<p>and the new result will be:</p>
+<blockquote>
+<img alt="screenshot-7.png" src="screenshot-7.png" />
+</blockquote>
+<p>As you may have guessed by now (if you read the whole document), the figure
+command considers that each list represents a line of arrays to be displayed and
+the number of lists gives the number of rows. Each array is then placed in this
+meta-array at its natural position. However, this prevents any array to span
+several rows or several columns of the meta-array. One way to partly solve the
+problem is to indicate that a specific array span several rows or several
+columns:</p>
+<pre class="literal-block">
+&gt;&gt;&gt; z1 = numpy.random.random((21,21))
+&gt;&gt;&gt; z2 = numpy.random.random((10,10))
+&gt;&gt;&gt; z3 = numpy.random.random((10,10))
+&gt;&gt;&gt; fig = figure([z2, z1],
+                 [z3,'|'])
+</pre>
+<p>In this example, z1 spans two rows, indicated by the <tt class="docutils literal"><span class="pre">|</span></tt> character on the
+second row at the same column position as z1 in the first row.</p>
+<blockquote>
+<img alt="screenshot-8.png" src="screenshot-8.png" />
+</blockquote>
+<p>Alternatively, you could also have written:</p>
+<pre class="literal-block">
+&gt;&gt;&gt; z1 = numpy.random.random((21,21))
+&gt;&gt;&gt; z2 = numpy.random.random((10,10))
+&gt;&gt;&gt; z3 = numpy.random.random((10,10))
+&gt;&gt;&gt; fig = figure([z1, '-'],
+                 [z2, z3])
+</pre>
+<p>to get:</p>
+<blockquote>
+<img alt="screenshot-9.png" src="screenshot-9.png" />
+</blockquote>
+<p>Finally, the default padding between each array is exaclty one cell but you can
+change it by giving a new <tt class="docutils literal"><span class="pre">pad</span></tt> when creating the figure.</p>
+<p><strong>Colors</strong></p>
+<p>Together with the arrays layout, you can also indicate what colormap to use
+among those availables:</p>
+<blockquote>
+<dl class="docutils">
+<dt><strong>IceAndFire</strong></dt>
+<dd><img alt="colormap-IceAndFire.png" class="first last" src="colormap-IceAndFire.png" />
+</dd>
+<dt><strong>Ice</strong></dt>
+<dd><img alt="colormap-Ice.png" class="first last" src="colormap-Ice.png" />
+</dd>
+<dt><strong>Fire</strong></dt>
+<dd><img alt="colormap-Fire.png" class="first last" src="colormap-Fire.png" />
+</dd>
+<dt><strong>Hot</strong></dt>
+<dd><img alt="colormap-Hot.png" class="first last" src="colormap-Hot.png" />
+</dd>
+<dt><strong>Grey</strong></dt>
+<dd><img alt="colormap-Grey.png" class="first last" src="colormap-Grey.png" />
+</dd>
+<dt><strong>DarkRed</strong></dt>
+<dd><img alt="colormap-DarkRed.png" class="first last" src="colormap-DarkRed.png" />
+</dd>
+<dt><strong>DarkGreen</strong></dt>
+<dd><img alt="colormap-DarkGreen.png" class="first last" src="colormap-DarkGreen.png" />
+</dd>
+<dt><strong>DarkBlue</strong></dt>
+<dd><img alt="colormap-DarkBlue.png" class="first last" src="colormap-DarkBlue.png" />
+</dd>
+<dt><strong>LightRed</strong></dt>
+<dd><img alt="colormap-LightRed.png" class="first last" src="colormap-LightRed.png" />
+</dd>
+<dt><strong>LightGreen</strong></dt>
+<dd><img alt="colormap-LightGreen.png" class="first last" src="colormap-LightGreen.png" />
+</dd>
+<dt><strong>LightBlue</strong></dt>
+<dd><img alt="colormap-LightBlue.png" class="first last" src="colormap-LightBlue.png" />
+</dd>
+</dl>
+</blockquote>
+<p>You can of course create your own  colormap, just have a look at colormap.py to
+see how it can  be done.  For each colormap, you can  indicate a specific color
+for under value, over value and bad value and set the minimum and maximum value
+to be represented (default is -1,+1).</p>
+<p>When no colormap is indicated, the default colormap <tt class="docutils literal"><span class="pre">cmap</span></tt> is used. This is
+especially impotant for direct display of arrays.</p>
+</div>
+</div>
+</body>
+</html>

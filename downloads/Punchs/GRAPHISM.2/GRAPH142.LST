@@ -1,0 +1,25 @@
+' ST MAGAZINE 35
+' BASSE RESOLUTION
+' GFA 3.0
+' PRINST
+'
+DIM c$(3)
+c$(1)=MKI$(0)+MKI$(&H777)+MKI$(&H666)+MKI$(&H555)+MKI$(&H444)+MKI$(&H333)+MKI$(&H222)+MKI$(&H111)+MKI$(&H1)+MKI$(&H2)+MKI$(&H3)+MKI$(&H4)+MKI$(&H5)+MKI$(&H6)+MKI$(&H7)+MKI$(&H447)
+c$(2)=MKI$(0)+MKI$(&H777)+MKI$(&H666)+MKI$(&H555)+MKI$(&H444)+MKI$(&H333)+MKI$(&H222)+MKI$(&H111)+MKI$(&H100)+MKI$(&H200)+MKI$(&H300)+MKI$(&H400)+MKI$(&H500)+MKI$(&H600)+MKI$(&H700)+MKI$(&H744)
+c$(3)=MKI$(0)+MKI$(&H777)+MKI$(&H666)+MKI$(&H555)+MKI$(&H444)+MKI$(&H333)+MKI$(&H222)+MKI$(&H111)+MKI$(&H10)+MKI$(&H20)+MKI$(&H30)+MKI$(&H40)+MKI$(&H50)+MKI$(&H60)+MKI$(&H70)+MKI$(&H474)
+EVERY 10 GOSUB anim
+FOR x|=0 TO 100
+  FOR y|=0 TO 199
+    PSET 0,0,(SIN(x|*0.0314)/((SIN(y|*0.0314))+0.1))*15
+    COLOR POINT(0,0)-(POINT(0,0)=0)
+    LINE x|+60,y|,260-x|,199-y|
+  NEXT y|                       !=======================================!
+NEXT x|                         ! patience il faut un temps pour toutes !
+DO                              ! choses...                             !
+LOOP                            !                                       !
+PROCEDURE anim                  !pressez 1,2,3 pour en voir d'aventage  !
+  b|=VAL(INKEY$)                !...vive Atari ST ....                  !
+  a|=-b|*(0<b|<3)+(-a|*(b|=0))  !=======================================!
+  c$(a|)=MID$(c$(a|),1,2)+MID$(c$(a|),5,90)+MID$(c$(a|),3,2)
+  ~XBIOS(6,L:VARPTR(c$(a|)))
+RETURN

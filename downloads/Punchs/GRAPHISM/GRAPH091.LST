@@ -1,0 +1,20 @@
+' Auteur: Laurent VAUTRAIN, ST Magazine nø32.
+' GfA Basic 3 - R‚solution : Moyenne
+'
+n%=40
+DO
+  CLS
+  FOR i%=1 TO 10000
+    x=x+l*SIN(r%/100)
+    y=y+l*COS(r%/100)/2
+    LINE xo+320,yo+100,x+320,y+100
+    xo=x
+    yo=y
+    ADD r%,n%
+    ADD l,0.6
+    EXIT IF x<-320 OR x>320 OR y<-100 OR y>100
+  NEXT i%
+  PAUSE 50
+  CLR x,y,xo,yo,r%,l
+  ADD n%,5
+LOOP

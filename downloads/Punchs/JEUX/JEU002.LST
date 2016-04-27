@@ -1,0 +1,26 @@
+' Auteur: Hugues-Olivier YAR
+' ST MAGAZINE nø28.
+' GfA 3
+' Se joue … deux, plut“t en basse ou moyenne r‚solution.
+' TOUCHES: ZSQD ET 8426
+'
+DIM x(3),y(3),di(3),ch$(2)
+ARRAYFILL x(),160
+ARRAYFILL y(),100
+di(1)=3
+di(2)=4
+BOX 0,0,320,199
+REPEAT
+  a$=UPPER$(INKEY$)
+  FOR i=1 TO 2
+    PSET x(i),y(i),i+3 ! Pour la version monochrome, remplacez I+3 par 1
+    ta=INSTR("ZSQD8246",a$)
+    di(i)=-(NOT (ta>i*4-4 AND ta<i*4+1))*di(i)-(ta>i*4-4 AND ta<i*4+1)*(ta-(i-1)*4)
+    ADD x(i),-(di(i)=4)+(di(i)=3)
+    ADD y(i),-(di(i)=2)+(di(i)=1)
+  NEXT i
+  PAUSE 1
+UNTIL POINT(x(1),y(1))<>0 OR POINT(x(2),y(2))<>0
+PRINT CHR$(27);"b";CHR$(-(POINT(x(1),y(1))<>0)-(POINT(x(2),y(2))<>0)*2+3);"JOUEUR ";-(POINT(x(1),y(1))<>0)-(POINT(x(2),y(2))<>0)*2;" A PERDU"
+VOID INP(2)
+RUN

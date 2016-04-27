@@ -1,0 +1,20 @@
+' Auteur: Bernard Ischard
+' ST Magazine nø26.
+' D‚termine … quel jour de la semaine correspond une date...
+' GfA Basic 2 & 3, toutes r‚solutions.
+'
+choix:
+INPUT "Jour, mois, ann‚e (JJ,MM,AAAA): ",j,m,a
+IF ((a-1900) MOD 4<>0 AND m=2 AND j>28) OR (j>31 AND (m=1 OR m=3 OR m=5 OR m=7 OR m=8 OR m=10 OR m=12)) OR (j>30 AND (m=4 OR m=6 OR m=9 OR m=11)) OR m<1 OR m>12 OR a<1901 OR j<1 OR (j>29 AND m=2)
+  ALERT 3,"Entr‚e erron‚e * Ann‚e<1901|Ann‚e non bissextile|Jour ou mois incorrect",1,"OK",r%
+  RUN
+ENDIF
+a$="000031059090120151181212243273304334"
+t=((a-1900)*365+INT((a-1900)/4)+VAL(MID$(a$,1+(m-1)*3,3))+j) MOD 7
+IF VAL(MID$(a$,1+(m-1)*3,3))<59
+  t=t-INT(1-((a-1900) MOD 4/10))
+ENDIF
+j$="DIMANCHELUNDI   MARDI   MERCREDIJEUDI   VENDREDISAMEDI"
+PRINT AT(3,10);"Le jour cherch‚ est un ";MID$(j$,7*t+t+1,8)
+a=INP(2)
+RUN

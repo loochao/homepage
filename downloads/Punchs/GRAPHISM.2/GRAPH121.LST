@@ -1,0 +1,21 @@
+' ST Magazine nø34.
+' Rougier Nicolas
+' Basse r‚solution GfA Basic 3.
+' D‚forme une image N‚o.
+'
+FILESELECT "A:\*.NEO","DESSIN.NEO",nom$
+BLOAD nom$,HIMEM-32128
+~XBIOS(6,L:HIMEM-32124)
+COLOR 1
+CIRCLE 0,0,110
+CIRCLE 0,200,110
+FOR i|=0 TO 198
+  FOR x&=0 TO 159
+    EXIT IF PTST(x&,i|)
+  NEXT x&
+  BMOVE SUB(HIMEM,32000)+SUCC(i|)*160,XBIOS(2)+31840,160
+  FOR j=0 TO 319 STEP 320/(SUB(MUL(SUB(160,x&),2),1))
+    PSET x&,i|,PTST(j,199)
+    INC x&
+  NEXT j
+NEXT i|

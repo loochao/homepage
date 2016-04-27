@@ -1,0 +1,23 @@
+' ST Magazine nø31.
+' GfA Basic 3, monochrome et 1040ST obligatoires.
+'
+SETCOLOR 0,0
+DIM s$(22)
+FOR p&=1 TO 22
+  FOR i&=0 TO 639 STEP p&
+    ALINE i&,0,639-i&,399,1,-1,0
+  NEXT i&
+  FOR i&=0 TO 399 STEP p&
+    ALINE 0,399-i&,639,i&,1,-1,0
+  NEXT i&
+  SGET s$(p&-1)
+  CLS
+NEXT p&
+DO
+  FOR p&=0 TO 21
+    SPUT s$(p&)
+  NEXT p&
+  FOR p&=21 DOWNTO 0
+    SPUT s$(p&)
+  NEXT p&
+LOOP

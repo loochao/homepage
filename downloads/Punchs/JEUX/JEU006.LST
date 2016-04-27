@@ -1,0 +1,15 @@
+' Auteur: Zoom. ST Magazine nø30.
+' GfA Basic 2 & 3. Basse r‚solution.
+'
+A%=15
+B%=15
+Repeat
+  A%=A%+Random(3)-1-(A%<5)+(A%>27)
+  Print At(2,25);Chr$(27);"cB";Spc(38);
+  Print At(A%,25);Chr$(27);"cG";Chr$(27);"bA*       *"
+  ' 7 espaces
+  B%=B%+(Peek(Xbios(&H22)+61)=4)-(Peek(Xbios(&H22)+61)=8)
+  Print At(B%,1);Chr$(27);"b@H"
+  Inc C%
+Until Point(B%*8-4,12)=2 Or Mousek
+Print At(1,1);"PERDU, VOUS AVEZ PARCOURU ";C%;" km."

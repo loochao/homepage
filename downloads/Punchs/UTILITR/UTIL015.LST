@@ -1,0 +1,25 @@
+' ST Magazine nø34.
+' Mathieu Kolb
+' Sujet:repr‚sentation de donn‚es sous forme de graphique circulaire et calcul
+' de pourcentage
+' GfA Basic 2 & 3, moyenne et haute r‚solution.
+'
+INPUT "Nombre de donn‚es";n
+DIM d(n),t$(n)
+FOR i=0 TO n-1
+  CLS
+  INPUT "Nom de la donn‚e:";t$(i)
+  INPUT "valeur:";d(i)
+  t=t+d(i)
+NEXT i
+CLS
+FOR j=0 TO n-1
+  p=(100*d(j))/t
+  arr=arr+(360*p)/100
+  DEFFILL 1,2,j
+  PCIRCLE 200,100,200,dep*10,arr*10
+  PBOX 420,j*8,460,j*8+8
+  PRINT AT(60,j+1);FIX(p);"%";t$(j)
+  dep=arr
+NEXT j
+a=INP(2)

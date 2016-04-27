@@ -1,0 +1,24 @@
+' ST Magazine nø34.
+' FRANCK HANOT, BAL ERNEST (SUR 3615 STMAG)
+' GfA Basic 2 & 3, moyenne et haute r‚solution.
+'
+DIM x(8,1),y(8,1),xx(8),yy(8)
+a$=STRING$(32000,0)
+VOID XBIOS(5,L:VARPTR(a$),L:-1)
+DO
+  FOR i=1 TO 8
+    x(i,0)=x(i,1)
+    x(i,1)=RND*320+160
+    y(i,0)=y(i,1)
+    y(i,1)=RND*160+20
+  NEXT i
+  FOR u=1 TO 50
+    FOR l=1 TO 8
+      xx(l-1)=x(l,0)+(x(l,1)-x(l,0))/50*u
+      yy(l-1)=y(l,0)+(y(l,1)-y(l,0))/50*u
+    NEXT l
+    POLYLINE 8,xx(),yy()
+    BMOVE VARPTR(a$),XBIOS(2),32000
+    CLS
+  NEXT u
+LOOP

@@ -1,0 +1,23 @@
+' Auteur anonyme. ST Magazine nø30.
+' GfA Basic 2 & 3, monochrome.
+'
+Dim Ecr$(15)
+For N=-20000 To 20000 Step 54
+  Line N,194,320,14
+Next N
+Sget Ecran$
+For J=0 To 1.1 Step 0.1
+  Sput Ecran$
+  For N=0 To 25
+    D=Sin(Atn(((N+J)*18)/200))*200
+    Line 0,200-D,640,200-D
+  Next N
+  Sget Ecr$((J+0.01)*10)
+Next J
+Cls
+While Inkey$=""
+  Clr Ecran$
+  For J=0 To 9
+    Sput Ecr$(J)
+  Next J
+Wend

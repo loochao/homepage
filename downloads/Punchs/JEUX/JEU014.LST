@@ -1,0 +1,26 @@
+' ST MAGAZINE 35
+' BASSE RESOLUTION
+' GFA 2.0
+' PRINST
+'
+FOR x|=0 TO 16
+  PBOX x|*20,200-10*RAND(15),x|*20+20,200!remplacer rand(15) par rand(10) pour changer la hauteur des immeubles
+NEXT x|
+FOR y|=0 TO 200 STEP 10
+  FOR x&=0 TO 320 STEP 10
+    DRAW x&,y|+6 TO x&+2,y|+6 TO x&+4,y|+4 TO x&+5,y|+4 TO x&+5,y|+2 TO x&+2,y|+2 TO x&+8,y|+2 TO x&+5,y|+2 TO x&+5,y|+4 TO x&+6,y|+4 TO x&+8,y|+6 TO x&+6,y|+8 TO x&+2,y|+8 TO x&+0,y|+6
+    EXIT IF POINT(x&+9,y|+6)<>0
+    IF INKEY$=" " AND yt%>200
+      xt&=x&
+      yt%=y|
+    ENDIF
+    yt%=yt%+10
+    DRAW xt&,yt% TO xt&+6,yt% TO xt&+4,yt%+2 TO xt&+4,yt%+6 TO xt&+3,yt%+8 TO xt&+2,yt%+6 TO xt&+2,yt%+2 TO xt&,yt%
+    PAUSE 5      !renplacer 5 par un chiffre inferieur pour un niveau + difficile
+    DEFFILL 0
+    PBOX x&,y|,x&+10,y|+10
+    PBOX xt&,yt%,xt&+10,yt%+10
+  NEXT x&
+  EXIT IF POINT(x&+9,y|+6)<>0
+NEXT y|
+ALERT 1,"vous realise un score de:"+STR$(x&+y|*32)+"pts",1,"fini...",a

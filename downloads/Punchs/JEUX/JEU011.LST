@@ -1,0 +1,24 @@
+' ST Magazine nø34.
+' Rougier Nicolas
+' Basse r‚solution GfA Basic 3.
+'
+SLPOKE &HFF8240,&H70
+SETCOLOR 15,&H777
+DEFTEXT 2,24,,60
+TEXT 64,38,"** COBRA **"
+BOX 108,78,210,150
+key=77                          !
+cobra$=CHR$(0)+CHR$(0)+STRING$(100,1)
+SETMOUSE 1000,1000
+REPEAT
+  ADD long,0.2
+  key_old=ASC(RIGHT$(INKEY$))
+  IF key_old=72 OR key_old=80 OR key_old=77 OR key_old=75
+    key=key_old
+  ENDIF
+  cobra$=CHR$(ASC(MID$(cobra$,1,1))+(ABS(key=77)+(key=75)))+CHR$(ASC(MID$(cobra$,2,1))+ABS(key=80)+(key=72))+MID$(cobra$,1,98+INT(long)*2)
+  PSET ASC(MID$(cobra$,3,1))+109,ASC(MID$(cobra$,4,1))+79,1
+  PSET ASC(MID$(cobra$,97+INT(long)*2,1))+109,ASC(MID$(cobra$,98+INT(long)*2,1))+79,0
+  PRINT AT(17,8);"SCORE : ";INT(long*10)
+UNTIL ASC(MID$(cobra$,3,1))>99 OR ASC(MID$(cobra$,4,1))>69 OR ODD(INSTR(3,cobra$,MID$(cobra$,1,2)))=-1
+PRINT AT(15,9);"NIVEAU : ";MID$("NULFAIBLEMAUVAISMOYENNORMALBONTRES BONEXCELLENTEXCEPTIONNEL",ASC(MID$("!$*16<?GGGGG"+STRING$(10,"P"),INT(long/200)+1,1))-32,ASC(MID$("#&'%#((((("+STRING$(10,"3"),INT(long/200)+1,1))-32)

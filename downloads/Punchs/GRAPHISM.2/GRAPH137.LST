@@ -1,0 +1,25 @@
+' ST MAGAZINE 35
+' HAUTE RESOLUTION
+' GFA 2.0
+' SEBASTIEN DELESTAING
+'
+a$="GFA PUNCH"
+PRINT AT(1,1);a$
+l%=LEN(a$)*8
+DIM b$(l%)
+FOR f%=0 TO l%
+  GET f%,0,f%,16,b$(f%)
+NEXT f%
+CLS
+BOUNDARY 0
+FOR f%=0 TO 8
+  DEFFILL 1,2,f%
+  PBOX 310+f%/2,180,319-f%/2,400
+NEXT f%
+DO
+  FOR g%=0 TO 360 STEP 20
+    FOR f%=0 TO l%
+      PUT 320+f%,200+SINQ(f%*5+g%)*5,b$(f%)
+    NEXT f%
+  NEXT g%
+LOOP

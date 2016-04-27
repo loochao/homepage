@@ -1,0 +1,34 @@
+' Auteur: *chessman (GfA 3)
+' ST Magazine nø26.
+' L'auteur communique:
+' "Bon, voila un petit programme qui cherche
+' les comptes au jeu "le compte est bon"
+' Il vous faudra attendre toutefois
+' plusieurs minutes parfois. Dire que j'ai
+' une version en 21 lignes qui va 7 fois
+' plus vite (et une en C plus puissante
+' qui va 300 fois plus vite ...)"
+' GfA Basic 3 uniquement, toutes r‚solutions.
+'
+DIM pl%(10)
+INPUT "Entre le nombre puis les 6 plaques:";num%,pl%(1),pl%(2),pl%(3),pl%(4),pl%(5),pl%(6)
+ret%=@cherche(6,num%,TRUE,0,0,0,0)
+FUNCTION cherche(prof%,num%,test%,opp%,pp%,op%,p%)
+  pl%(pp%)=-pl%(pp%)
+  IF num%<=0 OR prof%=0 OR test%=FALSE
+    RETURN (num%=0 AND test%=TRUE)
+  ENDIF
+  FOR op%=1 TO 3
+    FOR p%=1 TO 6
+      IF @cherche(prof%-1,-(num%/pl%(p%))*(op%=1)-(num%-pl%(p%))*(op%=2)-(num%+pl%(p%))*(op%=3),(pl%(p%)>0) AND (opp%<>op% OR p%>pp%) AND ((((num% MOD (pl%(p%)))=0) AND (op%=1)) OR ((num%>=pl%(p%) AND op%=2) OR ((opp%<>2) AND op%=3))),op%,p%,0,0)
+        PRINT MID$("x+-/",op%,1);"  ";-pl%(p%);" = ";num%
+        RETURN TRUE
+      ENDIF
+      pl%(p%)=-pl%(p%)
+    NEXT p%
+  NEXT op%
+  RETURN FALSE
+ENDFUNC
+' Un grand bravo … Chessman, joignable sur le serveur de
+' ST Magazine, qui a pondu cet algorithme dans le cadre
+' des GfA-Punchs!

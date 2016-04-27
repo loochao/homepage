@@ -1,0 +1,25 @@
+' ST Magazine nø28.
+' GfA Basic 2 & 3, toutes r‚solutions.
+' PAR SCHILDKNECHT FRANK.
+' UNE PETITE ANIMATION AVEC EFFET SONORE.
+'
+Setcolor 0,1911
+Dim Ecran$(7)
+For R%=35 To 70 Step 5
+  For Al=0 To 2*Pi Step Pi/16
+    X=Cos(Al)*R%+159
+    Y=Sin(Al)*R%+99
+    Circle X,Y,R%/4+1
+  Next Al
+  Sget Ecran$(Ct%)
+  Inc Ct%
+Next R%
+B%=7
+Do
+  Setcolor 15,Random(6),Random(6),Random(6)
+  For I%=A% To 7-A% Step Odd(A%=7)+(A%=7)+1
+    Sput Ecran$(I%)
+    Sound 1,15,#I%*5+600,1
+  Next I%
+  Swap A%,B%
+Loop

@@ -1,0 +1,20 @@
+' STMAC, ST Magazine nø32.
+' Scrolling vertical d'images Degas
+' GfA Basic 2, basse r‚solution.
+'
+VOID XBIOS(5,L:-1,L:-1,W:0)
+DIM long%((32000*3+255)/4)
+buf%=VARPTR(long%(0))+255 AND &HFFFF00
+BLOAD "IMAGE1.PI1",XBIOS(2)-34
+VOID XBIOS(6,L:XBIOS(2)-32)
+BMOVE XBIOS(2),buf%,32000
+BLOAD "IMAGE2.PI1",XBIOS(2)-34
+BMOVE XBIOS(2),buf%+32000,32000
+BMOVE buf%,buf%+64000,32000
+WHILE INKEY$<>" "
+  FOR scroll%=buf% TO buf%+62720 STEP 1280
+    VOID XBIOS(5,L:-1,L:scroll%,-1)
+    VSYNC
+  NEXT scroll%
+WEND
+END

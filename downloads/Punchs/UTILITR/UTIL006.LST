@@ -1,0 +1,15 @@
+' Auteur: PSKL. ST Magazine nø30.
+' GfA Basic 2 & 3. Toutes r‚solutions.
+'
+Input X$
+@Ana("",X$)
+Procedure Ana(A$,R$)
+  Local I%
+  If R$=""
+    Print A$;" ";
+  Else
+    For I%=1 To Len(R$)
+      @Ana(A$+Mid$(R$,I%,1),Left$(R$,I%-1)+Right$(R$,Len(R$)-I%))
+    Next I%
+  Endif
+Return

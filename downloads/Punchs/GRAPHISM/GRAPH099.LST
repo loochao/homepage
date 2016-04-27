@@ -1,0 +1,19 @@
+' ST Magazine nø32.
+' GfA Basic 2 & 3, basse r‚solution.
+'
+gem%=GEMDOS(&H20,L:0)
+ON BREAK GOSUB libmem
+OUT 4,18
+HIDEM
+DO
+  VSYNC
+  c=c MOD 65000+9
+  FOR i%=c TO c+110
+    SDPOKE &HFF8240,i%
+  NEXT i%
+LOOP
+PROCEDURE libmem
+  VOID GEMDOS(&H20,L:gem%)
+  OUT 4,8
+  EDIT
+RETURN

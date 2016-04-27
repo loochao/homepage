@@ -1,0 +1,21 @@
+' ST Magazine nø32.
+' Sinusoidales color‚es en GfA 2 ou 3 et basse r‚solution.
+'
+FOR y=0 TO 3
+  FOR x=0 TO 3
+    DEFFILL y*4+x
+    PBOX x*4,y*4,x*4+3,y*4+3
+  NEXT x
+NEXT y
+GET 0,0,15,15,a$
+a=PI/18
+CLS
+REPEAT
+  y=SIN(x+a)+SIN(x+2*a)+SIN(x+3*a)
+  PUT x*20,y*30+95,a$
+  ADD x,PI/180
+  IF x>PI*5
+    ADD a,PI/18
+    x=0
+  ENDIF
+UNTIL a=120

@@ -1,0 +1,24 @@
+' D.E.S (Albertville). ST Magazine nø31.
+' GfA Basic 2 & 3, basse r‚solution uniquement!
+'
+DIM reg%(15),col$(15)
+a$="0F124635789ACEBD0007776665554443332221110121232344565676777777"
+FOR i%=0 TO 15
+  reg%(i%)=VAL("&h"+MID$(a$,i%+1,1))
+  col$(i%)=MID$(a$,17+i%*3,3)
+  SETCOLOR i%,VAL("&h"+col$(i%))
+NEXT i%
+FOR i%=0 TO 75
+  DEFFILL i% MOD 15+1
+  PCIRCLE 159,99,150-(i%*2)
+NEXT i%
+REPEAT
+  reg%=reg%(1)
+  VSYNC
+  FOR j%=1 TO 14
+    reg%(j%)=reg%(j%+1)
+    SETCOLOR reg%(j%),VAL("&h"+col$(j%))
+  NEXT j%
+  reg%(15)=reg%
+  SETCOLOR reg%(15),VAL("&h"+col$(15))
+UNTIL INKEY$<>""

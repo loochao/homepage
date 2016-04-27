@@ -1,0 +1,25 @@
+' Auteur: Tagada
+' ST Magazine nø28.
+' GfA 2 & 3, basse r‚solution.
+'
+Dim X%(320)
+' Exemple:
+@Degrade(10,10,1,12,30,100)
+Procedure Degrade(X,Y,Col1%,Col2%,Largeur,Hauteur)
+  Local F%,G%
+  Deffill Col1%
+  Pbox X,Y,Largeur+X,Int(Hauteur/2)-1+Y
+  Deffill Col2%
+  Pbox X,Int(Hauteur/2)+Y,Largeur+X,Hauteur+Y
+  For F%=0 To Hauteur/2-1
+    For G%=0 To Largeur*(F%+1)/Hauteur-1
+      X%(G%)=Hauteur/(F%+1)*(Rnd(1)+G%)
+    Next G%
+    For N%=0 To Largeur*(F%+1)/Hauteur-1
+      Color Col2%
+      Plot X%(N%)+X,F%+Y
+      Color Col1%
+      Plot X%(N%)+X,Hauteur+Y-F%-1
+    Next N%
+  Next F%
+Return

@@ -1,0 +1,24 @@
+' Auteur: Olivier Thill
+' ST Magazine nø28.
+' GfA Basic 2 & 3, toutes r‚solutions.
+'
+z_f%=25+(XBIOS(4)=0)*15
+RBOX 8,100,29+z_f%*15,142
+DEFFILL 1,2,4
+FOR i_f%=0 TO z_f%
+  PBOX 12+i_f%*15,110,24+i_f%*15,125
+NEXT i_f%
+PBOX 20,144,32,147
+PBOX z_f%*15+3,144,z_f%*15+15,147
+GET 8,100,29+z_f%*15,148,wagon$
+PBOX 0,149,639+(XBIOS(4)=0)*320,399+(XBIOS(4)<>2)*200
+FOR i_xa%=-z_f%*15 TO 20 STEP 1
+  FOR i_x%=i_xa% TO 639+(XBIOS(4)=0)*320 STEP z_f%*15+30
+    PUT i_x%,100,wagon$
+  NEXT i_x%
+  IF i_xa%>9
+    i_xa%=-z_f%*15-20
+    PRINT AT(1,23);" - On ne s'ennuie pas ici, hein?"
+    PRINT AT(1,24);" - C'est ben vrai, MEUUH"
+  ENDIF
+NEXT i_xa%

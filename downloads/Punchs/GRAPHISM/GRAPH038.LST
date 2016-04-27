@@ -1,0 +1,22 @@
+' Auteur: Naxos. ST Magazine nø30.
+' GfA Basic 2 & 3. Haute r‚solution.
+'
+Dim X%(5),Dx%(5)
+Pbox 640-240,0,640,400
+For I%=1 To 2
+  X%(I%)=Rnd*400
+  X%(I%+2)=Rnd*400
+  Dx%(I%)=Rnd*20-10
+  Dx%(I%+2)=Rnd*20-10
+Next I%
+For Nbr%=0 To Int(Rnd*500+500)
+  For I%=1 To 4
+    If (X%(I%)+Dx%(I%))<0 Or (X%(I%)+Dx%(I%))>400
+      Dx%(I%)=-Dx%(I%)
+    Endif
+    Add X%(I%),Dx%(I%)
+  Next I%
+  Line X%(1),X%(3),X%(2),X%(4)
+Next Nbr%
+Pause 50
+Run

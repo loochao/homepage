@@ -1,0 +1,20 @@
+' Auteur : STCJ sur le serveur de ST Magazine
+' ST Magazine nø26.
+' GfA Basic 2 & 3, basse r‚solution.
+'
+SETCOLOR 0,0,0,3
+tirage:
+a=RANDOM(14)+1
+b=RANDOM(320)+160
+c=RANDOM(200)
+d=RANDOM(160)
+FOR i=d TO b STEP 2
+  COLOR a
+  BOX 160-i,100-(c-i),160-i,100+(c-i)
+  ' BOX 160+(C-I),100-I,160+(C-I),100+I
+  COLOR a+1
+  BOX 160+i,100-(c-i),160+i,100+(c-i)
+  ' BOX 160-(C-I),100-I,160-(C-I),100+I
+NEXT i
+GOTO tirage
+' On peut remplacer BOX par LINE

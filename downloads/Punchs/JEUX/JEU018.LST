@@ -1,0 +1,25 @@
+' ST MAGAZINE 35
+' TOUTES RESOLUTIONS
+' GFA 2.0
+' PIERRE COUPARD
+'
+snd$=CHR$(0)+CHR$(6)+CHR$(1)+CHR$(1)+CHR$(2)+CHR$(94)+CHR$(3)+CHR$(1)+CHR$(4)+CHR$(19)+CHR$(5)+CHR$(2)+CHR$(7)+CHR$(248)+CHR$(8)+CHR$(16)+CHR$(9)+CHR$(16)+CHR$(10)+CHR$(16)+CHR$(11)+CHR$(111)+CHR$(12)+CHR$(163)+CHR$(13)+CHR$(0)+CHR$(255)+CHR$(0)
+PRINT "                      Testeur de reflexes."
+PRINT "                      --------------------                                                              "
+PRINT "  DŠs le signal sonore, appuyez sur une touche. "
+INPUT "Pret (pressez RETURN) ";a$
+PAUSE 50
+DO
+  EXIT IF INT(RND*200)=53
+LOOP
+t%=TIMER
+VOID XBIOS(32,L:VARPTR(snd$))
+DO
+  EXIT IF ASC(INKEY$)<>0
+LOOP
+resultat%=(TIMER-t%)/2
+PRINT "Votre temps de r‚action est de ";resultat%;" centiŠmes de secondes ..."
+INPUT "Recommencer (O/N) ";demande$
+IF demande$="o" OR demande$="O"
+  RUN
+ENDIF

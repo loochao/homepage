@@ -1,0 +1,19 @@
+' ST Magazine nø32.
+' GfA Basic 2 & 3, toutes r‚solutions.
+'
+HIDEM
+SETCOLOR 0,&H0
+SETCOLOR 4,&H700
+DIM x&(10),y&(10)
+DEFFILL 4
+PBOX 0,0,5,5
+GET 0,0,5,5,a$
+DO
+  CLS
+  MOUSE x&(0),y&(0),k
+  FOR i&=0 TO 7
+    PUT x&(i&),y&(i&),a$
+  NEXT i&
+  BMOVE V:x&(0),V:x&(1),14
+  BMOVE V:y&(0),V:y&(1),14
+LOOP

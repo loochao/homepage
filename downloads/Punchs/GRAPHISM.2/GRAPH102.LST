@@ -1,0 +1,17 @@
+' ST Magazine nø32.
+' Pyramide 3D en GfA Basic 2 ou 3 et basse r‚solution.
+'
+SETCOLOR 0,&H0
+SETCOLOR 4,&H7
+COLOR 4
+DIM x(3),y(3)
+REPEAT
+  SUB a,PI/180
+  FOR i|=0 TO 3
+    x(i|)=COS(a+i|*(PI/2))*50+159
+    y(i|)=(SIN(a+i|*(PI/2))*50)*(SIN(-42*PI/360)*50)/50+99
+  NEXT i|
+  CLS
+  DRAW x(0),y(0) TO (x(0)+x(2))/2,(y(0)+y(2))/4 TO x(1),y(1) TO x(2),y(2) TO x(3),y(3) TO x(0),y(0) TO x(1),y(1) TO x(2),y(2) TO (x(0)+x(2))/2,(y(0)+y(2))/4 TO x(3),y(3)
+UNTIL MOUSEK OR INKEY$<>""
+EDIT

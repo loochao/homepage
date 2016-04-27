@@ -1,0 +1,28 @@
+' ST MAGAZINE 35
+' BASSE RESOLUTION
+' GFA 3.0
+' MICHEL GOUX
+' On peut faire varier les effets en
+' modifiant la valeur '30' en ligne 15 (essayez: 5,10,50,90...)
+'
+DIM angle%(24),module%(24),x%(24),y%(24)
+SETCOLOR 0,&H0
+SETCOLOR 15,&H777
+INC v%
+DO
+  IF module%(13)>99 OR module%(1)<20 OR module%(1)>99 OR module%(13)<20
+    v%=-v%
+    c%=-(c%+1)*(c%<16)
+  ENDIF
+  FOR n%=1 TO 24
+    IF module%(n%)=0
+      module%(n%)=INT(n%/13)*79+20
+      angle%(n%)=30*n%
+    ENDIF
+    x%(n%)=159+module%(n%)*COSQ(angle%(n%))
+    y%(n%)=99+module%(n%)*SINQ(angle%(n%))
+    PSET x%(n%),y%(n%),c%
+    ADD module%(n%),(INT(n%/13)*2-1)*v%
+    ADD angle%(n%),INT(n%/13)*2-1
+  NEXT n%
+LOOP

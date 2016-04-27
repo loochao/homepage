@@ -1,0 +1,23 @@
+' ST Magazine nø34.
+' CARPENTIER Jean-No‰l
+' GfA Basic 2 & 3, basse r‚solution.
+'
+HIDEM
+@echiquier(3,25)  !plus les cases sont petites plus le tempo doit etre r‚duit
+~INP(2)           !cependant grace au compilateur les problŠmes de rapidit‚
+SHOWM             !avec les petites cases seront r‚gl‚s
+PROCEDURE echiquier(tempo%,lr%)
+  LOCAL a$,i%,j%,k%
+  a$=SPACE$(32000)
+  BLOAD "A:TAHITI01.PI1",V:a$-34
+  ~XBIOS(6,L:V:a$-32)
+  FOR k%=0 TO lr% STEP lr%
+    FOR i%=0 TO 319 STEP lr%*2
+      FOR j%=0 TO 199 STEP lr%*2
+        RC_COPY V:a$,i%+k%,j%+lr%,lr%,lr% TO XBIOS(2),i%+k%,j%+lr%
+        RC_COPY V:a$,i%+lr%-k%,j%,lr%,lr% TO XBIOS(2),i%+lr%-k%,j%
+        PAUSE tempo%
+      NEXT j%
+    NEXT i%
+  NEXT k%
+RETURN

@@ -1,0 +1,26 @@
+' Auteur: DOC
+' ST Magazine nø28.
+' Ce programme ne fonctionne que sur 1040 ou plus,
+' Il transforme une disquette Aladin en disquette Magic Sac.
+' GfA Basic 2 & 3, toutes r‚solutions.
+'
+Esp$=Space$(8*1024)
+Buf2%=Varptr(Esp$)
+Input "Ins‚rez le futur MagicDisk";Rep$
+For P=0 To 80
+  Void Xbios(10,L:Buf2%,L:0,0,10,P,0,1,L:&H87654321,&HE5E5)
+Next P
+Reserve Fre(0)-410000
+Tamp=Malloc(410000)
+Buf=Tamp
+Input "Disk aladin";R$
+For P=1 To 79
+  Void Xbios(8,L:Buf,L:0,0,1,P,0,9)
+  Buf=Buf+(512*9)
+Next P
+Input "MagicDisk...";R$
+Buf=Tamp
+For P=0 To 71
+  Void Xbios(9,L:Buf,L:0,0,1,P,0,10)
+  Buf=Buf+5120
+Next P

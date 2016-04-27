@@ -1,0 +1,23 @@
+ plus 
+gentil r‚dacteur en chef du monde, nous 
+l'aimons tous, et nous serions trŠs 
+tristes s'il venait … disparaŒtre dans 
+un accident de moto.
+
+La partie t‚l‚matique de cette 
+disquette est effectivement assez 
+volumineuse, puisque vous y retrouverez 
+les nombreux listings publi‚s dans ce 
+num‚ro 32, num‚ro d'‚t‚, num‚ro 
+chaleureux, num‚ro de rencontres, 
+num‚ro voluptueux s'il en est. Je 
+profite de l'occasion qui m'est donn‚e 
+pour remercier la soci‚t‚ France-Tex, 
+qui nous offre les so-2,11)
+  IF b%=4
+    INC s%
+    PRINT CHR$(7);
+  ENDIF
+UNTIL b%=6
+SETCOLOR 0,&H777
+PRINT AT(1,1);"PERDU, VOTRE SCORE:";s%

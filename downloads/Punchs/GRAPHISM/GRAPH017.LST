@@ -1,0 +1,24 @@
+' HYPERFOOL
+' ST Magazine nø28.
+' GfA Basic 2 & 3, haute r‚solution.
+'
+For X=-80 To 80 Step 6
+  For Y=-100 To 100
+    Gosub Calcul
+    Ny=Y-X*0.5+150
+    Nz=Z+X*0.5+60
+    Color 1
+    Line Ny,Nz,Ny,200
+    If Y<>-100 Then
+      Color 0
+      Line Py,Pz,Ny,Nz
+    Endif
+    Py=Ny
+    Pz=Nz
+  Next Y
+Next X
+Procedure Calcul
+  Xt=X*0.00500001
+  Yt=Y*0.005000001
+  Z=100-6/Sqr(Xt*Xt+Yt*Yt)
+Return

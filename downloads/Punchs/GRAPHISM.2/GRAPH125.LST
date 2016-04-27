@@ -1,0 +1,23 @@
+' GfA Punch In‚dit
+' GfA Basic 2 & 3, haute r‚solution.
+'
+DIM ecr$(10)
+FOR h=1 TO 50 STEP 5
+  r=0
+  REPEAT
+    x=SIN(r)*h+310
+    y=TAN(r)*20+400
+    INC r
+    PBOX x,y,x+2,y+2
+  UNTIL r=500
+  SGET ecr$(h/5)
+  CLS
+NEXT h
+j=1
+REPEAT
+  SPUT ecr$(i)
+  ADD i,j
+  IF i=0 OR i=9
+    j=-j
+  ENDIF
+UNTIL LEN(INKEY$)

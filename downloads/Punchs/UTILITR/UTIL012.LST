@@ -1,0 +1,26 @@
+' ST Magazine nø32.
+' Une proc‚dure de d‚crunchage d'image
+' Degas en basse r‚solution et en 17 lignes!
+' ' add%=adresse de l'image compress‚e
+' ' ada%=adresse du tampon de r‚ception
+' ' (peut ˆtre l'‚cran avec le
+' ' XBIOS(2) mais il faut alors
+' ' planquer la souris)
+' ' l%=longueur de l'img (=longueur du fichier-34)
+PROCEDURE unpack(add%,ada%,l%)
+  FOR y%=0 TO 199
+    FOR p%=0 TO 3
+      cl%=-1
+      REPEAT
+        cde%=PEEK(add%)
+        ADD cde%,256*BTST(cde%,7)
+        FOR lo%=0 TO ABS(cde%)
+          INC cl%
+          SUB add%,(cde%>=0) OR (lo%=0)
+          POKE ada%+y%*160+p%*2+DIV(cl%,2)*8-ODD(cl%),PEEK(add%) ! One line...
+        NEXT lo%
+        INC add%
+      UNTIL cl%=39
+    NEXT p%
+  NEXT y%
+RETURN

@@ -1,0 +1,29 @@
+' ST MAGAZINE 35
+' TOUTES RESOLUTIONS
+' GFA 2.0
+'
+' Un g‚nial GfA-Punch 'Hard' : La LED du drive est magique?
+'
+' Auteur: SPEEDER From THE HORRIBLES
+'
+SPOKE &HFF8800,14
+REPEAT
+  FOR t&=0 TO 120
+    FOR n&=0 TO MUL(t&,3)
+    NEXT n&
+    SPOKE &HFF8802,13
+    FOR n&=0 TO 120-t&
+    NEXT n&
+    SPOKE &HFF8802,15
+  NEXT t&
+  PAUSE 50
+  FOR t&=120 DOWNTO 0
+    FOR n&=0 TO 120-t&
+    NEXT n&
+    SPOKE &HFF8802,15
+    FOR n&=0 TO MUL(t&,3)
+    NEXT n&
+    SPOKE &HFF8802,13
+  NEXT t&
+  PAUSE 10
+UNTIL INP(-2)

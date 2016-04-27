@@ -1,0 +1,26 @@
+' ST MAGAZINE 35
+' BASSE RESOLUTION
+' GFA 3.0
+' MICHEL GOUX
+'
+' Conversion d'images (DEGAS ELITE, NEOCHROME, ART DIRECTOR)
+'
+ALERT 3," Format du dessin a convertir ?",1," PI1 | NEO | ART",s%
+FILESELECT "a:\*."+MID$("PI1NEOART",s%*3-2,3),"",nom$
+IF EXIST(nom$)
+  OPEN "i",#1,nom$
+  l%=LOF(#1)
+  CLOSE #1
+  IF l%=-32066*(s%=1)-32128*(s%=2)-32512*(s%=3) AND RIGHT$(nom$,3)=MID$("PI1NEOART",s%*3-2,3)
+    BLOAD nom$,XBIOS(2)+(34*(s%=1))+(128*(s%=2))
+    VOID XBIOS(6,L:XBIOS(2)+(32*(s%=1))+(124*(s%=2))-(32000*(s%=3)))
+    ALERT 2," Format de destination ?",1," PI1 | NEO | ART",d%
+    BMOVE XBIOS(2)+(32*(s%=1))+(124*(s%=2))-(32000*(s%=3)),XBIOS(2)+(32*(d%=1))+(124*(d%=2))-(32000*(d%=3)),32
+    BSAVE LEFT$(nom$,LEN(nom$)-3)+MID$("PI1NEOART",d%*3-2,3),XBIOS(2)+(34*(d%=1))+(128*(d%=2)),-32066*(d%=1)-32128*(d%=2)-32512*(d%=3)
+    ALERT 3,"| Conversion effectu‚e",1," OK ",r%
+  ELSE
+    ALERT 1,"|Ce n'est pas un fichier|        "+MID$(a$,s%*3-3,3),1,"OK",r%
+  ENDIF
+ELSE
+  ALERT 1,"|Le fichier ne se trouve |   pas sur ce disque",1,"OK",r%
+ENDIF

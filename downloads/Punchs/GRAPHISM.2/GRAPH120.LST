@@ -1,0 +1,24 @@
+' GfA-Punch ST Magazine 34
+' FRANCK HANOT, BAL ERNEST (SUR 3615 STMAG)
+' GfA Basic 2 & 3, moyenne et haute r‚solution.
+'
+SETCOLOR 3,7,7,7
+SETCOLOR 0,0
+PRINT "Bouton gauche pour changer de dessin, droit pour le stopper.(touche)"
+VOID INP(2)
+DO
+  m1%=RND*70+50
+  m2%=RND*30+5
+  n1%=RND*20+1
+  n2%=RND*105+1
+  CLS
+  WHILE MOUSEK<>1
+    j=j+PI/n1%
+    i=i+PI/n2%
+    x%=320+COS(i)*2*m1%
+    y%=100+SIN(i)*m1%
+    LINE x%+COS(j)*2*m2%,y%+SIN(j)*m2%,x%+COS(PI+j)*2*m2%,y%+SIN(PI+j)*m2%
+    WHILE MOUSEK=2
+    WEND
+  WEND
+LOOP

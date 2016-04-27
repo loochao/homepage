@@ -1,0 +1,24 @@
+' ST MAGAZINE 35
+' BASSE RESOLUTION
+' GfA 2.0
+' Nicolas Rougier
+'
+PRINT AT(6,8);"A  Z  E  R  T  Y  U  I  O  P";SPACE$(52);"Q  S  D  F  G  H  J  K  L  M";SPACE$(52);"W  X  C  V  B  N"
+FOR i=34 TO 270 STEP 24         ! Il faut ecrire le maximum de lettres en une
+  BOX i,51,i+20,66              ! minute, cela permet un debut d'apprentissage
+  BOX i,68,i+20,83              ! du clavier pour les debutants, il faut au
+  BOX i,85,i+20,100             ! moins arriver a plus d'une lettre par seconde
+NEXT i
+GRAPHMODE 3
+time=TIMER
+REPEAT
+  key$=CHR$(RANDOM(26)+65)
+  l=INSTR("AZERTYUIOPQSDFGHJKLMWXCVBN",key$)
+  PBOX 34+((l-INT((l-1)/10)*10)-1)*24,51+(INT((l-1)/10))*17,34+((l-INT((l-1)/10)*10)-1)*24+20,51+(INT((l-1)/10))*17+15
+  WHILE UPPER$(INKEY$)<>key$ AND (TIMER-time)/200<60
+  WEND
+  PBOX 34+((l-INT((l-1)/10)*10)-1)*24,51+(INT((l-1)/10))*17,34+((l-INT((l-1)/10)*10)-1)*24+20,51+(INT((l-1)/10))*17+15
+  INC nb_lettres
+UNTIL (TIMER-time)/200>60
+PRINT AT(1,16);"VOUS AVEZ ECRIT ";nb_lettres;" LETTRES."
+~INP(2)

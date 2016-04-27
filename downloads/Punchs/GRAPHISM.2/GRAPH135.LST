@@ -1,0 +1,24 @@
+' ST MAGAZINE 35
+' HAUTE RESOLUTION
+' GFA 2.0
+' SEBASTIEN DELESTAING
+'
+DIM p%(400,1),barre$(399)
+buffer$=SPACE$(32066)
+FILESELECT "a:\*.pi3","",f$
+BLOAD f$,V:buffer$
+BMOVE V:buffer$+34,XBIOS(2),32000
+FOR f%=0 TO 399
+  INC np% ! np% contient le nombre de point formant le contour (1<np%<400)
+  p%(f%,0)=f% ! p%(a,0)contient l'abscisse de chaque point avec p%(a,0)>p%(a-1,0)
+  p%(f%,1)=SINQ(f%)*50 ! p%(a,1) contient l'ordonn‚ de chaque point avec 0<a<np%
+  GET 0,f%,639,f%,barre$(f%)
+NEXT f%
+CLS
+FOR ap%=0 TO np%-1
+  x=p%(ap%,1)
+  FOR f%=p%(ap%,0) TO p%(ap%+1,0)
+    x=x+(p%(ap%+1,1)-p%(ap%,1))/(p%(ap%+1,0)-p%(ap%,0))
+    PUT x,f%,barre$(f%)
+  NEXT f%
+NEXT ap%

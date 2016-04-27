@@ -1,0 +1,22 @@
+' Auteur: Naxos. ST Magazine nø30.
+' GfA Basic 2 & 3. Basse r‚solution.
+'
+Input "Quel pas voulez-vous ";Pas%
+Xmax%=640+((Xbios(4)=0)*320)
+Ymax%=200-((Xbios(4)=2)*200)
+Fileselect "A:\*.PI?","",Nom$
+If Exist(Nom$)<>0
+  E$=Space$(32000)
+  Bload Nom$,Varptr(E$)
+  Bmove Varptr(E$)+34,Xbios(2),32000
+  Void Xbios(6,L:Varptr(E$)+2)
+  For Y%=0 To Ymax%-1 Step Pas%
+    For X%=0 To Xmax%-1 Step Pas%
+      Col%=Point(X%+Int(Pas%/2),Y%+Int(Pas%/2))
+      Deffill Col%
+      Pbox X%,Y%,X%+Pas%,Y%+Pas%
+    Next X%
+  Next Y%
+Endif
+==> ~Inp(2)
+Run

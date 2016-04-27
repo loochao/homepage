@@ -1,0 +1,769 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="generator" content="Docutils 0.8: http://docutils.sourceforge.net/" />
+<title>Dynamic Self-Organising Map</title>
+<script src="jsMath/easy/load.js"></script>
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+<body>
+<div class="header">
+<strong>N.P. Rougier &amp; Y. Boniface</strong> | Dynamic Self-Organising Map
+<hr class="header"/>
+</div>
+<div class="document" id="dynamic-self-organising-map">
+
+<noscript>
+  <div style="color:#cc0000; text-align:center">
+   <b>Warning:    <a href="http://www.math.union.edu/locate/jsMath">jsMath</a>
+   requires JavaScript to process the mathematics on this page.<br>
+   If your browser supports JavaScript, be sure it is enabled.</b>
+  </div>
+</noscript>
+
+<h1 class="title">Dynamic Self-Organising Map</h1>
+<h2 class="subtitle" id="a-computational-model-of-cortical-plasticity">A computational model of cortical plasticity</h2>
+
+<p><strong>Nicolas P. Rougier</strong> ¹ and <strong>Yann Boniface</strong> ²</p>
+<div class="line-block">
+<div class="line"><strong>¹</strong> LORIA/INRIA Nancy - <a class="reference external" href="mailto:Nicolas&#46;Rougier&#37;&#52;&#48;loria&#46;fr">Nicolas<span>&#46;</span>Rougier<span>&#64;</span>inria<span>&#46;</span>fr</a></div>
+<div class="line"><strong>²</strong> LORIA/Université Nancy 2 - <a class="reference external" href="mailto:Yann&#46;Boniface&#37;&#52;&#48;loria&#46;fr">Yann<span>&#46;</span>Boniface<span>&#64;</span>inria<span>&#46;</span>fr</a></div>
+</div>
+<div class="contents topic" id="table-of-contents">
+<p class="topic-title first">Table of Contents</p>
+<ul class="simple">
+<li><a class="reference internal" href="#introduction" id="id31">1.&nbsp;&nbsp;&nbsp;Introduction</a></li>
+<li><a class="reference internal" href="#definitions" id="id32">2.&nbsp;&nbsp;&nbsp;Definitions</a><ul class="auto-toc">
+<li><a class="reference internal" href="#self-organising-maps-som" id="id33">2.1.&nbsp;&nbsp;&nbsp;Self-Organising Maps (SOM)</a></li>
+<li><a class="reference internal" href="#neural-gas-ng" id="id34">2.2.&nbsp;&nbsp;&nbsp;Neural Gas (NG)</a></li>
+<li><a class="reference internal" href="#dynamic-self-organising-map-dsom" id="id35">2.3.&nbsp;&nbsp;&nbsp;Dynamic Self-Organising Map (DSOM)</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#model" id="id36">3.&nbsp;&nbsp;&nbsp;Model</a><ul class="auto-toc">
+<li><a class="reference internal" href="#dynamic-neighbourhood" id="id37">3.1.&nbsp;&nbsp;&nbsp;Dynamic neighbourhood</a></li>
+<li><a class="reference internal" href="#elasticity" id="id38">3.2.&nbsp;&nbsp;&nbsp;Elasticity</a></li>
+<li><a class="reference internal" href="#convergence" id="id39">3.3.&nbsp;&nbsp;&nbsp;Convergence</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#experimental-results" id="id40">4.&nbsp;&nbsp;&nbsp;Experimental results</a><ul class="auto-toc">
+<li><a class="reference internal" href="#non-stationary-distribution" id="id41">4.1.&nbsp;&nbsp;&nbsp;Non stationary distribution</a></li>
+<li><a class="reference internal" href="#high-dimensional-distributions" id="id42">4.2.&nbsp;&nbsp;&nbsp;High-dimensional distributions</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#conclusion" id="id43">5.&nbsp;&nbsp;&nbsp;Conclusion</a></li>
+<li><a class="reference internal" href="#appendix-a" id="id44">Appendix A</a></li>
+<li><a class="reference internal" href="#appendix-b" id="id45">Appendix B</a></li>
+<li><a class="reference internal" href="#references" id="id46">References</a></li>
+<li><a class="reference internal" href="#about-this-document" id="id47">About this document</a></li>
+</ul>
+</div>
+<div class="abstract">
+<span class="abstract title">Abstract | </span>
+We present  in this paper a  variation of the  self-organising map algorithm
+where the original time-dependent (learning rate and neighbourhood) learning
+function is  replaced by a time-invariant  one. This allows  for on-line and
+continuous learning  on both static  and dynamic data distributions.  One of
+the property  of the newly  proposed algorithm is  that it does not  fit the
+magnification  law   and  the  achieved  vector  density   is  not  directly
+proportional  to the density  of the  distribution as  found in  most vector
+quantisation algorithms.   From a biological  point of view,  this algorithm
+sheds  light on cortical  plasticity seen  as a  dynamic and  tight coupling
+between the environment and the model.
+</div>
+<div class="keywords">
+<span class="keywords title">Keywords | </span>
+SOM, self organisation, cortical plasticity, dynamic.
+</div>
+<div class="section" id="introduction">
+<h1><a class="toc-backref" href="#id31">1.&nbsp;&nbsp;&nbsp;Introduction</a></h1>
+<p>Vector  quantisation (VQ)  refers to  the  modelling of  a probability  density
+function  into  a discrete  set  of  prototype  vectors (sometimes  called  the
+codebook) such  that any  point drawn from  the associated distribution  can be
+associated to a  prototype vector. Most VQ algorithms try  to match the density
+through the density of their codebook: high density regions of the distribution
+tend to have more associated prototypes than low density region. This generally
+allows to minimise  the loss of information (or distortion)  as measured by the
+mean quadratic error. For a complete picture, it is to be noted that there also
+exists some  cases where  only a partition  of the  space occupied by  the data
+(regardless of their density) is necessary.  In this case, one wants to achieve
+a regular  quantification <em>a priori</em>  of the probability density  function. For
+example, in some classification problems, one wants to achieve a discrimination
+of data in term  of classes and thus needs only to  draw frontiers between data
+regardless of their respective density.</p>
+<p>Vector quantisation can be achieved using several methods such as variations of
+the   k-means   method   <a class="citation-reference" href="#macqueen-1967" id="id1">(MacQueen 1967)</a>,  Linde-Buzo-Gray   (LBG)   algorithm
+<a class="citation-reference" href="#linde-al-1980" id="id2">(Linde et al. 1980)</a> or neural network models such as the self-organising map (SOM)
+<a class="citation-reference" href="#kohonen-1982" id="id3">(Kohonen 1982)</a>, neural  gas (NG)  <a class="citation-reference" href="#martinetz-al-1993" id="id4">(Martinetz et al. 1993)</a> and growing  neural gas
+(GNG) <a class="citation-reference" href="#fritzke-1995" id="id5">(Fritzke 1995)</a>. Among all these  methods, the SOM algorithm is certainly
+the most famous in the field  of computational neuroscience since it can give a
+biologically and plausible  account on the organisation of  receptive fields in
+sensory  areas  where adjacent  neurons  shares  similar representations.   The
+stability  and the  quality  of  such self-organisation  depends  heavily on  a
+decreasing learning rate as well  as a decreasing neighbourhood function.  This
+is quite  congruent with the idea  of a critical  period in the early  years of
+development where most sensory or  motor properties are acquired and stabilised
+<a class="citation-reference" href="#hubel-wiesel-1965" id="id6">(Hubel and Wiesel 1965)</a>,  <a class="citation-reference" href="#hubel-wiesel-1970" id="id7">(Hubel and Wiesel 1970)</a>, <a class="citation-reference" href="#daw-1994" id="id8">(Daw 1994)</a>.  However,  this fails
+to explain cortical  plasticity since we know that the  cortex has the capacity
+to  re-organise itself  in face  of lesions  or  deficits <a class="citation-reference" href="#bachyrita-al-1969" id="id9">(BachyRita et al. 1969)</a>,
+<a class="citation-reference" href="#bachyrita-1972" id="id10">(BachyRita 1972)</a>,  <a class="citation-reference" href="#ramachadran-al-1992" id="id11">(Ramachadran et al. 1992)</a>.  The  question is  then to  know to
+what extent  it is possible to  have both stable and  dynamic representations ?
+We propose to answer this question  by considering a tight coupling between the
+environment  and  cortical  representations.   If the  environment  is  stable,
+cortical representations  should remain stable and if  the environment suddenly
+changes,  cortical  representations   must  dynamically  adapt  themselves  and
+stabilise  again onto  the new  environment.</p>
+<p>Quite obviously, this cannot be achieved using SOM-like algorithms that depends
+on a time decreasing learning rate and/or neighbourhood function (SOM, NG, GNG)
+and,  despite the  huge  amount of  literature <a class="citation-reference" href="#oja-al-2003" id="id12">(Oja et al. 2003)</a>  <a class="citation-reference" href="#kaski-al-1998" id="id13">(Kaski et al. 1998)</a>
+around self-organising  maps and Kohonen-typed  networks (more than  7000 works
+listed in  <a class="citation-reference" href="#polla-al-2009" id="id14">(Pöllä et al. 2009)</a>), there is  is surprisingly and  comparatively very
+little  work dealing  with online  learning  (also referred  as incremental  or
+lifelong learning). Furthermore,  most of these works are  based on incremental
+models, that  is, networks  that create and/or  delete nodes as  necessary. For
+example,   the  modified   GNG  model   <a class="citation-reference" href="#fritzke-1997" id="id15">(Fritzke 1997)</a>  is   able   to  follow
+non-stationary  distributions by  creating  nodes  like in  a  regular GNG  and
+deleting them when  they have a too small  <em>utility</em> parameter.  Similarly, the
+evolving self-organising  map (ESOM, <a class="citation-reference" href="#deng-al-2000" id="id16">(Deng et al. 2000)</a>,  <a class="citation-reference" href="#deng-al-2003" id="id17">(Deng et al. 2003)</a> is based
+on an incremental  network quite similar to GNG  that creates dynamically based
+on the measure of  the distance of the winner to the data  (but the new node is
+created  at   exact  data   point  instead  of   the  mid-point  as   in  GNG).
+Self-organising  incremental neural  network (SOINN)  <a class="citation-reference" href="#furao-al-2006" id="id18">(Furao et al. 2006)</a>  and its
+enhanced  version (ESOINN) <a class="citation-reference" href="#furao-al-2007" id="id19">(Furao et al. 2007)</a>  are also  based on  an incremental
+structure  where the  first version  is using  a two  layers network  while the
+enhanced version proposed a single  layer network. One noticeable result is the
+model  proposed by  <a class="citation-reference" href="#keith-magee-2001" id="id20">(Keith-Magee 2001)</a> which  does not  rely on  a incremental
+structure but  is based  on the  Butterworth decay scheme  that does  not decay
+parameters  to  zero.   The  model  works  in  two  phases,  an  initial  phase
+(approximately ten epochs) is used  to establish a rough global topology thanks
+to a very  large neighbourhood and the second phase  uses a small neighbourhood
+phase to train the network. Unfortunately, the size of the neighbourhood in the
+second phase has to be adapted to the expected density of the data.</p>
+<p>Without  judging performances  of these  models, we  do not  think they  give a
+satisfactory answer to our initial question and we propose instead to answer by
+considering a  tight coupling between  the environment and  representations. If
+the  environment is  stable, representations  should remain  stable and  if the
+environment suddenly changes, representations must dynamically adapt themselves
+and stabilise  again onto the new  environment.  We thus  modified the original
+SOM algorithm in order to  make its learning rule and neighbourhood independent
+of time. This results in a tight coupling between the environment and the model
+that  ensure  both stability  and  plasticity.  In  next section,  we  formally
+describe the dynamic self-organising map  in the context of vector quantisation
+and both neural gas and self-organising  map are formally described in order to
+underline  differences   between  the   three  algorithms.  The   next  section
+re-introduces  the  model  from a  more  behavioural  point  of view  and  main
+experimental results are  introduced using either low or  high dimensional data
+and offers  side-to-side comparison  with other algorithms.  Results concerning
+dynamic   distributions  are   also   introduced  in   the   case  of   dynamic
+self-organising  map   in  order  to   illustrate  the  coupling   between  the
+distribution and the  model. Finally, we discuss the relevancy  of such a model
+in the context of computational neurosciences and embodied cognition.</p>
+</div>
+<div class="section" id="definitions">
+<h1><a class="toc-backref" href="#id32">2.&nbsp;&nbsp;&nbsp;Definitions</a></h1>
+<p>Let us  consider a  probability density function  <span class="math">f(x)</span> on a  compact manifold
+<span class="math">\Omega \in \mathbb{R}^d</span>. A vector quantisation (VQ) is a function <span class="math">\Phi</span> from
+<span class="math">\Omega</span>  to   a  finite   subset  of  <span class="math">n</span>   code  words   <span class="math">\{\mathbf{w}_i  \in
+\mathbb{R}^d\}_{1 \leq i \leq n}</span> that  form the codebook. A cluster is defined
+as  <span class="math">C_i \deq  \{x  \in \Omega  | \Phi(x)  =  \mathbf{w}_i \}</span>,  which forms  a
+partition of  <span class="math">\Omega</span> and  the distortion of  the VQ  is measured by  the mean
+quadratic error</p>
+<div class="math">
+\xi = \sum_{i=1}^{n} \int_{C_i} \lVert x - \mathbf{w}_i \rVert^2 f(x) dx.</div>
+<p>If the  function <span class="math">f</span> is unknown  and a finite  set <span class="math">\{x_i\}</span> of <span class="math">p</span>  non biased
+observations is available, the distortion error may be empirically estimated by</p>
+<span class="eqno">(1)</span><div class="math" id="equation-error">
+\hat{\xi} = \frac{1}{p}\sum_{i=1}^{n} \sum_{x_j \in C_i} \lVert
+x_j-\mathbf{w}_i \rVert^2.</div>
+<p>Neural  maps define  a special  type of  vector quantifiers  whose  most common
+approaches   are   the   Self-Organising    Map   (SOM),   Elastic   Net   (EN)
+<a class="citation-reference" href="#durbin-willshaw-1987" id="id21">(Durbin and Willshaw 1987)</a>, Neural Gas (NG) and  Growing Neural Gas (GNG).  In the
+following,   we   will   use    definitions   and   notations   introduced   by
+<a class="citation-reference" href="#villman-clausen-2006" id="id22">(Villman and Clausen 2006)</a> where a neural map  is defined as the projection from a
+manifold  <span class="math">\Omega  \subset  \mathbb{R}^d</span>  onto  a  set  <span class="math">\mathcal{N}</span>  of  <span class="math">n</span>
+<em>neurons</em> which is formally written as <span class="math">\Phi : \Omega \rightarrow \mathcal{N}</span>.
+Each neuron <span class="math">i</span> is associated with a code word <span class="math">\mathbf{w}_i \in \mathbb{R}^d</span>,
+all of which established the set <span class="math">\{\mathbf{w}_i\}_{i \in \mathcal{N}}</span> that is
+referred  as the  codebook. The  mapping from  <span class="math">\Omega</span> to  <span class="math">\mathcal{N}</span>  is a
+closest-neighbour  winner-take-all rule  such that  any vector  <span class="math">\mathbf{v} \in
+\Omega</span> is mapped  to a neuron <span class="math">i</span> with  the code <span class="math">\mathbf{w}_\mathbf{v}</span> being
+closest to the actual presented stimulus vector <span class="math">\mathbf{v}</span>,</p>
+<span class="eqno">(2)</span><div class="math" id="equation-psi">
+\Phi : \mathbf{v} \mapsto \argmin_{i \in \mathcal{N}} (\lVert \mathbf{v} -
+\mathbf{w}_i \rVert).</div>
+<p>The neuron <span class="math">\mathbf{w}_\mathbf{v}</span> is called  the <em>winning element</em> and the set
+<span class="math">C_i =  \{x \in \Omega  | \Phi(x) =  \mathbf{w}_i \}</span> is called  the <em>receptive
+field</em> of the neuron <span class="math">i</span>. The  geometry corresponds to a Voronoï diagram of the
+space with <span class="math">\mathbf{w}_i</span> as the center.</p>
+<div class="section" id="self-organising-maps-som">
+<h2><a class="toc-backref" href="#id33">2.1.&nbsp;&nbsp;&nbsp;Self-Organising Maps (SOM)</a></h2>
+<p>SOM is a neural map equipped with a structure (usually a hypercube or hexagonal
+lattice) and each element <span class="math">i</span>  is assigned a fixed position <span class="math">\mathbf{p}_{i}</span> in
+<span class="math">\mathbb{R}^q</span>  where <span class="math">q</span>  is  the dimension  of  the lattice  (usually <span class="math">1</span>  or
+<span class="math">2</span>). The learning process is an  iterative process between time <span class="math">t=0</span> and time
+<span class="math">t=t_f \in \mathbb{N}^+</span> where vectors <span class="math">\mathbf{v} \in \Omega</span> are sequentially
+presented to the map with respect  to the probability density function <span class="math">f</span>. For
+each presented vector <span class="math">\mathbf{v}</span> at time <span class="math">t</span>, a winner <span class="math">s \in \mathcal{N}</span> is
+determined according to equation  <a href="#equation-psi">(2)</a>.  All codes <span class="math">\mathbf{w}_{i}</span> from
+the codebook are shifted towards <span class="math">\mathbf{v}</span> according to</p>
+<span class="eqno">(3)</span><div class="math" id="equation-som-learning">
+\Delta\mathbf{w}_{i} = \varepsilon(t)~h_\sigma(t,i,s)~(\mathbf{v} -
+\mathbf{w}_i)</div>
+<p>with <span class="math">h_\sigma(t,i,j)</span> being a neighbourhood function of the form</p>
+<span class="eqno">(4)</span><div class="math" id="equation-som-neighborhood">
+h_\sigma(t,i,j) = e^{- \frac{\lVert \mathbf{p}_i - \mathbf{p}_j
+\rVert^2}{2\sigma(t)^2}}.</div>
+<p>where <span class="math">\varepsilon(t) \in \mathbb{R}</span> is the learning rate and <span class="math">\sigma(t) \in
+\mathbb{R}</span> is the width of the neighbourhood defined as</p>
+<div class="math">
+\sigma(t) = \sigma_i\left(\frac{\sigma_f}{\sigma_i}\right)^{t/t_f}, \text{
+with } \varepsilon(t) =
+\varepsilon_i\left(\frac{\varepsilon_f}{\varepsilon_i}\right)^{t/t_f},</div>
+<p>while  <span class="math">\sigma_i</span>  and  <span class="math">\sigma_f</span>  are  respectively  the  initial  and  final
+neighbourhood  width and <span class="math">\varepsilon_i</span>  and <span class="math">\varepsilon_f</span>  are respectively
+the initial  and final learning rate.  We usually have  <span class="math">\sigma_f \ll \sigma_i</span>
+and <span class="math">\varepsilon_f \ll \varepsilon_i</span>.</p>
+</div>
+<div class="section" id="neural-gas-ng">
+<h2><a class="toc-backref" href="#id34">2.2.&nbsp;&nbsp;&nbsp;Neural Gas (NG)</a></h2>
+<p>In the  case of NG, the learning  process is an iterative  process between time
+<span class="math">t=0</span> and time  <span class="math">t=t_f \in \mathbb{N}^+</span> where vectors  <span class="math">\mathbf{v} \in \Omega</span>
+are sequentially presented  to the map with respect  to the probability density
+function <span class="math">f</span>. For  each presented vector <span class="math">\mathbf{v}</span> at  time <span class="math">t</span>, neurons are
+ordered  according  to  their  respective  distance  to  <span class="math">\mathbf{v}</span>  (closest
+distances map to lower ranks)  and assigned a rank <span class="math">k_i(\mathbf{v})</span>. All codes
+<span class="math">\mathbf{w}_{i}</span> from  the codebook are shifted  towards <span class="math">\mathbf{v}</span> according
+to</p>
+<span class="eqno">(5)</span><div class="math" id="equation-ng-learning">
+\Delta\mathbf{w}_{i} = \varepsilon(t)~h_\lambda(t,i,\mathbf{v})~(\mathbf{v} -
+\mathbf{w}_i)</div>
+<p>with <span class="math">h_\lambda(t,i,\mathbf{v})</span> being a neighbourhood function of the form:</p>
+<span class="eqno">(6)</span><div class="math" id="equation-ng-neighborhood">
+h_{\lambda}(t,i,\mathbf{v}) = e^{-\frac{k_i(\mathbf{v})}{\lambda(t)}}</div>
+<p>where <span class="math">\varepsilon(t) \in \mathbb{R}</span> is the learning rate and <span class="math">\lambda(t) \in
+\mathbb{R}</span> is the width of the neighbourhood defined as</p>
+<div class="math">
+\lambda(t) = \lambda_i\left(\frac{\lambda_f}{\lambda_i}\right)^{t/t_f},
+\text{ with }
+\varepsilon(t) =
+\varepsilon_i\left(\frac{\varepsilon_f}{\varepsilon_i}\right)^{t/t_f},</div>
+<p>while  <span class="math">\lambda_i</span>  and <span class="math">\lambda_f</span>  are  respectively  the  initial and  final
+neighbourhood  and  <span class="math">\varepsilon_i</span> and  <span class="math">\varepsilon_f</span>  are respectively  the
+initial and final learning rate.  We usually have <span class="math">\lambda_f \ll \lambda_i</span> and
+<span class="math">\varepsilon_f \ll \varepsilon_i</span>.</p>
+</div>
+<div class="section" id="dynamic-self-organising-map-dsom">
+<h2><a class="toc-backref" href="#id35">2.3.&nbsp;&nbsp;&nbsp;Dynamic Self-Organising Map (DSOM)</a></h2>
+<p>DSOM  is a  neural map  equipped  with a  structure (a  hypercube or  hexagonal
+lattice) and each  neuron <span class="math">i</span> is assigned a  fixed position <span class="math">\mathbf{p}_{i}</span> in
+<span class="math">\mathbb{R}^q</span>  where <span class="math">q</span>  is  the dimension  of  the lattice  (usually <span class="math">1</span>  or
+<span class="math">2</span>). The  learning process is  an iterative process where  vectors <span class="math">\mathbf{v}
+\in  \Omega</span>  are  sequentially  presented  to  the map  with  respect  to  the
+probability density  function <span class="math">f</span>.  For  each presented vector  <span class="math">\mathbf{v}</span>, a
+winner <span class="math">s \in  \mathcal{N}</span> is determined according to  equation <a href="#equation-psi">(2)</a>. All
+codes  <span class="math">\mathbf{w}_{i}</span>  from the  codebook  <span class="math">\mathbf{W}</span>  are shifted  towards
+<span class="math">\mathbf{v}</span> according to</p>
+<span class="eqno">(7)</span><div class="math" id="equation-dsom-learning">
+\Delta\mathbf{w}_{i} = \varepsilon \lVert \mathbf{v} -
+\mathbf{w}_i\rVert_\Omega~h_\eta(i,s,\mathbf{v})~(\mathbf{v} - \mathbf{w}_i)</div>
+<p>withj <span class="math">\varepsilon</span> being a constant learning rate and <span class="math">h_\eta(i,s,\mathbf{v})</span>
+being a neighbourhood function of the form</p>
+<span class="eqno">(8)</span><div class="math" id="equation-dsom-neighborhood">
+h_\eta(i,s,\mathbf{v}) =
+   e^{-\frac{1}{\eta^2} \frac{\lVert \mathbf{p}_i - \mathbf{p}_s
+       \rVert^2}{{\lVert \mathbf{v} - \mathbf{w}_s \rVert}_{\Omega}^{2}}}</div>
+<p>where <span class="math">\eta</span>  is the <em>elasticity</em>  or <em>plasticity</em> parameter. If  <span class="math">\mathbf{v} =
+\mathbf{w}_s</span>, then <span class="math">h_\eta(i,s,\mathbf{v}) = 0</span>.</p>
+</div>
+</div>
+<div class="section" id="model">
+<h1><a class="toc-backref" href="#id36">3.&nbsp;&nbsp;&nbsp;Model</a></h1>
+<p>As  we explained  in  the introduction,  the  DSOM algorithm  is essentially  a
+variation  of the SOM  algorithm where  the time  dependency has  been removed.
+Regular  learning   function  <a href="#equation-som-learning">(3)</a>  and   neighbourhood  function
+<a href="#equation-som-neighborhood">(4)</a>   have   been   respectively   replaced   by   equations
+<a href="#equation-dsom-learning">(7)</a> and <a href="#equation-dsom-neighborhood">(8)</a> which reflect two main ideas:</p>
+<ul class="simple">
+<li>If a neuron is close enough to the data, there is no need for others to
+learn anything: the winner can represent the data.</li>
+<li>If there is no neuron close enough to the data, any neuron learns
+the data according to its own distance to the data.</li>
+</ul>
+<p>This  draws several consequences  on the  notion of  neighbourhood that  is now
+dynamic and  leads to a  qualitatively different self-organisation that  can be
+controlled using a free elasticity parameter.</p>
+<div class="section" id="dynamic-neighbourhood">
+<h2><a class="toc-backref" href="#id37">3.1.&nbsp;&nbsp;&nbsp;Dynamic neighbourhood</a></h2>
+<p>Learning rate is  modulated using the closeness of the winner  to the data. The
+figure  <a href="#figure-learning-rate">(1)</a>  represents this  learning  rate  modulation as  a
+function of a data <span class="math">\mathbf{v}</span>, a  neuron <span class="math">i</span> (with code <span class="math">\mathbf{w}_i</span>) and a
+winner <span class="math">s</span> (with code <span class="math">\mathbf{w}_s</span>). If the winner <span class="math">s</span> is very close or equal
+to  <span class="math">\mathbf{v}</span> (bottom  line  on the  figure),  learning rate  of any  neuron
+different from the  winner <span class="math">s</span> is zero and only the  winner actually learns the
+new data. When the winner <span class="math">s</span> is  very far from the data (top line), any neuron
+benefits from a large learning rate and learns the new data (modulated by their
+own distance  to the data but this  extra modulation is not  represented on the
+figure).</p>
+<div class="figure" id="figure-learning-rate">
+<a class="reference external image-reference" href="images/learning-rate.png"><img alt="images/learning-rate.png" src="images/learning-rate.png" style="width: 75%;" /></a>
+<p class="caption"><span class="figno">Figure 1. </span>At each presented data <span class="math">\mathbf{v}</span>, the learning rate of each neuron <span class="math">i</span> is
+modulated according  to both the distance <span class="math">\lVert  \mathbf{w}_s - \mathbf{v}
+\rVert</span>  (which represents  the  distance  between the  winner  <span class="math">s</span> and  the
+presented  data  <span class="math">\mathbf{v}</span>)  and  the  distance  <span class="math">\lVert  \mathbf{p}_i  -
+\mathbf{p}_s  \rVert</span> (which represent  the distance  between code  words of
+neuron <span class="math">i</span>  and neuron <span class="math">s</span>).  If  the winner <span class="math">s</span>  is very close or  equal to
+<span class="math">\mathbf{v}</span>  (bottom line  on  the  figure), learning  rate  of any  neuron
+different from  the winner <span class="math">s</span> is  zero and only the  winner actually learns
+the new data. When the winner <span class="math">s</span>  is very far from the data (top line), any
+neuron  benefits  from  a  large  learning  rate and  learns  the  new  data
+(modulated by  their own distance to  the data but this  extra modulation is
+not represented on the figure).</p>
+</div>
+<p>This notion  of closeness of the  winner to the  data is thus critical  for the
+algorithm and  modifies considerably both  the notion of neighbourhood  and the
+final codebook.  Most  VQ tries to capture data density  through the density of
+their codebook as introduced in <a class="citation-reference" href="#villman-clausen-2006" id="id23">(Villman and Clausen 2006)</a> where authors considers
+the generalised error</p>
+<div class="math">
+ E_\gamma = \int_\Omega \lVert \mathbf{w}_s - \mathbf{v} \rVert^\gamma
+P(\mathbf{v}) d\mathbf{v}</div>
+<p>and  introduces the  relation  <span class="math">P(\mathbf{w}) \propto  \rho(\mathbf{w})^\alpha</span>
+with <span class="math">\rho(\mathbf{w})</span> being the weight  vector density and <span class="math">\alpha</span> being the
+<em>magnification  exponent</em>  or  <em>magnification   factor</em>.  If  we  consider  the
+intrinsic  (or Hausdorff)  dimension  <span class="math">d</span>  of the  data,  the relation  between
+magnification and <span class="math">d</span> is given by <span class="math">\alpha = \frac{d}{d+\gamma}</span> and an ideal VQ
+achieves a  magnification factor of  1. However, DSOM algorithm  clearly states
+that if a neuron is already close  enough to a presented data, there is no need
+for the neighbours  to learn anything and this results in  a codebook that does
+not follow the magnification law as illustrated on figure <a href="#figure-density">(2)</a> for
+three very simple two-dimensional non homogeneous distributions.</p>
+<div class="figure" id="figure-density">
+<a class="reference external image-reference" href="images/density.png"><img alt="images/density.png" src="images/density.png" /></a>
+<p class="caption"><span class="figno">Figure 2. </span>Three DSOM have been trained  on a disc distribution using different density
+areas.   <strong>Left.</strong>   The   density    is   uniform   all   over   the   disc
+(0.25).  <strong>Center</strong>. Outer  ring has  higher  density (.4)  than inner  disc
+(.1).  <strong>Right</strong>.  Outer  ring  has  lower  density  (.1)  than  inner  disc
+(.4).  Despite  these  different   density  distributions,  the  three  DSOM
+self-organise onto the support of the distribution (the whole disc) and does
+not try to match density.</p>
+</div>
+<p>Said differently,  what is actually  mapped by the  DSOM is the  <em>structure</em> or
+<em>support</em> of  the distribution (<span class="math">\Omega</span> using notations  introduced in section
+<a class="citation-reference" href="#definitions" id="id24">[definitions]</a>) rather than the density.</p>
+</div>
+<div class="section" id="elasticity">
+<h2><a class="toc-backref" href="#id38">3.2.&nbsp;&nbsp;&nbsp;Elasticity</a></h2>
+<p>The DSOM algorithm is not parameter free since we need to control when a neuron
+may be considered to be <em>close enough</em> to a data such that it prevents learning
+for its neighbours. This is the role of the elasticity parameter that modulates
+the   strength  of   the  coupling   between   neurons  as   shown  on   figure
+<a href="#figure-elasticity">(3)</a> for a simple two-dimensional normal distribution.</p>
+<div class="figure" id="figure-elasticity">
+<a class="reference external image-reference" href="images/elasticity.png"><img alt="images/elasticity.png" src="images/elasticity.png" /></a>
+<p class="caption"><span class="figno">Figure 3. </span>Three DSOM with respective elasticity equal  to 1, 2 and 3 have been trained
+for 20 000 iterations on a normal distribution using a regular grid covering
+the  <span class="math">[0,1]^2</span> segment  as  initialisation. Low  elasticity  leads to  loose
+coupling between neurons while higher elasticity results in a tight coupling
+between neurons.</p>
+</div>
+<p>This  notion  of elasticity  shares  some  common  concepts with  the  Adaptive
+Resonance Theory (ART)  as it has been introduced  in <a class="citation-reference" href="#grossberg-1987" id="id25">(Grossberg 1987)</a>. In the
+ART model, the  vigilance parameter has a critical  influence on learning since
+it  controls the  actual partition  of the  input space:  high  vigilance level
+produces  high  number of  very  precise  memories  while low  vigilance  level
+produces  fewer  and  more generic  memories.   This  is  very similar  to  the
+elasticity parameter:  if elasticity is  high, neurons tend to  pack themselves
+very  tightly  together (code  vectors  are  relatively  close) while  a  lower
+elasticity allows for looser coupling  between neurons. However, in the case of
+ART, the vigilance parameter also  governs the number of final prototypes since
+they can be  created on demand. In  the case of DSOM, the  number of prototypes
+(i.e. neurons) is fixed and they are  supposed to span the whole input space to
+ensure convergence. Consequently, there  exists a relation between the diameter
+of  the support  (defined as  the maximum  distance between  any two  points in
+<span class="math">\Omega</span>), the number of neurons and the elasticity parameter. In the one hand,
+if elasticity  is too high,  neurons cannot span  the whole space and  the DSOM
+algorithm  does not  converge, in  the other  hand, if  elasticity is  too low,
+coupling between  neurons is weak  and may prevent self-organisation  to occur:
+code-vectors  are evenly  spread on  the support  but they  do not  respect the
+neighbourhood   relationship  anymore.  There   certainly  exists   an  optimal
+elasticity for a  given distribution but we did not  yet investigate fully this
+relationship and we do not have  formal results. As a preliminary work, we have
+studied the relationship  between elasticity and the initial  conditions in the
+one dimensional case  using a very simple experimental  setup where the dataset
+is made  of only  two samples (one  at 0 and  the other  at 1) as  explained on
+figure  <a href="#figure-convergence">(4)</a>. This figure  clearly shows  a discontinuity  in the
+error when  elasticity is varying from 1.0  to 4.0 but at  different places for
+different  initial conditions.  The reason  comes  from the  dependency of  the
+learning to the  distance between the winner node and  the presented data. When
+this difference is  large, a large correction of weights  occur on all networks
+nodes  and this is  only attenuated  by their  distance to  the winner  and the
+network elasticity.</p>
+<div class="figure" id="figure-convergence">
+<a class="reference external image-reference" href="images/convergence.png"><img alt="images/convergence.png" src="images/convergence.png" /></a>
+<p class="caption"><span class="figno">Figure 4. </span>Several  one-dimensional DSOM  with two  nodes  have been  trained for  2500
+epochs  using  a dataset  of  two  samples (0  and  1)  that were  presented
+alternatively. Each  point of each curve  represents the error  of a network
+with  given elasticity  and initial  conditions. Point  A represents  a case
+where elasticity is too high and  makes the network to oscillate while point
+B represents a case where elasticity  was low enough to allow the network to
+properly converge (towards x=0 and y=1).</p>
+</div>
+<p>In  the   presented  experimental  setup,   data  (0  and  1)   were  presented
+alternatively and lead  to a convergence when elasticity was  low enough and to
+an oscillatory  behaviour (not visible on  the figure) when  elasticity was too
+high. This oscillatory behaviour can  be understood most simply when looking at
+scheme A  on the  figure. Each  correction made to  the network  in one  way is
+immediately  counter-balanced in  the other  way when  next data  is presented.
+This  preliminary  study  lead us  to  think  that  the  choice of  an  optimal
+elasticity not  only depends on  the size  of the network  and the size  of the
+support but also  on the initial conditions. If we were  to generalise from the
+simple study above,  the initial configuration of the  network should cover the
+entire support as much as possible to reduce elasticity dependency.</p>
+</div>
+<div class="section" id="convergence">
+<h2><a class="toc-backref" href="#id39">3.3.&nbsp;&nbsp;&nbsp;Convergence</a></h2>
+<p>It  is well known  that the  convergence of  the Kohonen  algorithm has  not be
+proved  in the  general case  <a class="citation-reference" href="#cottrel-al-1998" id="id26">(Cottrel et al. 1998)</a> even  though  some conditional
+convergence  properties  have  been  established in  the  one-dimensional  case
+<a class="citation-reference" href="#cottrell-al-1987" id="id27">(Cottrell et al. 1987)</a>. Furthermore, in the case  of continuous input, it has been
+shown that there does not  exist an associated energy function <a class="citation-reference" href="#erwin-al-1992" id="id28">(Erwin et al. 1992)</a>
+and in the  case of a finite  set of training patterns, the  energy function is
+highly discontinuous <a class="citation-reference" href="#heskes-1999" id="id29">(Heskes 1999)</a>. In the  case of the dynamic SOM, the proof
+of convergence is straightforward since we  can exhibit at least one case where
+the DSOM does not converge, when the number of nodes is less then the number of
+data as illustrated on figure <a href="#figure-wrong">(5)</a>.</p>
+<div class="figure" id="figure-wrong">
+<a class="reference external image-reference" href="images/wrong.png"><img alt="images/wrong.png" src="images/wrong.png" /></a>
+<p class="caption"><span class="figno">Figure 5. </span>Due to its  dynamic nature, the dynamic SOM cannot  converge when the number
+of nodes (4 here)  is less than the number of data (5  here). NG and SOM can
+converge on an approximated solution  thanks to both their decaying learning
+rate and neighborhood and this  explains why three nodes are exactly aligned
+with  their corresponding  data while  the  last node  found a  mid-distance
+position. In  the case of  DSOM and because  of the constant  learning rate,
+every node is moving at each presented data and thus cannot converge at all.</p>
+</div>
+<p>Most generally, in case where the number of nodes is less than the total number
+of   presented  data,  we   can  predict   that  the   dynamic  SOM   will  not
+converge. Moreover, a similar problem occurs  if the number of nodes is exactly
+equal to the number of data  and if nodes are initially distributed uniquely on
+each data.  In such an  initial setup, the  learning parameter is zero  for any
+presented data and this prevents the network to learn anything at all. We could
+say that it does converge in such a case (network is frozen) but if the initial
+configuration does  not correspond to a  proper unfolded one,  the answer would
+not  be really  satisfactory.  A proof  of  convergence would  then require  to
+identify configurations  (initial conditions, size,  elasticity, learning rate)
+where the network  may have chances to converge but we  think this is currently
+out of the scope of this paper.</p>
+</div>
+</div>
+<div class="section" id="experimental-results">
+<h1><a class="toc-backref" href="#id40">4.&nbsp;&nbsp;&nbsp;Experimental results</a></h1>
+<p>We report  in this section some  experimental results we  obtained on different
+types of distribution that aim at  illustrating DSOM principles. We do not have
+yet  formal results  about convergence  and/or quality  of the  codebook.  As a
+consequence, these results do not  pretend to prove anything and are introduced
+mainly to illustrate qualitative behaviour of the algorithm.</p>
+<p>Unless stated otherwise, the learning procedure in following examples is:</p>
+<ul class="simple">
+<li>A distribution is chosen (normal, uniform, etc.)</li>
+<li>A discrete sample set of samples is drawn from the distribution</li>
+<li>Model learns for <span class="math">n</span> iterations</li>
+<li>At each iteration, a sample is picked randomly and uniformly in the
+discrete sample set</li>
+<li>Distortion is measured on whole sample set every 100 iterations using
+equation <a href="#equation-error">(1)</a>.</li>
+</ul>
+<p>The  distortion  error  is  plotted   above  each  graphics  to  show  rate  of
+convergence.</p>
+<div class="section" id="non-stationary-distribution">
+<h2><a class="toc-backref" href="#id41">4.1.&nbsp;&nbsp;&nbsp;Non stationary distribution</a></h2>
+<p>In order  to study dynamic  aspect of the  DSOM algorithm, three  networks (NG,
+SOM, DSOM)  have been trained for  20 000 iterations on  a dynamic distribution
+that vary  along time: a  uniform distribution (1) on  [0.0,0.5]×[0.0,0.5] from
+iterations 0  to 5000, a  uniform distribution (2) on  [0.5,1.0]×[0.5,1.0] from
+iterations  5000 to 10000,  a uniform  distribution (3)  on [0.0,0.5]×[0.5,1.0]
+from  iterations  10000  to 15000  and  a  final  uniform distribution  (4)  on
+[0.5,1.0]×[0.0,0.5] from iterations 15000  to 20000. NG shows some difficulties
+in tracking  various changes and  the final state  reflects the history  of the
+distribution: there are many code  words within the first distribution and very
+few in the  final one. In the case  of SOM, the algorithm can  almost cope with
+the  dynamic nature  of the  distributions  as long  as its  learning rate  and
+neighbourhood function are large enough to  move the codebook into the new data
+region. This  is the  case for distributions  (1) to  (3) but the  final change
+makes the SOM network unable to  map the final distribution as expected because
+of the time  dependency of the algorithm.  In the case of DSOM,  the network is
+able to  accurately track each  successive distribution with a  short transient
+error correlated to  the distribution change. We think  this behaviour reflects
+cortical  plasticity  seen  as a  tight  coupling  between  the model  and  the
+environment.</p>
+<div class="figure" id="figure-dynamic">
+<a class="reference external image-reference" href="images/dynamic.png"><img alt="images/dynamic.png" src="images/dynamic.png" /></a>
+<p class="caption"><span class="figno">Figure 6. </span>Three networks (NG, SOM, DSOM) have  been trained for 20 000 iterations on a
+dynamic distribution  that vary  along time: a  uniform distribution  (1) on
+[0.0,0.5]×[0.0,0.5] from iterations 0 to 5000, a uniform distribution (2) on
+[0.5,1.0]×[0.5,1.0] from  iterations 5000  to 10000, a  uniform distribution
+(3)  on [0.0,0.5]×[0.5,1.0]  from  iterations  10000 to  15000  and a  final
+uniform  distribution (4)  on [0.5,1.0]×[0.0,0.5]  from iterations  15000 to
+20000.</p>
+</div>
+</div>
+<div class="section" id="high-dimensional-distributions">
+<h2><a class="toc-backref" href="#id42">4.2.&nbsp;&nbsp;&nbsp;High-dimensional distributions</a></h2>
+<p>Until now, we have  considered only trivial two-dimensional distributions whose
+intrinsic  dimension matched  the topography  of the  network. We  now consider
+higher dimensional  distribution with  unknown intrinsic dimension.   Using the
+standard Lena  grey-level image as a  source input, samples of  8×8 pixels have
+been  draw   uniformly  from   the  image  and   presented  to   the  different
+networks. 1000 such samples have been  drawn and all three networks have learnt
+during  10 000  iterations. As  illustrated on  figure <a href="#figure-lena">(7)</a>,  the strong
+influence of neighbourhood  in the case of SOM leads to  a final codebook where
+vectors tend  to be very homogeneous and  composed of a mean  value with little
+variations around  this mean  value. In  the case of  NG, things  are different
+because of the absence of  topographic constraints: NG converges rapidly toward
+a stable  solution made  of qualitatively different  filters, part of  them are
+quite  homogeneous  like in  SOM  but some  others  clearly  possess a  greater
+internal  variety. In  the case  of DSOM,  we can  also check  on the  figure a
+greater variety of filters that are self-organised.</p>
+<div class="figure" id="figure-lena">
+<a class="reference external image-reference" href="images/lena.png"><img alt="images/lena.png" src="images/lena.png" /></a>
+<p class="caption"><span class="figno">Figure 7. </span>Three networks  (NG, SOM, DSOM) have  been trained for 20  000 iterations on
+1000 samples  of size  8×8 pixels  that have been  drawn uniformly  from the
+standard lena grey image.</p>
+</div>
+<p>The  meaning of  such a  greater variety  of  filters in  the case  of DSOM  is
+difficult  to appreciate.  In  the one  hand,  if we  were  to reconstruct  the
+original  image  using  those  filters,  we would  certainly  obtain  a  larger
+distortion error. In the other hand,  if those filters were supposed to extract
+useful information from  the image, they would certainly  give a better account
+of the structure of the image.</p>
+</div>
+</div>
+<div class="section" id="conclusion">
+<h1><a class="toc-backref" href="#id43">5.&nbsp;&nbsp;&nbsp;Conclusion</a></h1>
+<p>One of the major problem of most neural map algorithms is the necessity to have
+a finite set  of observations to perform adaptive learning  starting from a set
+of  initial parameters (learning  rate, neighbourhood  or temperature)  at time
+<span class="math">t_i</span> down  to a set  of final  parameters at time  <span class="math">t_f</span>. In the  framework of
+signal processing  or data analysis, this may  be acceptable as long  as we can
+generate a finite set of samples in order to learn it off-line. However, from a
+more behavioural point of view, this is not always possible to have access to a
+finite set and we must face on-line learning. As explained in the introduction,
+if  we consider  the  existence of  a critical  period  in the  early years  of
+development,  the problem  may be  solved  using decreasing  learning rate  and
+neighbourhood over an extended period of  time. But if this may explain to some
+extents  the development  of early  sensory filters,  this fails  at explaining
+cortical   plasticity    at   a   more   broad   level.     As   explained   in
+<a class="citation-reference" href="#buonomano-al-1998" id="id30">(Buonomano et al. 1998)</a>,  we know  today that  <em>&quot;cortical representations  are not
+fixed  entities, but  rather,  are  dynamic and  are  continuously modified  by
+experience&quot;</em>. How can we achieve both stability and reactivity ?</p>
+<p>We proposed  to answer this question  by introducing a variant  of the original
+SOM learning algorithm  where time depency has been  removed. With no available
+formal  proof  of  convergence  and   based  on  several  experiments  in  both
+two-dimensional, high-dimensional  cases and dynamic  cases, we think  this new
+algorithm allows for on-line and  continuous learning ensuring a tight coupling
+to the environment.  However, the resulting codebook does  not fit data density
+as expected  in most  VQ algorithms. This  could be  a serious drawback  in the
+framework  of signal  processing or  data compression  but may  be  a desirable
+property  from a  behavioural point  fo  view. For  example let  us consider  a
+picture of a (very) snowy landscape with a small tree in the middle. If we want
+to mimic  visual exploration of the  scene using eye saccades,  we can randomly
+pick small  patches within the  image and present  them to the model.  Not very
+surprisingly, the  vast majority  of these patches  would be  essentially white
+(possibly with some variations) because the whole image is mainly white. From a
+pure VQ point of view, the codebook would reflect this density by having a vast
+majority of its representations into the  white domain and if the tree is small
+enough, we could even have only white representation within the codebook. While
+this would serve data  compression, how much is it relevant in  general ? We do
+not have  the answer  in the  general case but  we think  this must  be decided
+explicitely depending on task. DSOM allows such explicit decision since it maps
+the structure of the data rather than  their density. This means that in a more
+general framework, we could expect an external structure to attach some kind of
+motivation for  each data that would  modulate its learning. If  some region of
+the  perceptive space  is judged  behaviourally relevant,  model  could develop
+precise representations in this region but if learning is driven solely by data
+density  (like  in  most  VQ),  such modulation  would  certainly  be  strongly
+attenuated or not possible at all.</p>
+</div>
+<div class="section" id="appendix-a">
+<h1><a class="toc-backref" href="#id44">Appendix A</a></h1>
+<p>Here  are  some  results  linked  to various  distributions  illustrating  both
+differences between NG, SOM and DSOM as well as DSOM specific properties.</p>
+<div class="figure" id="figure-images/uniform.png">
+<a class="reference external image-reference" href="images/uniform.png"><img alt="images/uniform.png" src="images/uniform.png" /></a>
+<p class="caption"><span class="figno">Figure 8. </span>Three 8×8 networks  (NG, SOM, DSOM) have been trained  for 20 000 iterations
+on a uniform  square distribution using 10 000  samples.  Initialisation has
+been done by placing initial code vectors randomly over the [0,1]² area.</p>
+</div>
+<div class="figure" id="figure-images/ring.png">
+<a class="reference external image-reference" href="images/ring.png"><img alt="images/ring.png" src="images/ring.png" /></a>
+<p class="caption"><span class="figno">Figure 9. </span>Three 8×8 networks  (NG, SOM, DSOM) have been trained  for 20 000 iterations
+on a ring distribution using 10 000 samples. Initialisation has been done by
+placing initial code vectors randomly over the [0,1]² area.</p>
+</div>
+<div class="figure" id="figure-images/double-ring.png">
+<a class="reference external image-reference" href="images/double-ring.png"><img alt="images/double-ring.png" src="images/double-ring.png" /></a>
+<p class="caption"><span class="figno">Figure 10. </span>Three 8×8 networks  (NG, SOM, DSOM) have been trained  for 20 000 iterations
+on a uniform double  ring-distribution using 10 000 samples.  Initialisation
+has been done by placing initial code vectors randomly over the [0,1]² area.</p>
+</div>
+<div class="figure" id="figure-images/gaussian-filters.png">
+<a class="reference external image-reference" href="images/gaussian-filters.png"><img alt="images/gaussian-filters.png" src="images/gaussian-filters.png" /></a>
+<p class="caption"><span class="figno">Figure 11. </span>Three 8×8 networks  (NG, SOM, DSOM) have been trained  for 20 000 iterations
+on a set  of noisy rotated elongated Gaussians whose  angles have been drawn
+from a uniform distribution in  [-π/2,+π/2] .  An input is represented
+as a two-dimensional 16×16 vector  of real values (∈ [0,1]) and additive
+noise has been added using uniform random variables in [-0.1,0.1].</p>
+</div>
+</div>
+<div class="section" id="appendix-b">
+<h1><a class="toc-backref" href="#id45">Appendix B</a></h1>
+<div class="right figure" id="figure-movies/sphere.avi,movies/sphere.ogg" style="width: 45%">
+<video controls="True">
+<source src="movies/sphere.avi"></source>
+<source src="movies/sphere.ogg"></source>
+</video>
+<p class="caption"><span class="figno">Figure 12. </span>A 32×32 DSOM has been trained for 10000 iterations on a set of 10 000 points
+uniformly distributed over the surface of a sphere of radius 0.5 centered at
+(0.5,0.5,0.5).  Initialisation has been done by placing initial code vectors
+at the center of the sphere and elasticity has been set to 1.0.</p>
+</div>
+<div class="clear-left figure" id="figure-movies/cube.avi,movies/cube.ogg" style="width: 45%">
+<video controls="True">
+<source src="movies/cube.avi"></source>
+<source src="movies/cube.ogg"></source>
+</video>
+<p class="caption"><span class="figno">Figure 13. </span>A 32×32 DSOM has been trained for 10000 iterations on a set of 10 000 points
+uniformly distributed over  the surface of a cube of  radius 0.5 centered at
+(0.5,0.5,0.5).  Initialisation has been done by placing initial code vectors
+at the center of the sphere and elasticity has been set to 1.0.</p>
+</div>
+<div class="right figure" id="figure-movies/sphere-spheres.avi,movies/sphere-spheres.ogg" style="width: 45%">
+<video controls="True">
+<source src="movies/sphere-spheres.avi"></source>
+<source src="movies/sphere-spheres.ogg"></source>
+</video>
+<p class="caption"><span class="figno">Figure 14. </span>Self-reorganization from sphere to spheres surface</p>
+</div>
+<div class="clear-left figure" id="figure-movies/sphere-cube.avi,movies/sphere-cube.ogg" style="width: 45%">
+<video controls="True">
+<source src="movies/sphere-cube.avi"></source>
+<source src="movies/sphere-cube.ogg"></source>
+</video>
+<p class="caption"><span class="figno">Figure 15. </span>Self-reorganization from sphere to cubic surface</p>
+</div>
+</div>
+<div class="section" id="references">
+<h1><a class="toc-backref" href="#id46">References</a></h1>
+<div class="bibitem" id="bachyrita-al-1969">
+<p><span class="label"><a class="fn-backref" href="#id9">BachyRita et al. (1969)</a> P. B. y Rita, C. Collins, F. Saunders, B. White, and
+L. Scadden. Vision substitution by tactile image projection. In <em>Nature</em>,
+221:963-964, 1969.</p></div>
+<div class="bibitem" id="bachyrita-1972">
+<p><span class="label"><a class="fn-backref" href="#id10">BachyRita (1972)</a> P. BachyRita. <em>Brain Mechanisms in Sensory Substitution</em>.
+Academic Press New York, 1972.</p></div>
+<div class="bibitem" id="buonomano-al-1998">
+<p><span class="label"><a class="fn-backref" href="#id30">Buonomano et al. (1998)</a> D. Buonomano, M. Merzenich, Cortical plasticity: From
+synapses to maps, <em>Annual Review of Neuroscience</em> 21 (1998) 149--186.</p></div>
+<div class="bibitem" id="cottrel-al-1998">
+<p><span class="label"><a class="fn-backref" href="#id26">Cottrel et al. (1998)</a> M. Cottrell, J. Fort, G. Pagès, Theoretical aspects of the
+som algorithm, <em>Neurocomputing</em> 21 (1998) 119--138.</p></div>
+<div class="bibitem" id="cottrell-al-1987">
+<p><span class="label"><a class="fn-backref" href="#id27">Cottrell et al. (1987)</a> M. Cottrell, J. Fort, Etude d'un algorithme
+d'auto-organisation, <em>Annales Institut Henri Poincaré</em> 23~(1) (1987) 1--20.</p></div>
+<div class="bibitem" id="daw-1994">
+<p><span class="label"><a class="fn-backref" href="#id8">Daw (1994)</a> N. Daw. Mechanisms of plasticity in the visual  cortex. In
+<em>Investigative Ophthalmology</em>, 35:4168-4179, 1994.</p></div>
+<div class="bibitem" id="deng-al-2000">
+<p><span class="label"><a class="fn-backref" href="#id16">Deng et al. (2000)</a> D. Deng, N. Kasabov, Esom: An algorithm to evolve
+self-organizing maps from on-line data streams, in: <em>Proc. of IJCNN'2000</em>,
+Vol. VI, Como, Italy, 2000, pp. 3--8.</p></div>
+<div class="bibitem" id="deng-al-2003">
+<p><span class="label"><a class="fn-backref" href="#id17">Deng et al. (2003)</a> D. Deng, N. Kasabov, On-line pattern analysis by evolving
+self-organizing maps, <em>Neurocomputing</em> 51 (2003) 87--103.</p></div>
+<div class="bibitem" id="durbin-willshaw-1987">
+<p><span class="label"><a class="fn-backref" href="#id21">Durbin and Willshaw (1987)</a> R. Durbin, D. Willshaw, An analogue approach to the
+travelling salesman problem. In <em>Nature</em> 326 (1987) 689-691.</p></div>
+<div class="bibitem" id="erwin-al-1992">
+<p><span class="label"><a class="fn-backref" href="#id28">Erwin et al. (1992)</a> E. Erwin, K. Obermayer, K. Schulten, Self-organizing maps:
+Ordering, convergence properties and energy functions, <em>Biological
+Cybernetics</em> 67 (1992) 47--55.</p></div>
+<div class="bibitem" id="fritzke-1995">
+<p><span class="label"><a class="fn-backref" href="#id5">Fritzke (1995)</a> B. Fritzke. A growing neural gas network learns topologies.
+In G. Tesauro, D. Touretzky, and T. Leen, editors, <em>Advances in Neural
+Information Processing Systems 7</em>, pages 625-632. MIT Press, Cambridge MA,
+1995.</p></div>
+<div class="bibitem" id="fritzke-1997">
+<p><span class="label"><a class="fn-backref" href="#id15">Fritzke (1997)</a> B. Fritzke, A self-organizing network that can follow
+non-stationary distributions, in: <em>ICANN</em>, 1997, pp. 613--618.</p></div>
+<div class="bibitem" id="furao-al-2006">
+<p><span class="label"><a class="fn-backref" href="#id18">Furao et al. (2006)</a> S. Furao, O. Hasegawa, An incremental network for on-line
+unsupervised classification and topology learning, <em>Neural Networks</em> 19 (1)
+(2006) 90--106.</p></div>
+<div class="bibitem" id="furao-al-2007">
+<p><span class="label"><a class="fn-backref" href="#id19">Furao et al. (2007)</a> S. Furao, T. Ogura, O. Hasegawa, An enhanced self-organizing
+incremental neural network for online unsupervised learning, <em>Neural
+Networks</em> 20 (8) (2007) 893--903.</p></div>
+<div class="bibitem" id="grossberg-1987">
+<p><span class="label"><a class="fn-backref" href="#id25">Grossberg (1987)</a> S. Grossberg, Competitive learning: From interactive
+activation to adaptive resonance. In <em>Cognitive Science</em> 11(1) (1987)
+23-63.</p></div>
+<div class="bibitem" id="heskes-1999">
+<p><span class="label"><a class="fn-backref" href="#id29">Heskes (1999)</a> T. Heskes, Energy functions for self-organizing maps, in:
+E. Oja, S. Kaski(Eds.), <em>Kohonen Maps</em>, Elsevier, Amsterdam, 1999,
+pp. 303--315.</p></div>
+<div class="bibitem" id="hubel-wiesel-1965">
+<p><span class="label"><a class="fn-backref" href="#id6">Hubel and Wiesel (1965)</a> D. Hubel and T. Wiesel. Receptive fields and functional
+architecture in two non-striate visual areas (18 and 19) of the
+cat. In <em>Journal of Neurophysiology</em>, 28:229-289, 1965.</p></div>
+<div class="bibitem" id="hubel-wiesel-1970">
+<p><span class="label"><a class="fn-backref" href="#id7">Hubel and Wiesel (1970)</a> D. Hubel and T. Wiesel. The period of susceptibility to
+the physiological effects of unilateral eye closure in kittens. In <em>Journal
+of Physiology</em>, 206:419-436, 1970.</p></div>
+<div class="bibitem" id="kaski-al-1998">
+<p><span class="label"><a class="fn-backref" href="#id13">Kaski et al. (1998)</a> S. Kaski, J. Kangas, T. Kohonen, Bibliography of
+self-organizing map (som) papers: 1981-1997, <em>Neural Computing Surveys</em> 1
+(1998) 102--320.</p></div>
+<div class="bibitem" id="keith-magee-2001">
+<p><span class="label"><a class="fn-backref" href="#id20">Keith-Magee (2001)</a> R. Keith-Magee, Learning and development in kohonen-style
+self-organising maps, Ph.D. thesis, Curtin University of Technology (2001).</p></div>
+<div class="bibitem" id="kohonen-1982">
+<p><span class="label"><a class="fn-backref" href="#id3">Kohonen (1982)</a> T. Kohonen. Self-organized formation of topologically correct
+feature maps. In <em>Biological Cybernetics</em>, 43:59-69, 1982.</p></div>
+<div class="bibitem" id="linde-al-1980">
+<p><span class="label"><a class="fn-backref" href="#id2">Linde et al. (1980)</a> A. B. Linde, A. Buzo and R. Gray. An algorithm for vector
+quantization design. In <em>IEEE Trans. on Communications</em>, COM-28:84-95, 1980.</p></div>
+<div class="bibitem" id="macqueen-1967">
+<p><span class="label"><a class="fn-backref" href="#id1">MacQueen (1967)</a> J. B. Macqueen. Some methods of classification and analysis
+of multivariate observations. In <em>Proceedings of the Fifth Berkeley
+Symposium on Mathematical Statistics and Probability</em>, pages 281-297, 1967.</p></div>
+<div class="bibitem" id="martinetz-al-1993">
+<p><span class="label"><a class="fn-backref" href="#id4">Martinetz et al. (1993)</a> T. M. Martinetz, S. G. Berkovich, and  K. J. Schulten.
+Neural-gas network for vector quantization and its application to
+time-series prediction. In <em>IEEE Trans. on Neural Networks</em>, 4(4):558-569,
+1993.</p></div>
+<div class="bibitem" id="oja-al-2003">
+<p><span class="label"><a class="fn-backref" href="#id12">Oja et al. (2003)</a> M. Oja, S. Kaski, T. Kohonen, Bibliography of self-organizing
+map (som) papers: 1998-2001 addendum, <em>Neural Computing Surveys</em> 3 (2003)
+1--156.</p></div>
+<div class="bibitem" id="polla-al-2009">
+<p><span class="label"><a class="fn-backref" href="#id14">Pöllä et al. (2009)</a> M. Pöllä, T. Honkela, T. Kohonen, Bibliography of
+self-organizing map (som) papers: 2002-2005 addendum, Tech. rep.,
+Information and Computer Science, Helsinki University of Technology (2009).</p></div>
+<div class="bibitem" id="ramachadran-al-1992">
+<p><span class="label"><a class="fn-backref" href="#id11">Ramachadran et al. (1992)</a> V. Ramachandran, D. Rogers-Ramachandran, and
+M. Stewart. Perceptual correlates of massive cortical reorganization. In
+<em>Science</em>, 258:1159-1160, 1992.</p></div>
+<div class="bibitem" id="villman-clausen-2006">
+<p><span class="label">Villman and Clausen (2006) <em>(<a class="fn-backref" href="#id22">1</a>, <a class="fn-backref" href="#id23">2</a>)</em> T. Villman, J. Claussen, Magnification control in
+self-organizing maps and neural gas. In <em>Neural Computation</em> 18 (2006)
+446-449.</p></div>
+</div>
+<div class="section" id="about-this-document">
+<h1><a class="toc-backref" href="#id47">About this document</a></h1>
+<p>This document has  been generated using a modified  version of the <a class="reference external" href="rst2html.py">rst2html.py</a> python script for  converting a restructured text document into
+an  html   one.   The   rst  source  of   this  document  is   avalaible  <a class="reference external" href="article.rst.html">here</a>.</p>
+</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,25 @@
+' ST MAGAZINE 35
+' HAUTE RESOLUTION
+' GFA 2.0
+' PIERRE COUPARD
+'
+ecran_logique$=SPACE$(32000)
+VOID XBIOS(5,L:VARPTR(ecran_logique$),L:-1,W:2)
+DIM x(4),y(4)
+DO
+  FOR n%=1 TO 1000 STEP 5
+    CLS
+    FOR r%=0 TO 3
+      h=60*SIN(n%/500*PI)
+      i=100*COS(n%/500*PI)
+      x(r%)=320-60*COS((n%+(r%*250))/500*PI)
+      y(r%)=200-h*SIN((n%+(r%*250))/500*PI)
+      x(4)=x(0)
+      y(4)=y(0)
+      DRAW x(r%),y(r%)+i TO x(r%+1),y(r%+1)+i TO 320,200-i
+      DRAW x(r%)-150,y(r%)-i TO x(r%+1)-150,y(r%+1)-i TO 170,200+i
+      DRAW x(r%)+150,y(r%)-i TO x(r%+1)+150,y(r%+1)-i TO 470,200+i
+    NEXT r%
+    BMOVE XBIOS(3),XBIOS(2),32000
+  NEXT n%
+LOOP

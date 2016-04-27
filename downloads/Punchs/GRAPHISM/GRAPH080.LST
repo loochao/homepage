@@ -1,0 +1,23 @@
+' DELBOS OLIVIER: globe. ST Magazine nø32.
+' GfA Basic 2 & 3, basse r‚solution.
+'
+RESERVE 65000
+a$=SPACE$(32066)
+a%=GEMDOS(72,L:32000)
+b%=GEMDOS(72;L:32000)
+FILESELECT "a:*.pi1","",hh$
+BLOAD hh$,VARPTR(a$)
+BMOVE VARPTR(a$)+34,a%,32000
+VOID XBIOS(6,L:VARPTR(a$)+2)
+FOR u=0 TO PI STEP 0.5625*PI/180
+  FOR t=PI/2 TO 3*PI/2 STEP 0.9*PI/180
+    VOID XBIOS(5,L:a%,L:a%,W:-1)
+    z=-(COS(t)*80*COS(u))*SIN(u)
+    xx=160+(COS(t)*80*COS(u))+(0-(COS(t)*80*COS(u)))*(d-z)/(-9000-z)
+    yy=100-(SIN(t)*60)+(0-(SIN(t)*60))*(d-z)/(-9000-z)
+    COLOR POINT(INT((u*180/PI)*(320/180)),INT((t*180/PI-90)*(200/180)+1))
+    VOID XBIOS(5,L:b%,L:b%,W:-1)
+    PLOT xx,yy
+  NEXT t
+NEXT u
+VOID INP(2)

@@ -1,0 +1,23 @@
+' ST Magazine nø32.
+' Scrolling speed‚ en GfA Basic 2 ou 3 et basse r‚solution.
+'
+text$=" LE SCROLLING DE BIGHOST ETAIT VRAIMENT TROP NUL, EN VOICI LEGEREMENT PLUS RAPIDE ET PLUS FLUIDE,  FLOYD !!!!!!         "
+SETCOLOR 0,&H0
+SETCOLOR 4,&H707
+DEFTEXT 4,,,58
+a%=XBIOS(3)
+l%=33*160
+REPEAT
+  FOR t&=0 TO 120
+  NEXT t&
+  FOR i&=0 TO 7
+    SETCOLOR 4,i&
+  NEXT i&
+  FOR i&=7 DOWNTO 0
+    SETCOLOR 4,i&
+  NEXT i&
+  c=c MOD LEN(text$)+1
+  BMOVE a%,SUB(a%,8),l%
+  TEXT 306,32,MID$(text$,c,1)
+  VSYNC
+UNTIL MOUSEK

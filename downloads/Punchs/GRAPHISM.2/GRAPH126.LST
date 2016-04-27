@@ -1,0 +1,21 @@
+' Vincent Guesdon, ST Magazine nø34.
+' GfA Basic 2 & 3, toutes r‚solutions.
+'
+c%=0
+DIM x%(2000),y%(2000)
+WHILE z%<2 AND c%<2000
+  INC v
+  MOUSE x%(c%),y%(c%),z%
+  IF v>14
+    v=0
+  ENDIF
+  IF z%=1 THEN
+    LINE x%(c%),y%(c%),x%(c%)+5,y%(c%)+5
+    INC c%
+  ENDIF
+WEND
+CLS                          ! facultatif (effets diff‚rents)
+FOR f%=0 TO c%-26
+  LINE x%(f%),y%(f%),x%(f%+25),y%(f%+25)
+NEXT f%
+VOID INP(2)

@@ -1,0 +1,24 @@
+' ST Magazine nø34.
+' YAN GEORGET
+' GfA Basic 2 & 3, toutes r‚solutions.
+'
+INPUT "Nombre de points :",n
+DIM x(n),y(n)
+FOR i%=n-1 DOWNTO 0
+  REPEAT
+    MOUSE x(i%),y(i%),k%
+  UNTIL k%=1+EVEN(i%)*ODD(n)+ODD(i%)*EVEN(n)
+  LINE -x(i%)*(i%=n-1)-(i%<n-1)*x(i%+1),-y(i%)*(i%=n-1)-(i%<n-1)*y(i%+1),x(i%),y(i%)
+NEXT i%
+CLS
+FOR t=0 TO n-3
+  c=(1-(t=n-3))/2*x(t+2)-x(t+1)/2*(t<n-3)
+  d=(1-(t=n-3))/2*y(t+2)-y(t+1)/2*(t<n-3)
+  g=SQR(((1-(t=0))/2*x(t)-x(t+1)/2*(t<>0)-x(t+1))^2+((1-(t=0))/2*y(t)-y(t+1)/2*(t<>0)-y(t+1))^2)
+  h=SQR((x(t+1)-c)^2+(y(t+1)-d)^2)
+  FOR x=0.01 TO 1000
+    ADD f,(2*h-x>=0)*(g/h*SQR(2*x*h-x^2)-g+f)
+    DRAW  TO x*(c-x(t+1))/h+f*((1-(t=0))/2*x(t)-x(t+1)/2*(t<>0)-x(t+1))/g+x(t+1),x*(d-y(t+1))/h+f*((1-(t=0))/2*y(t)-y(t+1)/2*(t<>0)-y(t+1))/g+y(t+1)
+    EXIT IF 2*h-x<0 OR (ABS(x*(c-x(t+1))/h+f*((1-(t=0))/2*x(t)-x(t+1)/2*(t<>0)-x(t+1))/g+x(t+1)-c)<1 AND ABS(x*(d-y(t+1))/h+f*((1-(t=0))/2*y(t)-y(t+1)/2*(t<>0)-y(t+1))/g+y(t+1)-d)<1)
+  NEXT x
+NEXT t

@@ -1,0 +1,23 @@
+' Auteur: Francois PLANQUE. ST Magazine nø29.
+' Nom: METEOR
+' Objet: placez le destructeur sous le m‚t‚ore
+' avec le joystick pour sauver la terre.
+' GfA Basic 2 & 3, basse r‚solution.
+'
+SETCOLOR 0,&H0
+PRINT AT(2,24);CHR$(27);"cB";SPC(38);CHR$(27);"c@"
+a%=20
+REPEAT
+  INC s%
+  b%=RANDOM(20)+10
+  FOR c%=1 TO 22
+    a%=a%+(PEEK(XBIOS(&H22)+61)=4)-(a%=1)
+    a%=a%-(PEEK(XBIOS(&H22)+61)=8)+(a%=38)
+    PRINT AT(a%,23);CHR$(27);"bD ";CHR$(127);" ";
+    PRINT AT(b%,c%);CHR$(27);"bE ";CHR$(8);CHR$(10);"o"
+    PAUSE 3  ! Vitesse r‚glable
+  NEXT c%
+  PRINT CHR$(7);
+UNTIL a%<>b%-1
+PRINT CHR$(7);CHR$(27);"EPERDU, VOTRE SCORE: ";s%
+SETCOLOR 0,&H777

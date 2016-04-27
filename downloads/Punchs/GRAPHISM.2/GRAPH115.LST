@@ -1,0 +1,24 @@
+' ST Magazine nø34.
+' Vincent Guesdon
+' GfA Basic 2 & 3, basse r‚solution.
+'
+DIM x(4),y(4),a(4),b(4),c(4),d(4)
+OPTION BASE 0
+FOR f=0 TO 4
+  x(f)=RAND(10)+1
+  y(f)=RAND(10)+1
+NEXT f
+FOR f=1 TO 180 STEP 0.2                   ! pas=0.2 ,plus = plus grande
+  FOR g=0 TO 3                            ! vitesse
+    a(g)=COS(x(g)*(f/16))*160+160
+    b(g)=SIN(y(g)*(f/16))*100+100         ! 1.6 doit etre multiple du pas
+    c(g)=COS(x(g)*((f-1.6)/16))*160+160   ! dans la boucle de f
+    d(g)=SIN(y(g)*((f-1.6)/16))*100+100   ! le modifier change la longueur
+  NEXT g                                  ! des "eventails"
+  FOR g=0 TO 3
+    COLOR g+2
+    LINE 160,100,a(g),b(g)
+    COLOR 0
+    LINE 160,100,c(g),d(g)
+  NEXT g
+NEXT f

@@ -1,0 +1,23 @@
+' *Bighost
+' ST Magazine nø26.
+' Vous me reconnaissez? Mais si! C'est moi
+' qui fournit des listings qui ne servent … rien...
+' GfA Basic 2 & 3, toutes r‚solutions.
+'
+HIDEM
+FOR t=1 TO 1500
+  a=RANDOM(50)+110
+  b=RANDOM(50)+50
+  c=RANDOM(15)
+  COLOR c
+  PLOT a,b
+NEXT t
+GET 110,50,159,99,a$
+DO
+  MOUSE a,b,c
+  PUT a,b,a$,14
+  IF c<>0
+    PRINT " "
+  ENDIF
+LOOP
+' Appuyez sur le bouton de la souris!

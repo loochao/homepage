@@ -1,0 +1,24 @@
+' ST Magazine nø34.
+' YAN GEORGET
+' GfA Basic 2 & 3, haute r‚solution.
+'
+DO
+  a$=INKEY$
+  ADD a%,(a%-VAL(a$))*(ASC(a$)>47 AND ASC(a$)<57)
+  IF MOUSEK=1
+    DEFFILL NOT (-POINT(MOUSEX,MOUSEY))
+    REPEAT
+      MOUSE x%,y%,k%
+      PBOX 2^a%*INT(x%/2^a%),2^a%*INT(y%/2^a%),2^a%*(1+INT(x%/2^a%))-1,2^a%*(1+INT(y%/2^a%))-1
+    UNTIL k%<>1
+  ENDIF
+  IF MOUSEK=2
+    GET 0,1,639,399,m$
+    GET 1,0,639,399,n$
+    PUT 0,0,m$,6
+    GET 0,0,639,399,r$
+    PUT 1,0,n$
+    PUT 0,0,n$,6
+    PUT 0,0,r$,7
+  ENDIF
+LOOP

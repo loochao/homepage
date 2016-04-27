@@ -1,0 +1,25 @@
+' Auteur: Captel
+' GfA Basic 2 & 3, toutes r‚solutions.
+' ST Magazine nø28.
+' G‚n‚rateur de Rock'n'roll.
+'
+Dim A(3,4),O(12),H(12)
+Q$="111122113211"
+P$="15B86A148C36"
+Do
+  Wave 7,7,8,2530,100
+  Clr K
+  For I=1 To 3
+    For J=1 To 4
+      Inc K
+      A(I,J)=Val("&H"+Mid$(P$,K,1))
+      O(K)=Random(3)+1
+      H(K)=Random(4)+1
+    Next J
+  Next I
+  For I=1 To 12
+    For Z=1 To 8
+      Sound 1,15,A(Val(Mid$(Q$,I,1)),H(Z)),O(Z)+1,8 !une ligne...
+    Next Z
+  Next I
+Loop

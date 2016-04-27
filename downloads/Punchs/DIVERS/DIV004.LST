@@ -1,0 +1,10 @@
+' ST Magazine nø31.
+' GfA Basic 3, haute r‚solution.
+'
+DEFFILL ,2,4
+PBOX 0,0,639,399
+DO
+  SETCOLOR 0,0
+  SETCOLOR 0,1
+  PSET MOUSEX,MOUSEY,1
+LOOP

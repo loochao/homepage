@@ -1,0 +1,23 @@
+' DE DAVID LANNES. ST Magazine nø32.
+' GfA Basic 2 & 3, toutes r‚solutions.
+'
+a$="EN VOILA UN PUNCH QU'IL EST BEAU!!!!! C'EST BEN VRAI CA"
+FOR h=0 TO INT(LEN(a$)/39)
+  FOR i=1 TO 39
+    x=RANDOM(300)
+    y=RANDOM(160)+10*SUCC(LEN(a$)/39)
+    TEXT x,y,MID$(a$,i+39*h,1)
+    WHILE x<>i*8
+      IF x<i*8
+        INC x
+      ELSE
+        DEC x
+      ENDIF
+      TEXT x,y,MID$(a$,i+39*h,1)
+    WEND
+    WHILE y<>10+h*10
+      DEC y
+      TEXT x,y,MID$(a$,i+39*h,1)
+    WEND
+  NEXT i
+NEXT h

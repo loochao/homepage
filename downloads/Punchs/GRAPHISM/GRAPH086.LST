@@ -1,0 +1,24 @@
+' F.ROUX 1040 ST. ST Magazine nø32.
+' GfA Basic 2 et 3, haute r‚solution.
+' Cercles Dansants.
+'
+VOID XBIOS(0,L:0,W:0,W:0)
+DIM p$(20)
+FOR i%=1 TO 20
+  CIRCLE i%*10,i%*10,i%*10
+  CIRCLE (40-i%)*10,(40-i%)*10,i%*10
+  CIRCLE i%*10,(40-i%)*10,i%*10
+  CIRCLE (40-i%)*10,i%*10,i%*10
+  PRINT AT(1,40)
+  SGET p$(i%)
+NEXT i%
+DO
+  FOR i%=1 TO 20
+    VOID XBIOS(37)
+    SPUT p$(i%)
+  NEXT i%
+  FOR i%=20 DOWNTO 1
+    VOID XBIOS(37)
+    SPUT p$(i%)
+  NEXT i%
+LOOP

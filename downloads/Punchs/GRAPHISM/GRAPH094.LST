@@ -1,0 +1,16 @@
+' DE DAVID LANNES, ST Magazine nø32.
+' GfA Basic 2 & 3, basse r‚solution.
+'
+DIM v(4),m(3)
+FOR i=1 TO 4
+  v(i)=RANDOM(200)
+NEXT i
+FOR j=1 TO 3
+  m(j)=RANDOM(50)
+NEXT j
+DO
+  a=RANDOM(15)
+  b=RANDOM(8)
+  c=RANDOM(10)
+  DRAW m(2),v(1) TO a*m(1),v(2) TO b*m(2),v(3) TO c*m(3),v(4)
+LOOP

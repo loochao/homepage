@@ -1,0 +1,68 @@
+---
+---
+<small>
+{% if entry.hal_id %}
+<a href="https://hal.archives-ouvertes.fr/{{entry.hal_id}}">HAL</a>
+{% else %}
+HAL
+{% endif %}
+
+{% if entry.doi %}
+| <a href="http://dx.doi.org/{{entry.doi}}">DOI</a>
+{% endif %}
+
+{% if entry.link %}
+| <a href="{{entry.link}}">Link</a>
+{% elsif entry.url %}
+| <a href="{{entry.url}}">Link</a>
+{% endif %}
+
+{% if entry.pdf %}
+| <a href="{{entry.pdf}}">PDF</a>
+{% elsif entry.hal_id %}
+| <a href="https://hal.archives-ouvertes.fr/{{entry.hal_id}}/document">PDF</a>
+{% endif %}
+
+| <a data-toggle="collapse" href="javascript:toggleDiv('{{entry.key}}-bibtex')">BibTeX</a>
+
+{% if entry.github %}
+| <a href="{{entry.github}}"><i class="fa fa-github-alt"></i> repository</a>
+{% endif %}
+
+{% if entry.code %}
+| <a href="{{entry.code}}"><i class="fa fa-file-archive-o"></i> code.zip</a>
+{% endif %}
+
+{% if entry.lang  %}
+| {{ entry.lang }}
+{% endif %}
+
+{% if entry.audio  %}
+| <a href="{{entry.audio}}"><i class="fa fa-volume-up"></i> podcast</a>
+{% endif %}
+
+{% if entry.movie  %}
+| <a href="{{entry.movie}}"><i class="fa fa-film"></i> video</a>
+{% endif %}
+
+{% if entry.award %}
+| <a href="{{entry.award}}"><i class="fa fa-trophy"></i> award</a>
+{% endif %}
+
+{% if entry.spotlight %}
+| <a href="{{entry.spotlight}}"><i class="fa fa-star"></i> spotlight</a>
+{% endif %}
+
+<br/>
+</small>
+{{reference}}
+{% if entry.type == "misc" and entry.note %}
+{{ entry.note }}.
+{% endif %}
+<br/>
+<small>
+<div id="{{entry.key}}-bibtex" style="display:none;">
+<pre class="collapse">{{entry.bibtex}}</pre>
+</div>
+</small>
+

@@ -1,0 +1,23 @@
+' Auteur: Fran‡ois Planque
+' ST Magazine nø28.
+' Il suffit de bouger la souris, de cliquer pour s'arrˆter...
+' et peut-ˆtre aussi d'un peu de doigt‚ et d'exp‚rience!
+' GfA Basic 2 & 3, toutes r‚solutions (basse conseill‚e).
+'
+Hidem
+Dim A%(2,15)
+Repeat
+  Mouse X%,Y%,K%
+  X%=Abs(X%-160)
+  Y%=Abs(Y%-100)
+  Color 0
+  Ellipse 160,100,A%(1,1),A%(2,1)
+  Color Int((X%+Y%)/18)   ! Couleur (Changez si vous pr‚f‚rez autrement...)
+  Ellipse 160,100,X%,Y%
+  For A%=1 To 14
+    A%(1,A%)=A%(1,A%+1)
+    A%(2,A%)=A%(2,A%+1)
+  Next A%
+  A%(1,15)=X%
+  A%(2,15)=Y%
+Until K%

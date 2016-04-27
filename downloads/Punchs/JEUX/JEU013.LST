@@ -1,0 +1,23 @@
+' ST MAGAZINE 35
+' BASSE RESOLUTION
+' GfA 2.0
+' Nicolas Rougier
+'
+bourse=50
+REPEAT
+  temps=RANDOM(8)
+  event=RANDOM(2)*(2-RANDOM(5))*RANDOM(2)
+  PRINT "TEMPS PREVU: ";MID$("CANICULE@ARIDE@@@@CHAUD@@@@SEC@@@@@@HUMIDE@@@PLUVIEUX@ORAGEUX@@NEIGE@@@",temps*9+1,8)
+  PRINT "EVENEMENT:";MID$("PANNE D'EAU EN VILLE@@POLLUTION DE L'EAU@@@@AUCUN@@@@@@@@@@@@@@@@TRAVAUX DEVANT LA RUE@MATCH DE RUGBY@@@@@@@",(event+2)*22,21);SPACE$(9);"BOURSE: ";bourse;SPACE$(50)
+  REPEAT
+    INPUT "PRIX DE VENTE D'UNE ORANGEADE: ",prix
+    INPUT "NOMBRE DE VERRES D'ORANGEADE : ",nombre
+  UNTIL (2*nombre<=bourse AND prix>=2 AND prix<=10)
+  nb_client=RANDOM((8-temps)*2)+(8-temps)*3-(prix-1)*4-event*5
+  nb_client=((ABS(nb_client>0)*nb_client)+(nb_client>nombre)*(nb_client-nombre))
+  ADD bourse,nb_client*prix-2*nombre
+  PRINT "NOMBRE DE VERRES VENDUS: ";nb_client;SPACE$(15-LEN(STR$(nb_client)));"BENEFICE: ";nb_client*prix-2*nombre
+  VOID INP(2)
+  CLS
+UNTIL bourse<=0 OR bourse>=1000
+PRINT MID$("VOUS AVEZ LAMENTABLEMENT FAIT FAILLITE@@@@@BRAVO, VOUS AVEZ REUSSI A VOUS ENRICHIR",ABS((bourse>=1000))*44,42)

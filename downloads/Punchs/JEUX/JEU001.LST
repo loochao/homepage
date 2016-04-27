@@ -1,0 +1,58 @@
+' ANDRê DUFRASNES
+' ST Magazine n¯28.
+' Programme de jeu de 20 lignes, Çcrit en GfA Basic 3.
+' style "jeu electronique de poche".
+' BUT DU JEU:
+' Atteindre le score de 890 points.
+' Basse rÇsolution.
+'
+' SCENARIO ET REGLES DU JEU:
+' _ Nathaniel le chercheur d'or reprÇsentÇ par la lettre N peut àtre dÇplacÇ
+' horizontalement, vers la gauche en appuyant sur la touche A (capitale) et vers
+' la droite sur la touche E (capitale).
+' _ S'il ramasse une pÇpite (lettre P) Ö la premiäre colonne (bip sonore), vous
+' marquez 7 points.
+' _ S'il amäne cette pÇpite au chariot (lettre C) Ö la cinquiäme colonne (bip
+' sonore), vous marquez 5 points.
+' _ Vous devez guider Nathaniel dans les colonnes centrales afin de lui faire
+' Çviter les pierres (lettre O) qui tombent. Vous marquez 1 point Ö chaque
+' pierre ÇvitÇe. Si une pierre Çcrase Nathaniel, il perd une des 5 vies dont
+' il dispose.
+' _ Si Nathaniel reste trop longtemps apräs le bip sonore Ö la 1äre ou 5äme
+' colonne, il est placÇ automatiquement dans les colonnes centrales.
+' _ L'accäs Ö la 1äre colonne n'est possible que si une pÇpite (P) est visible
+' sur l'Çcran et que Nathaniel a les mains vides, c-a-d qu'il vient de la 5äme
+' colonne.
+' _ L'accäs Ö la 5äme colonne n'est possible que si le chariot (C) est visible
+' sur l'Çcran et que Nathaniel a une pÇpite en mains, c-a-d qu'il vient de la
+' 1äre colonne.
+' _ La vitesse du jeu augmente en fonction du score.
+' _ Appuyer sur une touche quelconque apräs le RUN pour dÇmarrer le jeu.
+' _ 890 points atteints ou 5 vies perdues: Le jeu s'arràte. Retour au listing
+' apräs avoir appuyÇ sur [SHIFT+ALTERNATE+CONTROL] et 2 fois [RETURN].
+' _ Pour augmenter la difficultÇ du jeu, modifier Ö la 5äme ligne
+' ((rnd*2.6457)^2) par (rnd*7), et/ou Ö la 9äme ligne 150 par 100.
+'
+'
+' NATHANIEL LE CHERCHEUR D'OR.
+'
+a$="0124*01100134567811111111111111345678111111111111   O OO       ....N....00000000000000000000000110000001000100010001000110000001000100021000000210000002000210001000000200020002000210001000000200010001000110000001BRAVOPERDU     "+STR$(INP(2))
+boucle:
+FOR a=12 TO 31
+  PRINT AT(21,VAL(MID$(a$,a,1)));"P";AT(27,VAL(MID$(a$,a+13,1)));"C";AT(21,VAL(MID$(a$,a-1,1)));" ";AT(27,VAL(MID$(a$,a+12,1)));" ";CHR$(7)
+  MID$(a$,45,5)=STR$(((INT((RND*2.6457)^2)+1+VAL(MID$(a$,46,4))*10-11111)*-NOT (MID$(a$,37+VAL(MID$(a$,4,1))*4+VAL(MID$(a$,45,1))*20,1)="1"))+11111)
+  PRINT AT(23,7);MID$(a$,49+VAL(MID$(a$,45,1)),3);AT(23,6);MID$(a$,49+VAL(MID$(a$,46,1)),3);AT(23,5);MID$(a$,49+VAL(MID$(a$,47,1)),3);AT(23,4);MID$(a$,49+VAL(MID$(a$,48,1)),3);AT(23,3);MID$(a$,49+VAL(MID$(a$,49,1)),3)
+  c=TIMER
+  DO
+    EXIT IF c<TIMER-150+VAL(MID$(a$,8,2))
+    b$=INKEY$
+    d=(b$="E" AND MID$(a$,1,1)="0" AND NOT (MID$(a$,4,1)="4" OR MID$(a$,3,2)="15" OR MID$(a$,3,2)="05" OR MID$(a$,2,3)="125"))-(b$="A" AND MID$(a$,1,1)="0" AND NOT (MID$(a$,4,1)="8" OR MID$(a$,3,2)="17" OR MID$(a$,3,2)="27" OR MID$(a$,2,3)="007"))
+    MID$(a$,1,5)=STR$(ASC(b$)\20)+STR$(VAL(MID$(a$,2,1))+(a=17 AND MID$(a$,2,4)="108*")-(a=24 AND MID$(a$,2,4)="024*"))+STR$(1+(a>11 AND a<18)-(a>18 AND a<25))+STR$(VAL(MID$(a$,4,1))+d+(MID$(a$,5,2)="*5")*(VAL(MID$(a$,4,1))-6))+" "
+    PRINT AT(22,8);MID$(a$,60+VAL(MID$(a$,4,1)),5);AT(10,1);"NATHANIEL par DUFRASNE AndrÇ   /Janvier 1989."
+  LOOP
+  SOUND 1,15,2,13+7*(MID$(a$,37+VAL(MID$(a$,4,1))*4+VAL(MID$(a$,45,1))*20,1)="1")+10*((MID$(a$,4,1)="4" AND a=23) OR (MID$(a$,4,1)="8" AND a=16))
+  MID$(a$,5,6)="*"+STR$((VAL(MID$(a$,6,1))+1)*-((MID$(a$,4,1)="4" AND MID$(a$,2,1)="1") OR (MID$(a$,4,1)="8" AND MID$(a$,2,1)="0")))+STR$(VAL(MID$(a$,7,4))+VAL(MID$(a$,37+(VAL(MID$(a$,4,1))*4)+(VAL(MID$(a$,45,1))*20),4)))
+  MID$(a$,8,3)=STR$(VAL(MID$(a$,8,3))-5*(MID$(a$,4,1)="4" AND a=24)-7*(MID$(a$,4,1)="8" AND a=17))
+  PRINT AT(22,9);MID$(a$,223+(5*(MID$(a$,7,1)="6" AND VAL(MID$(a$,8,3))<990)+(10*(VAL(MID$(a$,8,3))>990))),5);AT(1,12);"VIE=";VAL(MID$(a$,7,1))-1;"/SCORE=";VAL(MID$(a$,8,3))-100;MID$(a$,0*(INP(4+(2*(MID$(a$,7,1)="6" OR VAL(MID$(a$,8,3))>990))))+223)
+NEXT a
+GOTO boucle

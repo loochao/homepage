@@ -1,0 +1,18 @@
+' GfA Basic 2 & 3, toutes rÇsolutions.
+' ST Magazine n¯26.
+'
+PRINT "PIANO GFA PUNCH ST-MAG: LOIC ROCHAS";CHR$(10);CHR$(10)
+PRINT "Do  Do#  Re  Re#  Mi  Fa  Fa#  Sol  Sol#  La  La#  Si";CHR$(13);CHR$(10);"A   Ç    Z   ";CHR$(34);"    E   R   (    T    ›     Y   ä    U"
+PRINT STRING$(80,32);"Do  Do#  Re#  Mi  Fa  Fa#  Sol  Sol#  La  La#  Si";CHR$(13);CHR$(10);"W   S    X    D   C   V    G    B     H   N    J"
+PRINT STRING$(80,32);"<Espace> stoppe le son et <#> stoppe le programme."
+SPOKE &H484,PEEK(&H484) AND &HFE
+WHILE a%<>26
+  a%=INSTR("WSXDCVGBHNJ,AêZ"+CHR$(34)+"ER(T›YäU #",UPPER$(INPUT$(1)))
+  IF a%=25 OR a%=26
+    SOUND 1,0,0,0
+  ELSE
+    IF a%<>0
+      SOUND 1,15,a%,4,1
+    ENDIF
+  ENDIF
+WEND

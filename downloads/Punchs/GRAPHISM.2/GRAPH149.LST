@@ -1,0 +1,22 @@
+' ST MAGAZINE 35
+' BASSE RESOLUTION
+' GFA 3.0
+' PRINST
+'
+c$=MKI$(&H0)+MKI$(&H111)+MKI$(&H222)+MKI$(&H333)+MKI$(&H444)+MKI$(&H555)+MKI$(&H666)+MKI$(&H777)+MKI$(&H766)+MKI$(&H755)+MKI$(&H744)+MKI$(&H733)+MKI$(&H722)+MKI$(&H711)+MKI$(&H700)+MKI$(&H300)
+EVERY 10 GOSUB animc
+DO
+  c|=(-c|-1)*(c|<16)+1
+  x=r|*COS(an)+160
+  y=r|*SIN(an)+100
+  IF x<1 OR x>319 OR y<1 OR y>199
+    CLR r|,c|
+    an=RND*2*PI
+  ENDIF
+  PSET x,y,c|
+  INC r|
+LOOP
+PROCEDURE animc
+  c$=MID$(c$,1,2)+MID$(c$,5,90)+MID$(c$,3,2)
+  ~XBIOS(6,L:V:c$)
+RETURN

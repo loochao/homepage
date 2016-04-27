@@ -1,0 +1,25 @@
+' ST MAGAZINE 35
+' BASSE RESOLUTION
+' GFA 3.0
+' PRINST
+'
+HIDEM                                   !==================================!
+DO                                      !                                  !
+  INC sc&                               !      fini le 13/07/1989          !
+  PRINT AT(1,1);"score:";sc&;" "        !il s'agit d'un jeu de casse brique!
+  PSET x&,y|,0                          !(vous me direz "banal") mais l…   !
+  x&=(-x&-1)*(d1!=0)+(-x&+1)*(d1!=-1)   !il n'y a pas de briques!!!...      !
+  y|=(-y|-1)*(d2!=0)+(-y|+1)*(d2!=-1)   !utilisez la souris pour les mvts  !
+  d1!=d1!-(x&>320 OR x&<0)              !==================================!
+  d2!=d2!-(y|<1 OR (y|>190 AND (x&>ax& AND x&<ax&+(15-sc&/200))))
+  PSET x&,y|,1
+  COLOR 0
+  BOX ax&,190,ax&+(15-sc&/200),193
+  ax&=MOUSEX
+  COLOR 3
+  BOX ax&,190,ax&+(15-sc&/200),193
+  IF y|>191
+    ALERT 1,"tu a realis‚ un score| de:"+STR$(sc&)+"...|on recommence!",1,"ok!!!",a|
+    CLR x&,y|,sc&,d1!,d2!,ax&,a|
+  ENDIF
+LOOP

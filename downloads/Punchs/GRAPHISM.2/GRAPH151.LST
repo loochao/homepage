@@ -1,0 +1,26 @@
+' ST MAGAZINE 35
+' BASSE RESOLUTION
+' GFA 3.0
+' MICHEL GOUX
+' Fond ‚toil‚ tournant
+'
+DIM module%(30),angle%(30),x%(30),y%(30),vitesse%(30)
+CLS
+SETCOLOR 0,&H0
+SETCOLOR 15,&H777
+BOX 0,0,319,199
+DO
+  FOR n%=1 TO 30
+    IF module%(n%)=0 OR x%(n%)<10 OR x%(n%)>309 OR y%(n%)<10 OR y%(n%)>189
+      module%(n%)=RANDOM(19)+1
+      angle%(n%)=RANDOM(361)
+      vitesse%(n%)=RANDOM(5)+2
+    ENDIF
+    PSET x%(n%),y%(n%),FALSE
+    x%(n%)=160+module%(n%)*COSQ(angle%(n%))
+    y%(n%)=100+module%(n%)*SINQ(angle%(n%))
+    ADD module%(n%),vitesse%(n%)
+    ADD angle%(n%),2
+    PSET x%(n%),y%(n%),15
+  NEXT n%
+LOOP

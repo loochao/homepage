@@ -1,0 +1,21 @@
+' Vincent Guesdon, ST Magazine nø34.
+' GfA Basic 2 & 3, toutes r‚solutions (basse conseill‚e)
+'
+PRINT "X,Y,PAS"
+INPUT x,y,p
+SETCOLOR 0,0
+SETCOLOR 15,&H742
+CLS
+pas=0.2*p
+REPEAT
+  ADD f,0.2
+  a=COS(x*(f/16))*160+160
+  b=SIN(y*(f/16))*100+100
+  c=COS(x*((f-pas)/16))*160+160
+  d=SIN(y*((f-pas)/16))*100+100
+  COLOR 1
+  LINE 160,100,a,b
+  COLOR 0
+  LINE 160,100,c,d
+UNTIL INKEY$<>""
+EDIT

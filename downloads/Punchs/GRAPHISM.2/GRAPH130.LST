@@ -1,0 +1,23 @@
+' Vincent Guesdon, ST Magazine nø34.
+' GfA Basic 2 & 3, moniteur couleur.
+'
+SETCOLOR 15,0
+FOR g=0 TO 199-20 STEP 10
+  FOR f=1 TO 320 STEP 8
+    LINE f,g,320-f,g+20
+  NEXT f
+NEXT g
+DO
+  z=z+7
+  v=ABS(-80+z MOD 160)
+  FOR g=0 TO 7 STEP 4
+    FOR f=-7 TO 7
+      a=ABS(f)
+      SETCOLOR 0,g,a,a
+    NEXT f
+  NEXT g
+  SETCOLOR 0,0
+  VSYNC
+  FOR f=1 TO v
+  NEXT f
+LOOP

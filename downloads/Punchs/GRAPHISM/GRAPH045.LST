@@ -1,0 +1,21 @@
+' Auteur: S‚bastien Delestaing. ST Magazine nø30.
+' GfA Basic 2 & 3. Haute r‚solution.
+'
+FILESELECT "a:\*.pi3","",f$
+buffer$=SPACE$(32066)
+buffer%=VARPTR(buffer$)
+BLOAD f$,buffer%
+BMOVE buffer%+34,buffer%,32000
+CLR x%,y%
+sx%=1
+sy%=1
+FOR count%=0 TO 10737
+  x%=sx%+x%
+  y%=y%+sy%
+  sx%=sx%*(1+(2*((x%>78) OR (x%<1))))
+  sy%=sy%*(1+(2*((y%<0) OR (y%>396))))
+  FOR gg%=0 TO 5
+    BMOVE buffer%+(y%+gg%)*80+x%,XBIOS(2)+(y%+gg%)*80+x%,1
+  NEXT gg%
+NEXT count%
+BMOVE buffer%,XBIOS(2),32000

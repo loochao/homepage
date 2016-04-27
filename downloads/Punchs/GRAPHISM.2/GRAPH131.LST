@@ -1,0 +1,23 @@
+' Vincent Guesdon, ST Magazine nø34.
+' GfA Basic 2 & 3, basse r‚solution uniquement.
+'
+FOR f=1 TO 20 STEP 4
+  RBOX f/2,f,319-f/2,199-f
+NEXT f
+FOR f=4 TO 22
+  PRINT AT(3,f);"VINCENT EST DE RETOUR,YOUPAIELI !!!!"
+NEXT f
+SETCOLOR 15,126
+DO
+  i=i+0.1
+  z=(ABS(-7+i MOD 14))
+  z2=-(i MOD 7)
+  FOR s=z^2+110 TO z^3-z
+  NEXT s
+  FOR f=-7 TO 7
+    a=ABS(f)
+    SETCOLOR 0,a+z2,z,z2
+  NEXT f
+  SETCOLOR 0,0
+  VSYNC
+LOOP

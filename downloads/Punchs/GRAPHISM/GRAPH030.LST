@@ -1,0 +1,23 @@
+' Auteur: Giner. ST Magazine nø29.
+' GfA Basic 2 & 3. Toutes r‚solutions.
+'
+ad=XBIOS(2)
+RESERVE 32128
+buffer=GEMDOS(72,L:32000)
+PBOX 0,0,640,400
+DEFFILL 12,3
+PBOX 25,25,295,175
+BMOVE ad,buffer,32000
+REPEAT
+  x=0
+  CLS
+  REPEAT
+    FOR i=x TO 200 STEP 8
+      BMOVE buffer+(i*160),ad+(i*160),160
+      FOR j=0 TO 50
+      NEXT j
+    NEXT i
+    INC x
+  UNTIL x=8
+  VOID INP(2)
+UNTIL MOUSEK

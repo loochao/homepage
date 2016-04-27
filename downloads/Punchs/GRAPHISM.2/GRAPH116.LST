@@ -1,0 +1,23 @@
+' ST Magazine nø34.
+' Vincent Guesdon
+' GfA Basic 2 & 3, basse r‚solution.
+'
+gr=15
+DO
+  x=RANDOM(10)+80
+  y=RANDOM(10)+80
+  CLS
+  REPEAT
+    ADD f,0.4
+    a=COS(x*(f/16))*gr+160
+    b=SIN(y*(f/16))*gr+100
+    c=COS(x*((f-3.2)/16))*gr+160
+    d=SIN(y*((f-3.2)/16))*gr+100
+    FOR g=1 TO 3
+      COLOR 1
+      LINE 160-(g*gr*2),100-(g*gr),a-(g*gr*2),b-g*gr
+      COLOR 0
+      LINE 160-(g*gr*2),100-(g*gr),c-(g*gr*2),d-g*gr
+    NEXT g
+  UNTIL INKEY$<>""
+LOOP

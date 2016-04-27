@@ -1,0 +1,22 @@
+' ST Magazine nø34
+' CARPENTIER Jean-No‰l
+' GfA Basic 3, basse et moyenne r‚solution.
+'
+mem%=(FRE(0)-400)/4    !on va prendre presque toute la m‚moire
+DIM x&(mem%),y&(mem%)  !pour m‚moriser le dessin
+REPEAT
+  MOUSE x%,y%,k%
+  IF k%=1              !si bouton gauche
+    PSET x%,y%,2
+    x&(i%)=x%          !enregistre le mouvement
+    y&(i%)=y%          !idem..
+    INC i%
+    PRINT AT(1,1);mem%-i%  !affiche le nombre de validations disponibles
+  ENDIF
+UNTIL k%=2 OR i%=mem%
+CLS
+ALERT 3,"|C'est fini!|On regarde ton machin...",1,"Oh oui!",k%
+FOR a%=0 TO i%-1
+  PSET x&(a%),y&(a%),2
+NEXT a%
+~INP(2)

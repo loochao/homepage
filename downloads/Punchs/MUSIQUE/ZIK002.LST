@@ -1,0 +1,19 @@
+' La machine … ‚crire de Bighost
+' ST Magazine nø26.
+' GfA Basic 2 & 3, toutes r‚solutions
+'
+num=1
+INPUT "racontez moi votre vie:",a$
+a$=a$+">"
+CLS
+DO
+  b$=MID$(a$,num,1)
+  EXIT IF b$=">"
+  IF b$<>" "
+    SOUND 0,15,5,5,1
+    SOUND 0,0,0,0
+  ENDIF
+  PRINT b$;
+  PAUSE 5
+  num=num+1
+LOOP

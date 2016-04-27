@@ -1,0 +1,26 @@
+' ST MAGAZINE 35
+' BASSE RESOLUTION
+' GFA 3.0
+' PRINST
+'
+DIM im$(72)
+c$=MKI$(&H0)+MKI$(&H111)+MKI$(&H222)+MKI$(&H333)+MKI$(&H444)+MKI$(&H555)+MKI$(&H666)+MKI$(&H777)+MKI$(&H777)+MKI$(&H666)+MKI$(&H555)+MKI$(&H444)+MKI$(&H333)+MKI$(&H222)+MKI$(&H111)+MKI$(&H4)
+~XBIOS(6,L:VARPTR(c$))
+PRINT AT(10,10);"ST MAG.. ST MAG..";AT(15,16);"cylindre demo";AT(3,13);"P";AT(3,14);"A";AT(3,15);"T";AT(3,16);"I";AT(3,17);"E";AT(3,18);"N";AT(3,19);"C";AT(3,20);"E";AT(3,21);".";AT(3,22);".";AT(3,23);".";AT(10,7);"vive :"
+FOR equ|=1 TO 72
+  CLR x2
+  FOR x|=equ| TO equ|+63
+    ADD x2,SINQ((x|-equ|)*2.85)
+    FOR y|=0 TO 7
+      PSET INT(x2),y|,(-15*(POINT(x|+72,y|+72)>0))+(-(INT(((x|-equ|)*2.85)*0.09))*(POINT(x|+72,y|+72)=0))
+    NEXT y|
+  NEXT x|                      !=========================================!
+  GET 0,0,39,7,im$(equ|)       !       vive ST MAG..                     !
+NEXT equ|                      !                                         !
+DO                             !                                         !
+  t|=(-t|-1)*(t|<72)           !             fini le:2/7/89              !
+  FOR y|=0 TO 192 STEP 8       !                                         !
+    PUT 0,y|,im$(t|)           !ne paniquez pas je                       !
+    PUT 279,y|,im$(72-t|)      !                calcule pendant longtemps!
+  NEXT y|                      !=========================================!
+LOOP

@@ -1,0 +1,24 @@
+' Auteur: Fran‡ois Planque. ST Magazine nø29.
+' En trois ‚tapes.
+' GfA Basic 2 & 3. Basse r‚solution.
+'
+FOR a=0 TO 17*PI+1.7 STEP 0.008
+  PLOT 160+COS(a)*b,101+SIN(a)*b
+  PLOT 160+COS(a+PI)*b,101+SIN(a+PI)*b
+  ADD b,0.016
+NEXT a
+SETCOLOR 0,&H0
+DEFFILL 2
+FILL 162,100
+DEFFILL 3
+FILL 156,100
+REPEAT
+  SETCOLOR 1,&H700
+  SETCOLOR 2,&H777
+  PAUSE 5
+  VSYNC
+  SETCOLOR 1,&H777
+  SETCOLOR 2,&H700
+  PAUSE 5
+  VSYNC
+UNTIL MOUSEK

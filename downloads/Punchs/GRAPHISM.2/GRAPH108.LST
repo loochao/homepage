@@ -1,0 +1,22 @@
+' ST Magazine nø34.
+' QUIERS Jean-Philippe
+' GfA Basic 3, basse r‚solution
+'
+FOR n%=0 TO 7
+  SETCOLOR 7-n%,7-n%,7-n%,7
+  SETCOLOR n%+8,7,7-n%,7-n%
+NEXT n%
+SETCOLOR 0,0,0,0
+a%=RAND(10000)+1000
+b%=RAND(10000)+1000
+a=-PI/2
+c=-PI/2
+DO
+  b=(b+(PI/2-a)/a%)*0.9995
+  ADD a,b
+  d=(d+(PI/2-c)/b%)*0.9995
+  ADD c,d
+  x%=80*COS(a)+80*COS(c)
+  y%=50*SIN(a)+50*SIN(c)
+  PSET 160+x%,100+y%,SQR(x%*x%+y%*y%)/10
+LOOP

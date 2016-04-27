@@ -1,0 +1,65 @@
+' ST Magazine n¯32
+' ----------------------
+' DUFRASNE AndrÇ
+' 4, rue LÇonce SPINETTE
+' B-7280 QUêVY le Petit
+' BELGIQUE
+' ----------------------
+'
+'   AêROGLISSEUR.
+'   ------------
+'
+'   Programme de jeu en GfA BASIC 3, basse rÇsolution.
+'
+'   ScÇnario et rägles du jeu:
+'
+'   Vous àtes dans un labyrinthe aux commandes d'un aÇroglisseur.
+'   En appuyant sur les touches "8" ou "2", vous augmentez ou rÇduisez
+'   respectivement la vitesse. En appuyant sur les touches "4" ou "6",
+'   vous tournez respectivement vers la gauche ou vers la droite.
+'   En bas de l'Çcran, deux nombres sont affichÇs; le premier correspond
+'   Ö l'indice de rÇsistance aux chocs de l'aÇroglisseur et le deuxiäme,
+'   le dÇcompte du temps en deux centiämes de seconde.
+'   Le jeu consiste Ö sortir du labyrinthe en moins de trois minutes.
+'   Pour provoquer l'ouverture de la porte de sortie, l'aÇroglisseur devra
+'   passer pleinement aux endroits du labyrinthe marquÇs d'un chiffre,
+'   d'abord sur le chiffre "1" et ensuite sur le chiffre "2".
+'   Le gardien du labyrinthe reprÇsentÇ par la lettre "G" immobilise
+'   l'aÇroglisseur däs qu'il le rattrape.
+'   Chaque fois que l'aÇroglisseur cogne un mur, il perd de sa rÇsistance
+'   aux chocs et däs que l'indice de rÇsistance atteint zÇro, l'aÇroglisseur
+'   est immobilisÇ.
+'
+'   Pour augmenter la difficultÇ du jeu:
+'
+'   a) Modifier le 224äme signe de la 2äme ligne ...495001701+360... par
+'      ...495001601+360... ce qui rÇduit l'indice initial de rÇsistance
+'      de 200 Ö 100.
+'   b) Modifier le nombre 964000 par 976000 Ö la 10äme ligne et Ö la 18äme
+'      ligne ce qui rÇduit le temps maximum du jeu de 3 Ö 2 minutes.
+'   c) Modifier en fin de la 13äme ligne (TIMER MOD 50<16)) par
+'      (TIMER MOD 50<32)) ce qui augmente la vitesse du dÇplacement du gardien.
+'   d) Modifier Ö la 15äme ligne les 4 diviseurs "0.1" par "0.05" ou "0.01" ce
+'      qui augmente la vitesse de l'aÇroglisseur.
+'
+'
+z$=STRING$(3,MKI$(1))+"AêROGLISSEUR par DUFRASNE AndrÇ. Mai 1989"+STRING$(8,"0")+"-36036000ad0"+STR$(1000000+TIMER)
+a$=CHR$(0)+STRING$(146,"2")+STRING$(13,"00008888888000000000")+"4444<<<>:::2222222224444<<???::2222222224444<?????:222222222"+STRING$(2,"4444=?????;222222222")+"44445=???;3222222222444455=?;332222222220012345678990495495001701+3603600000"+MID$(z$,49,26)
+g$=STRING$(4,"200000")+"2002000AABBCCDDAABBCCDD"+STR$(((RND*7+8)\1)*4+39)+"65"+STR$(((RND*8)\1)*4+39)+"41"+MID$(z$,59,24)+"EEFFGGHHEEFFGGHH"+MID$(z$,51)+"IIJJKKLLIIJJKKLL0011234555432113211123455543>"+STRING$(3,CHR$(127))+">*"
+WHILE ASC(a$)<128
+  MID$(a$,1,ASC(a$)+3)=CHR$(ASC(a$)+1)+MID$(a$,2,ASC(a$)+1)+STR$(INT(RND*(3+2*(ASC(a$)<16 OR ASC(a$)>111 OR ASC(a$) MOD 16=0)+(ASC(a$) MOD 16=15)))-((ASC(a$)+14)\15=1 OR (ASC(a$)+7)\15=8)-2*(ASC(a$) MOD 16=0)-2*(ASC(a$) MOD 16=15))
+  LINE 19+((ASC(a$)-1) MOD 16)*20*-(VAL(MID$(a$,ASC(a$)+2,1))>0),((ASC(a$)-1)\16)*20,19+((ASC(a$)-1) MOD 16)*20*-(VAL(MID$(a$,ASC(a$)+2,1))>0)+20*(VAL(MID$(a$,ASC(a$)+2,1)) MOD 2=1),((ASC(a$)-1)\16)*20
+  LINE 19+((ASC(a$)-1) MOD 16)*20*-(VAL(MID$(a$,ASC(a$)+2,1))>0),((ASC(a$)-1)\16)*20,19+((ASC(a$)-1) MOD 16)*20*-(VAL(MID$(a$,ASC(a$)+2,1))>0),((ASC(a$)-1)\16)*20+20*(VAL(MID$(a$,ASC(a$)+2,1))\2=1)
+WEND
+boucle:
+b$=CHR$(-ASC(INKEY$)*(INP(2-2*(VAL(MID$(g$,25,3))<340 AND VAL(MID$(a$,569,4))>1500 AND ((VAL(MID$(a$,603,7))-TIMER)>964000) AND NOT (VAL(MID$(g$,25,3))>318 AND VAL(MID$(g$,28,3))\8=ABS(33-ASC(MID$(a$,602)))+25)))=16))
+y$=MID$(g$,155,VAL(MID$(g$,(VAL(MID$(a$,561,2))-1)\3+119,1)))+CHR$(ASC(MID$(g$,VAL(MID$(g$,(VAL(MID$(a$,561,2))-1)\3+119,1))+155))-2^VAL(MID$(g$,(VAL(MID$(a$,561,2))-1)\3+132,1)))+MID$(g$,VAL(MID$(g$,(VAL(MID$(a$,561,2))-1)\3+119,1))+156)
+MID$(a$,560,13)=MID$(a$,VAL(MID$(a$,560,1))+549+b$="2"-b$="8",1)+STR$(((VAL(MID$(a$,561,3))+15*(b$="4")-15*(b$="6"))*10^5+(VAL(MID$(a$,561,3))+VAL(MID$(a$,564,4)))\0.11)+VAL(MID$(a$,573+(VAL(MID$(a$,561,3))\360)*9,9)))+STR$(VAL(MID$(a$,569,4))+c$<>"0")
+MID$(a$,130,473)=STR$(3+MID$(g$,31,1)="8")+MID$(a$,131,469)+CHR$((9-VAL(MID$(a$,560,1))*COS(VAL(MID$(a$,564,3))*PI/180))*14)+CHR$((9+VAL(MID$(a$,560,1))*SIN(VAL(MID$(a$,564,3))*PI/180))*14)+CHR$(ASC(MID$(a$,602))+66*MID$(a$,602,1)="B"-(TIMER MOD 50<16))
+c$=STR$(((ASC(MID$(a$,(VAL(LEFT$(g$,3)) MOD 20)*20+VAL(MID$(g$,7,3)) MOD 20+148))-48 AND ASC(MID$(g$,32+VAL(MID$(a$,(VAL(LEFT$(g$,2))\2)*16+VAL(MID$(g$,7,2))\2-150,2))*4+VAL(MID$(a$,(VAL(LEFT$(g$,2))\2)*16+VAL(MID$(g$,7,2))\2-134,1))))-65)>0)-2*c$="-1")
+MID$(g$,1,24)=STR$(VAL(MID$(g$,13,6))+(ASC(MID$(a$,600))-126)\0.1)+STR$(VAL(MID$(g$,19,6))+(ASC(MID$(a$,601))-126)\0.1)+STR$(VAL(MID$(g$,13,6))-((ASC(MID$(a$,600))-126)\0.1)*c$="0")+STR$(VAL(MID$(g$,19,6))-((ASC(MID$(a$,601))-126)\0.1)*c$="0")
+MID$(g$,25,7)=STR$(-VAL(MID$(g$,25,3))*c$<>"0"-VAL(MID$(g$,1,3))*c$="0")+STR$(-VAL(MID$(g$,28,3))*c$<>"0"-VAL(MID$(g$,7,3))*c$="0")+CHR$(ASC(MID$(g$,31))-4*((VAL(MID$(g$,28,3))\5)*100+(VAL(MID$(g$,25,3))+1)\5=VAL(MID$(g$,ASC(MID$(g$,31)),4))))
+MID$(z$,7,68)=MKL$(2+c$<>"-1")+MKL$(28)+MKL$(ASC(MID$(y$,2)))+MKL$(ASC(MID$(y$,3)))+MKL$(ASC(MID$(y$,4)))+MKL$(ASC(MID$(y$,5)))+MKL$(ASC(MID$(y$,6)))+MKL$(28)+STRING$(9,MKL$(0))
+PRINT AT(2+((VAL(MID$(g$,48,2))-39)/4+1)*2.5,17);"1";AT(2+((VAL(MID$(g$,52,2))-39)/4+1)*2.5,2);"2";AT(38,19+MID$(g$,31,1)="8");"+ +";AT(ABS(33-ASC(MID$(a$,602)))+4,17);" G ";AT(1,21);VAL(MID$(a$,569,4))-1500;"/";(VAL(MID$(a$,603,7))-TIMER)-964000;" "
+SPRITE z$,VAL(MID$(g$,28,3))-179,VAL(MID$(g$,25,3))-198
+GOTO boucle

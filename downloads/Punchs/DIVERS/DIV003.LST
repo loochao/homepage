@@ -1,0 +1,7 @@
+' Auteur: Ernest. ST Magazine nø30.
+' GfA Basic 2 & 3, toutes r‚solutions, anciennes ROMs.
+' Affiche un message cach‚ dans la ROM.
+'
+For I=&HFCF440 To &HFCF45C
+  Print Upper$(Chr$(Peek(I)));
+Next I

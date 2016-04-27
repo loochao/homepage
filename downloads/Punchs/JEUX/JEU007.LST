@@ -1,0 +1,21 @@
+' ST Magazine nø31.
+' GfA Basic 3, moniteur monochrome.
+'
+SPOKE &H484,14
+REPEAT
+  INPUT "EY+9pSNAKE 5-2-89  Henrion DidierqY,>Contr“les: A & ZY-@Niveau ";l|
+  CLS
+  l|=SHR(l|,1)
+  li|=l|
+  IF l|>3 AND l|<20
+    CLR p&,x&
+    REPEAT
+      a$=UPPER$(INKEY$)
+      ADD x&,(a$="A" AND x&>-38)-(a$="Z" AND x&<38)
+      PRINT "Y";CHR$(52-li|);CHR$(72+x&);"OY9";CHR$(72+p&-l|);"*Y9";CHR$(72+p&+l|);"*"
+      ADD p&,-(p&<35-l| AND RND<0.1)+(p&>-35 AND RND<0.1)
+      ADD l|,(RND<0.005 AND l|>2)-(RND>3/li| AND RND<0.01 AND l|<40)
+    UNTIL PTST(SHL(x&+40,3)+4,SHL(20-li|,4)+4) OR a$=""
+    PAUSE 20
+  ENDIF
+UNTIL l|=0

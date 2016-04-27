@@ -1,0 +1,24 @@
+' ST MAGAZINE 35
+' BASSE RESOLUTION
+' GFA 3.0
+' PRINST
+'
+c$=MKI$(&H777)+MKI$(&H7)+MKI$(&H6)+MKI$(&H5)+MKI$(&H4)+MKI$(&H3)+MKI$(&H2)+MKI$(&H1)+MKI$(&H200)+MKI$(&H300)+MKI$(&H400)+MKI$(&H500)+MKI$(&H600)+MKI$(&H700)
+~XBIOS(6,L:V:c$)
+DIM im$(10)
+FOR r=1 TO 10
+  FOR t=1 TO 100 STEP r
+    c=(-c-1)*(c<13)
+    PSET 0,0,c
+    DEFFILL POINT(0,0)
+    PELLIPSE 160,100,100-t,t
+  NEXT t
+  SGET im$(r)
+NEXT r
+DO
+  se!=se!+1
+  FOR im=1-(9*se!) TO 10+(9*se!) STEP 1+(2*se!)
+    SPUT im$(im)
+    PAUSE 5
+  NEXT im
+LOOP

@@ -1,0 +1,26 @@
+' ST MAGAZINE 35
+' BASSE RESOLUTION
+' Deux GFA-Punchs en un seul: 1.Changer couleur souris 2.Reset
+' Deux Instructions Mega-utiles,mais qui manquaient...
+' Basic GFA 2.0 et 3.0
+' Auteur: SPEEDER From THE HORRIBLES
+'
+SETCOLOR 0,&H0
+SLPOKE &HFFFF8242,&H4040737
+DEFMOUSE (3)
+mcolor(2,1) ! Exemple (2=couleur fond,1=couleur forme)
+REPEAT
+UNTIL INP(-2) OR MOUSEK
+reset ! Sans commentaires (Break conseill‚.Arf!)
+PROCEDURE mcolor(mask_reg%,data_reg%)
+  c$=CHR$(160)+CHR$(0)+CHR$(78)+CHR$(117)
+  c%=VARPTR(c$)
+  LPOKE C:c%()+&HFFFFFCAE,mask_reg%*256^2+data_reg%
+  HIDEM
+  SHOWM
+RETURN
+PROCEDURE reset
+  reset%=LPEEK(4)
+  SLPOKE &H10,reset%
+  MONITOR
+RETURN

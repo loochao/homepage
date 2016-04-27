@@ -1,0 +1,15 @@
+' Auteur: Fran‡ois Bollengier. ST Magazine nø29.
+' Effets visuels
+' 320 en couleurs ou 640 en monochrome, c'est trŠs beau!
+' GfA Basic 2 & 3.
+'
+a:
+INPUT "mode: (1->640):",mode
+IF mode<1 OR mode>640 THEN
+  GOTO a
+ENDIF
+CLS
+GRAPHMODE 3
+FOR i=0 TO 99999 STEP RANDOM(8)+2
+  BOX i MOD mode,i MOD 400,639-i MOD 640,399-i MOD 400
+NEXT i

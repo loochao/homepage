@@ -1,0 +1,23 @@
+' ST Magazine nø32.
+' GfA Basic 2 & 3, basse r‚solution.
+'
+FOR y=0 TO 3
+  FOR x=0 TO 3
+    DEFFILL y*4+x
+    PBOX x*4,y*4,x*4+3,y*4+3
+  NEXT x
+NEXT y
+GET 0,0,15,15,a$
+dy=1
+dx=1
+REPEAT
+  ADD x,dx
+  ADD y,dy
+  PUT x,y,a$
+  IF y>182 OR y<0
+    MUL dy,-1
+  ENDIF
+  IF x>302 OR x<0
+    MUL dx,-1
+  ENDIF
+UNTIL MOUSEK

@@ -1,0 +1,19 @@
+' Auteur: PAS
+' ST Magazine nø26.
+' GfA Basic 2 & 3, toutes r‚solutions.
+'
+b=30*PI/180
+f=0.7
+@tree(260,250,-PI/2,40)
+PROCEDURE tree(x,y,a,l)
+  LOCAL xx,yy
+  xx=x+l*COS(a)
+  yy=y+l*SIN(a)
+  LINE x,y,xx,yy
+  IF l>3
+    @tree(xx,yy,a-b,l*f)
+    @tree(xx,yy,a+b,l*f)
+  ENDIF
+RETURN
+' Un bon exemple de la r‚cursivit‚. Il
+' est conseill‚ de changer les valeurs !

@@ -1,0 +1,22 @@
+' Auteur: Chromax
+' GFA-PUNCH ST MAGAZINE
+' GfA Basic 2 & 3, haute r‚solution.
+'
+Dim A%(64,64),Gy%(3),Gx%(3)
+Deffill 1,2
+For X%=0 To 64
+  For Y%=0 To 64
+    A%(X%,Y%)=60*Cos(Sqr((X%-32)^2+(Y%-32)^2)*Pi/4)
+  Next Y%
+Next X%
+For Y%=0 To 63
+  For X%=0 To 63
+    For I%=0 To 3
+      Q=1-(Y%-(I%=2 Or I%=3))*16/1300
+      Gx%(I%)=(X%-(I%=1 Or I%=2)-32)*8/Q
+      Gy%(I%)=(A%(X%-(I%=1 Or I%=2),Y%-(I%=2 Or I%=3))+60)/Q
+    Next I%
+    Polyfill 4,Gx%(),Gy%() Offset 320,20
+  Next X%
+Next Y%
+Void Inp(2)

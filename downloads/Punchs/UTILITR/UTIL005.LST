@@ -1,0 +1,21 @@
+' Traduit un message en morse.
+' ST Magazine nø29.
+' GfA Basic 2 & 3. Toutes r‚solutions.
+'
+morse$=".-  -...-.-.-.. .   ..-.--. ......  .----.- .-..--  -.  --- .--.--.- .-.... -   ..- ...-.-- -..--.----.."
+INPUT message$
+FOR t=1 TO (LEN(message$))
+  num=ASC(MID$(UPPER$(message$),t,1))-65
+  cod$=MID$(morse$,ABS(num)*4,4)
+  FOR j=1 TO 4
+    IF MID$(cod$,j,1)="."
+      SOUND 1,205,6,5,3
+      SOUND 1,0
+    ENDIF
+    IF MID$(cod$,j,1)="-"
+      SOUND 1,205,6,5,11
+      SOUND 1,0
+    ENDIF
+    PAUSE 2
+  NEXT j
+NEXT t

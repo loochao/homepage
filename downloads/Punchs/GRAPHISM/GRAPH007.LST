@@ -1,0 +1,22 @@
+' Auteur: *mcan
+' GfA Basic 3 et monochrome uniquement.
+' ST Magazine nø28.
+'
+DEFINT "a-z"
+DO
+  ADD n,2+(n<3)
+  FOR d=3 TO SQR(SUCC(n))
+    EXIT IF n MOD d=0
+  NEXT d
+  IF d>SQR(n)
+    t=(5+SQR(4*n-3))/4
+    a=4*t*t-4*t+2
+    b=a-2*t+1
+    c=b-2*t+2
+    d=t-1
+    x=320-t*(n>a)+(t-a+n)*(n<=a)*(n>b)-d*(n<=b)*(n>c)-(c-d-n)*(n<=c)
+    PLOT x,200+(n-a-d)*(n>a)+d*(n<=a)*(n>b)-(d-n+c)*(n<=b)*(n>c)+d*(n<=c)
+  ENDIF
+LOOP
+' On enroule les chiffres en spirale et on
+' allume uniquement les nombres premiers.

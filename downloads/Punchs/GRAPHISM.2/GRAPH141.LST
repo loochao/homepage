@@ -1,0 +1,25 @@
+' ST MAGAZINE 35
+' BASSE RESOLUTION
+' GFA 3.0
+' PRINST
+'
+c$=MKI$(0)+MKI$(&H1)+MKI$(&H2)+MKI$(&H3)+MKI$(&H4)+MKI$(&H5)+MKI$(&H6)+MKI$(&H7)+MKI$(&H117)+MKI$(&H227)+MKI$(&H337)+MKI$(&H447)+MKI$(&H557)+MKI$(&H667)+MKI$(&H777)
+~XBIOS(6,L:V:c$)
+INPUT " tapez: 160,0,250,.03926,.06283,.4188,5 :";xc%,yc%,zc%,a,b,c,st|
+DIM im$(20)                 !vous pouvez changer les donner a entrer au debut du programe
+FOR an=0 TO 2*PI STEP c     !les 2 premiers chiffres representent la position du point de fuite sur l'ecran,le troisieme est la profondeur maximal de mon ecran tri dimentionnel,le 4,5 et 6eme represente le nombre de bosses sur l'axe des abssices,ordonne
+  CLS                       !et profondeur.enfin le dernier represente l'espace entre chaque point qui composent l'image.
+  FOR x%=0 TO 320 STEP st|  !le premier peu prendre n'importe quelle valeur entre 0 et 320 le second entre 0 et 200,le troisieme entre 200 et 400,vous pouvez mulipliez ou divisez les trois suivant par des valeurs entieres,et si vous touchez au dernier
+    FOR z%=0 TO 200 STEP st|!vous risquez d'etre dessus!mais avec un peu de patience vous pourrez trouvez de tres belles choses...(ps:si vous avez des problemes de memoire multipliez par 2 l'avant dernier jusqu'a ne plus en avoir...escusez les fautes
+      y%=200-20*SIN(x%*a)*COS(z%*b+an)   !d'orthographe)a la prochaine...
+      PSET ((zc%-z%)/zc%)*(x%-xc%)+xc%,((zc%-z%)/zc%)*(y%-yc%)+yc%,(z%/200)*14
+    NEXT z%
+  NEXT x%
+  SGET im$(imm|)
+  INC imm|
+NEXT an
+REPEAT
+  im|=(im|+1)*ABS(im|<(imm|-2))
+  SPUT im$(im|)
+  PAUSE 3
+UNTIL INKEY$<>""

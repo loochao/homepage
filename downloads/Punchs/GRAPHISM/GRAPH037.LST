@@ -1,0 +1,22 @@
+' Auteur: Ernest. ST Magazine nø30.
+' GfA Basic 2 & 3. Moyenne r‚solution.
+'
+Setcolor 0,0
+Setcolor 3,7,7,7
+A$=String$(32000,0)
+Ad%=Varptr(A$)
+Void Xbios(5,L:Ad%,L:-1,W:-1)
+While Inkey$=""
+  A%=Rnd*9+1
+  B%=Rnd*9+1
+  C%=Rnd*9+1
+  D%=Rnd*9+1
+  Plot 520,100
+  For I%=0 To 720
+    Draw  To Cos(I%*A%)*Cos(I%*B%)*200+320,Sin(I%*C%)*Sin(I%*D%)*100+100
+  Next I%
+  Bmove Ad%,Xbios(2),32000
+  Cls
+Wend
+Void Xbios(5,L:Xbios(2),L:-1,W:-1)
+Edit

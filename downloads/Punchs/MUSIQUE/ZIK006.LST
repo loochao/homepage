@@ -1,0 +1,18 @@
+' ST Magazine nø32.
+' GfA Basic 2 & 3, toutes r‚solutions.
+'
+DIM n(640)
+REPEAT
+  MOUSE x,y,z
+  IF z=1
+    PLOT x,y
+    n(x)=y
+  ENDIF
+UNTIL MOUSEK=3
+COLOR 2
+FOR i%=0 TO 640
+  PLOT i%,n(i%)
+  SOUND 1,10,#n(i%)*12+20,1
+NEXT i%
+SOUND 1,1,1,1
+COLOR 0

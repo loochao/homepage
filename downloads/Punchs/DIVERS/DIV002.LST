@@ -1,0 +1,16 @@
+' Punch de Bighost.
+' ST Magazine nø28.
+' GfA Basic 2 & 3, basse r‚solution.
+'
+Print "Appuyez sur une touche pour regarder la t‚l‚. Un deuxiŠme appui vous permettra de vous arreter."
+U=Inp(2)
+Spoke &HFFFF820A,255
+Print "PENDANT CE TEMPS UNE ROUTINE OU UN CHARGEMENT AURA PU ETRE EXECUTEE."
+Print "Exemple:"
+Repeat
+  Deffill Random(14)
+  Pcircle Random(319),Random(100)+79,10
+Until Inkey$<>""
+Spoke &HFFFF820A,254
+U=Inp(2)
+Edit

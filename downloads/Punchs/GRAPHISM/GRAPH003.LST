@@ -1,0 +1,24 @@
+' Auteur: *Bighost
+' ST Magazine nø26.
+' Voici un prog complŠtement idiot qui
+' dessine des tissus ‚cossais! Laissez-le
+' tourner un moment pour admirer le r‚sultat.
+' GfA Basic 2 & 3, basse r‚solution.
+'
+INC a
+INC b
+INC c
+INC d
+BOX 0,0,319,199
+COLOR 2
+DO
+  c=c+a
+  d=d+b
+  PLOT c,d
+  IF POINT(c,d+1)=1 OR POINT(c,d-1)=1
+    b=b*(-1)
+  ENDIF
+  IF POINT(c+1,d)=1 OR POINT(c-1,d)=1
+    a=a*(-1)
+  ENDIF
+LOOP

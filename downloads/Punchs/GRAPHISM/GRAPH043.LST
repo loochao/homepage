@@ -1,0 +1,16 @@
+' Auteur: S‚bastien Delestaing. ST Magazine nø30.
+' GfA Basic 2 & 3. Haute r‚solution.
+'
+FILESELECT "a:\*.pi3","",f$
+buffer$=SPACE$(32066)
+buffer%=VARPTR(buffer$)
+BLOAD f$,buffer%
+BMOVE buffer%+34,buffer%,32000
+FOR j%=0 TO 198
+  VSYNC
+  BMOVE buffer%+(200-j%)*80,XBIOS(2),80
+  BMOVE XBIOS(2),XBIOS(2)+80,16000
+  BMOVE buffer%+(201+j%)*80,XBIOS(2)+31920,80
+  BMOVE XBIOS(2)+16080,XBIOS(2)+16000,15920
+NEXT j%
+BMOVE buffer%,XBIOS(2),32000

@@ -1,0 +1,22 @@
+' Auteur: Olivier Thill. ST Magazine nø30.
+' GfA Basic 2 & 3. Moyenne et haute r‚solution.
+'
+Dim E%(3)
+Ellipse 40,45,40,8
+Ellipse 80,31,6,8
+For I=1 To 13
+  Rx=Rx+0.5*I*((I+1) Mod 2)
+  Ry=Ry+0.5*I*(I Mod 2)
+  A2=A1
+  A1=(A1+900) Mod 3600
+  Ellipse 40,23,Rx,Ry,3600-A1,3600-A2
+Next I
+Get 3,0,90,58,E$
+Cls
+Input "Quel sera le plus rapide (1, 2, ou 3) ";A%
+Repeat
+  R%=Random(3)
+  Inc E%(R%)
+  Put E%(R%),60*R%,E$
+Until E%(R%)>560
+Print Mid$("GAGNE!PERDU!",6*Abs(A%=R%)+1,6)

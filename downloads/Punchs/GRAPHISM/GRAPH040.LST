@@ -1,0 +1,23 @@
+' Auteur: RASCAL. ST Magazine nø30.
+' GfA Basic 3. Haute r‚solution.
+'
+Pbox 310,0,330,399
+Pbox 0,190,639,210
+For Lo%=0 To 100 Step 4
+  Draw Lo%,0 To 0,250 To 0,250-Lo%/2 To Lo%/5,250 To 0,250+Lo%/2 To 0,250 To Lo%,399
+  Draw 639-Lo%,0 To 639,250 To 639,250-Lo%/2 To 639-Lo%/5,250 To 639,250+Lo%/2 To 639,250 To 639-Lo%,399
+Next Lo%
+T%=Timer
+Defmouse 2
+Do
+  Tt=(Timer-T%)/400+0.1
+  Dx=Dx+((X%>319)-(X%<320))*(Rnd/Tt)
+  Dy=Dy+((Y%>199)-(Y%<200))*(Rnd/Tt)
+  X%=Min(Max(X%+Dx,0),639)
+  Y%=Min(Max(Y%+Dy,0),399)
+  Hidem
+  Setmouse X%,Y%
+  Showm
+  Sound 1,15,Random(5)+5,1 ! En option
+  Wave 0,0,0,0
+Loop

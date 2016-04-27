@@ -1,0 +1,28 @@
+' ST Magazine nø34.
+' QUIERS Jean-Philippe
+' GfA Basic 3, basse r‚solution.
+' On dessine deux figures de 40 points,
+' en d‚pla‡ant la souris et en fixant les points au clavier.
+' Le Punch dessine les ‚tapes interm‚diaires entre les
+' les deux figures.
+'
+DIM a%(39,1)
+FOR n%=0 TO 39
+  REPEAT
+  UNTIL INKEY$<>""
+  MOUSE a%(n%,0),a%(n%,1),k%
+  IF n%<>0 AND n%<>20
+    LINE a%(n%,0),a%(n%,1),a%(n%-1,0),a%(n%-1,1)
+  ENDIF
+NEXT n%
+RESERVE 1000
+VOID XBIOS(5,L:HIMEM,L:TRUE,L:TRUE)
+DO
+  ADD b,0.05
+  a=50+50*COS(b)
+  CLS
+  FOR t%=0 TO 18
+    LINE a%(t%,0)+(a%(t%+20,0)-a%(t%,0))/100*a,a%(t%,1)+(a%(t%+20,1)-a%(t%,1))/100*a,a%(t%+1,0)+(a%(t%+21,0)-a%(t%+1,0))/100*a,a%(t%+1,1)+(a%(t%+21,1)-a%(t%+1,1))/100*a
+  NEXT t%
+  BMOVE HIMEM,XBIOS(2),32000
+LOOP
