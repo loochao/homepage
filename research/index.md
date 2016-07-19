@@ -75,15 +75,13 @@ central clock.
 [Journal of Computer Graphics Techniques]: http://jcgt.org/
 [Pack Publishing]: https://www.packtpub.com/
 
-**Reviewer** for the Phd Thesis of Erwan Renaudo (2015, Université Pierre et
+**Reviewer** for the Phd Thesis of Erwan Renaudo (2016, Université Pierre et
 Marie Curie), Mathieu Bedez (2015, Université de Mulhouse), Olivier Rodriguez
 (2015, Université de Cergy-Pontoise), Jean Bellot (2015, Université Pierre et
 Marie Curie), Adrien Jauffret (2014, Université de Cergy-Pontoise).
 
-**Jury member** for INRIA Paris (2016), INRIA Bordeaux (2015),
+**Jury member** for INRIA (2016), INRIA Paris (2016), INRIA Bordeaux (2015),
 University of Cergy Pontoise (2014, 2010) hiring selection.
-
-**Expert** for [BBSRC] (UK), [ANR] (France), [CNRS] (France)
 
 [ANR]: http://www.agence-nationale-recherche.fr
 [BBSRC]: http://www.bbsrc.ac.uk
@@ -91,8 +89,9 @@ University of Cergy Pontoise (2014, 2010) hiring selection.
 
 # Current grants
 
-| **2016-2018** | | [Psyphine project][Psyphine] (France) |
-| **2014-2017** | | [Braincraft]({{site.baseurl}}/research/braincraft.html) associated team (USA) |
+| **2015-2018** | | [Psyphine project][Psyphine] (France) |
+| **2015-2017** | | [Mimacore] (CNRS Challenge Imag'In) |
+| **2014-2017** | | [Braincraft] associated team (USA) |
 | **2013-2016** | | BGal associated team (India) |
 
 ||
@@ -104,9 +103,13 @@ than my failed grants list but unfortunately, I did not keep track of those.
 
 # Current students
 
-| **2015-2018** | | Ikram Chraibi Kaadoud (PhD student)|
+| **2016-2017** | | **Fabien Benureau** (Post-doc) |
+|               | | Biologically plausible reinforcement learning |
+| **2016**      | | **Sabyasachi Shivkumar** (Master student) |
+|               | | Self-organization in the basal ganglia |
+| **2015-2018** | | **Ikram Chraibi Kaadoud** (PhD student) |
 |               | | Bio-inspired approach for hierarchical planification |
-| **2013-2016** | | Meropi Topalidou (PhD student) |
+| **2013-2016** | | **Meropi Topalidou** (PhD student) |
 |               | | Decision making in continuous action space: from motor primitives to actions |
 
 ||
@@ -135,3 +138,6 @@ also be found on the [bibliography](bibliography.html) page.
 [Psyphine]: http://www.msh-lorraine.fr/index.php?id=673
 [HDR]: https://tel.archives-ouvertes.fr/tel-00596740v1
 [PhD]: https://tel.archives-ouvertes.fr/tel-00602997/
+[Mimacore]: http://www.cnrs.fr/mi/IMG/pdf/201602_mimacore.pdf
+[Braincraft]: {{site.baseurl}}/research/braincraft.html
+

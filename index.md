@@ -12,14 +12,12 @@ permalink: index.html
   question. S'il n'y a pas eu de question il ne peut pas y avoir connaissance
   scientifique. Rien ne va de soi. Rien n'est donné. Tout est construit.”
 </div>
-<div style="float:       right;
+<div style="text-align:  right;
             font-size:   85%;
+            padding-bottom: 1em;
             padding-top: 0.25em;">
   Gaston Bachelard, <strong>La formation de l'esprit scientifique</strong>, 1938.
 </div>
-
-||
-
 
 # Welcome
 
@@ -37,11 +35,12 @@ site.
 
 ## Contact
 
-The preferred way to contact me is via email at [**Nicolas.Rougier@inria.fr**](mailto:Nicolas.Rougier@inria.fr)
+The preferred way to contact me is via email at
+[**Nicolas.Rougier@inria.fr**](mailto:Nicolas.Rougier@inria.fr)
 
-||
 
 **Main office**  
+[![]({{site.baseurl}}/images/ReScience-moto-500.png){: .medium .right}](http://rescience.github.io)
 [Institut des Maladies Neurodégénératives][IMN]  
 146 Rue Léo Saignat  
 33076 Bordeaux  

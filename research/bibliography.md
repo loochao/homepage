@@ -12,13 +12,14 @@ All my publications can also be found on the
  — 
 **ORCID**: [0000-0002-6972-589X](http://orcid.org/0000-0002-6972-589X)  
 
+## Preprints
+{% bibliography --query @article[keywords=preprint] %}
 
+## Journal article
+{% bibliography --query @article[keywords!=popular && keywords!=preprint] %}
 
 ## Monograph
 {% bibliography --query @phdthesis @book %}
-
-## Journal article
-{% bibliography --query @article[keywords!=popular && keywords!=submitted] %}
 
 ## Book chapter
 {% bibliography --query @incollection %}
@@ -29,8 +30,8 @@ All my publications can also be found on the
 ## Tutorial
 {% bibliography --query @misc[keywords=tutorial] %}
 
-## Popular science
+## Science outreach
 {% bibliography --query @*[keywords=popular] %}
 
-## Invited talks
+## Invited talks & lectures
 {% bibliography --query @*[keywords=invited] %}
