@@ -40,7 +40,7 @@ central clock.
 
 # Activities
 
-| **2015-…** | | Co-founder and editor in chief of **[ReScience]** |
+| **2015-…** | | Co-founder and editor in chief of [ReScience] |
 | **2015-…** | | Review editor for [Frontiers in Neurobotics][Frontiers] |
 | **2015-…** | | Member of the steering committee for the [BioComp] CNRS consortium |
 | **2014-…** | | Member (elected) of the national [INRIA evaluation committee][CE] |
@@ -89,6 +89,7 @@ University of Cergy Pontoise (2014, 2010) hiring selection.
 
 # Current grants
 
+| **2016-2019** | | Macaque40 (ANR)
 | **2015-2018** | | [Psyphine project][Psyphine] (France) |
 | **2015-2017** | | [Mimacore] (CNRS Challenge Imag'In) |
 | **2014-2017** | | [Braincraft] associated team (USA) |
@@ -96,17 +97,12 @@ University of Cergy Pontoise (2014, 2010) hiring selection.
 
 ||
 
-My older grants list is available from the [grant page](). It is much shorter
-than my failed grants list but unfortunately, I did not keep track of those.
-
 
 
 # Current students
 
 | **2016-2017** | | **Fabien Benureau** (Post-doc) |
 |               | | Biologically plausible reinforcement learning |
-| **2016**      | | **Sabyasachi Shivkumar** (Master student) |
-|               | | Self-organization in the basal ganglia |
 | **2015-2018** | | **Ikram Chraibi Kaadoud** (PhD student) |
 |               | | Bio-inspired approach for hierarchical planification |
 | **2013-2016** | | **Meropi Topalidou** (PhD student) |

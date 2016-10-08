@@ -49,10 +49,11 @@ A list of students I've been supervising over the years.
 
 ## Former Students
 
-* 2015, **Barghav teja Nallapu**, Internship, Asynchronous decision making
+* 2016, **Sabyasachi Shivkumar**, Internship (India), Self-organization in the basal ganglia
+* 2015, **Barghav teja Nallapu**, Internship (India), Asynchronous decision making
 * 2015 **Aurélien Marie** (Master), Modelling of the mouse Globus Pallidus
-* 2014, **Hima Metha**, Internship, High-scale decision making neural models
-* 2013, **Meropi Topalidou**, Internship, Touch and the body
+* 2014, **Hima Metha**, Internship (India), High-scale decision making neural models
+* 2013, **Meropi Topalidou**, Internship (Greece), Touch and the body
 * 2012, **Mathieu Zimmer** (License Informatique, Nancy), consciousness and metarepresentation
 * 2011, **Zoé Barbanneau** (Ecole Estienne, Paris), design of a poster to explain research in computer science to children.
 * 2011, **David Roland** (ENIB, Bordeaux), control of a robotic arms using DSOM.
