@@ -10,13 +10,20 @@ A list of students I've been supervising over the years.
 
 ## Current students
 
+* **Anthony Strock**, Master ENS,  2016-2017  
+  Neural architecture for handling time and context
+
 * **Ikram Chraibi Kaadoud**, Phd Student, 2015-2018  
   Bio-inspired approach for hierarchical planification
 
-* **Meropi Topalidou**, PhD Student, 2013-2016  
-  Decision making in continuous action space: from motor primitives to actions
+* **Fabien Benureau**, Post-doc, 2016-2017  
+  Biologically plausible reinforcement learning
+
 
 ## Former PhD students
+
+* **Meropi Topalidou**, 2013-2016.  
+  Decision making in continuous action space: from motor primitives to actions
 
 * **Georgios Detorakis**, 2010-2013.  
   Cortical plasticity, dynamic neural fields and self-organization  
@@ -49,12 +56,12 @@ A list of students I've been supervising over the years.
 
 ## Former Students
 
-* 2016, **Sabyasachi Shivkumar**, Internship (India), Self-organization in the basal ganglia
-* 2015, **Barghav teja Nallapu**, Internship (India), Asynchronous decision making
-* 2015 **Aurélien Marie** (Master), Modelling of the mouse Globus Pallidus
-* 2014, **Hima Metha**, Internship (India), High-scale decision making neural models
-* 2013, **Meropi Topalidou**, Internship (Greece), Touch and the body
-* 2012, **Mathieu Zimmer** (License Informatique, Nancy), consciousness and metarepresentation
+* 2016, **Sabyasachi Shivkumar**, Master (India), Self-organization in the basal ganglia
+* 2015, **Barghav teja Nallapu**, Master (India), Asynchronous decision making
+* 2015 **Aurélien Marie**, Master, Modelling of the mouse Globus Pallidus
+* 2014, **Hima Metha**, Master (India), High-scale decision making neural models
+* 2013, **Meropi Topalidou**, Master (Greece), Touch and the body
+* 2012, **Mathieu Zimmer**, License (Nancy), consciousness and metarepresentation
 * 2011, **Zoé Barbanneau** (Ecole Estienne, Paris), design of a poster to explain research in computer science to children.
 * 2011, **David Roland** (ENIB, Bordeaux), control of a robotic arms using DSOM.
 * 2011, **Maix Gaëtan** and **Li Shibo** (Master 1, Nancy), control of a robotic arm.

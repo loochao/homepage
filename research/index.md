@@ -36,7 +36,7 @@ central clock.
 | **2011**      | | [Habilitation à Diriger les Recherches][HDR]
 | **2002-2013** | | Full-time researcher, [Inria NGE][NGE], Nancy, France.
 | **2000-2002** | | Associate Researcher, University of Colorado, Boulder, USA.
-| **2000**      | | [PhD], Computer Science, Université Henri Poincaré, Nancy, France.
+| **1997-2000** | | [PhD], Computer Science, Université Henri Poincaré, Nancy, France.
 
 # Activities
 
@@ -49,11 +49,24 @@ central clock.
 
 ||
 
-**Reviewer** for [Neural Networks], [Frontiers in Human Neuroscience],
-[Frontiers in Computationial Neuroscience], [Frontiers in Neurobotics], [PLOS One],
-[Biological Cybernetics], [ESANN], [CNS], [IJCNN], [IJCAI], [Epirob], [EuroScipy],
-[Scipy], [High Performance Graphics][HPG], [IEEE Transactions on Visualization and Computer Graphics],
-[IEEE Transactions on Image Processing], [Journal of Computer Graphics Techniques],
+**Reviewer** for
+[Neural Networks],
+[Frontiers in Human Neuroscience],
+[Frontiers in Computationial Neuroscience],
+[Frontiers in Neurobotics],
+[PLOS One],
+[Biological Cybernetics],
+[ESANN],
+[CNS],
+[IJCNN],
+[IJCAI],
+[Epirob],
+[EuroScipy],
+[Scipy],
+[High Performance Graphics],
+[IEEE Transactions on Visualization and Computer Graphics],
+[IEEE Transactions on Image Processing],
+[Journal of Computer Graphics Techniques],
 [Pack Publishing].
 
 [Neural Networks]: http://www.journals.elsevier.com/neural-networks/
@@ -69,19 +82,32 @@ central clock.
 [Epirob]: http://www.icdl-epirob.org/
 [EuroScipy]: https://www.euroscipy.org/
 [Scipy]: http://conference.scipy.org/
-[HPG]: http://www.highperformancegraphics.org/
+[High Performance Graphics]: http://www.highperformancegraphics.org/
 [IEEE Transactions on Visualization and Computer Graphics]: http://www.computer.org/web/tvcg
 [IEEE Transactions on Image Processing]: http://www.signalprocessingsociety.org/publications/periodicals/image-processing/
 [Journal of Computer Graphics Techniques]: http://jcgt.org/
 [Pack Publishing]: https://www.packtpub.com/
 
-**Reviewer** for the Phd Thesis of Erwan Renaudo (2016, Université Pierre et
-Marie Curie), Mathieu Bedez (2015, Université de Mulhouse), Olivier Rodriguez
-(2015, Université de Cergy-Pontoise), Jean Bellot (2015, Université Pierre et
-Marie Curie), Adrien Jauffret (2014, Université de Cergy-Pontoise).
+**Reviewer** for the Phd Thesis of 
+**Timothee Dubuc** (2017, University of Reading, UK),
+**Ganna Pugach** (2017, Université de Cergy Pontoise),
+**Thomas Hecht** (2017, Ensta Paristech, France),
+**Guillaume Viejo** (2016, Université Pierre et Marie Curie, France),
+**Erwan Renaudo** (2016, Université Pierre et Marie Curie, France),
+**Mathieu Bedez** (2015, Université de Mulhouse, France),
+**Olivier Rodriguez** (2015, Université de Cergy-Pontoise, France),
+**Jean Bellot** (2015, Université Pierre et Marie Curie, France),
+**Adrien Jauffret** (2014, Université de Cergy-Pontoise, France)
 
-**Jury member** for INRIA (2016), INRIA Paris (2016), INRIA Bordeaux (2015),
-University of Cergy Pontoise (2014, 2010) hiring selection.
+**Reviewer** for the Phd Thesis of
+**Ali Karaouzène** (2017, Université de Cergy Pontoise), 
+
+**Jury member** (hiring selection) for 
+INRIA (2016),
+INRIA Paris (2016),
+INRIA Bordeaux (2015),
+University of Cergy Pontoise (2014),
+University of Cergy Pontoise (2010).
 
 [ANR]: http://www.agence-nationale-recherche.fr
 [BBSRC]: http://www.bbsrc.ac.uk
@@ -97,16 +123,14 @@ University of Cergy Pontoise (2014, 2010) hiring selection.
 
 ||
 
-
-
 # Current students
 
+| **2016-2017** | | **Anthony Strock** (Master) |
+|               | | Neural architecture for handling time and context |
 | **2016-2017** | | **Fabien Benureau** (Post-doc) |
 |               | | Biologically plausible reinforcement learning |
 | **2015-2018** | | **Ikram Chraibi Kaadoud** (PhD student) |
 |               | | Bio-inspired approach for hierarchical planification |
-| **2013-2016** | | **Meropi Topalidou** (PhD student) |
-|               | | Decision making in continuous action space: from motor primitives to actions |
 
 ||
 
