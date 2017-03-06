@@ -99,10 +99,11 @@ central clock.
 **Jean Bellot** (2015, Université Pierre et Marie Curie, France),
 **Adrien Jauffret** (2014, Université de Cergy-Pontoise, France)
 
-**Reviewer** for the Phd Thesis of
+**Examiner** for the Phd Thesis of
 **Ali Karaouzène** (2017, Université de Cergy Pontoise), 
 
 **Jury member** (hiring selection) for 
+INRIA Saclay (2017),
 INRIA (2016),
 INRIA Paris (2016),
 INRIA Bordeaux (2015),

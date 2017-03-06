@@ -63,6 +63,21 @@ people and data.
 
 # Numerical computing
 
+## From Python to Numpy (2017)
+
+There is already a fair number of book about Numpy (see Bibliography) and a
+legitimate question is to wonder if another book is really necessary. As you
+may have guessed by reading these lines, my personal answer is yes, mostly
+because I think there's room for a different approach concentrating on the
+migration from Python to Numpy through vectorization. There is a lot of
+techniques that you don't find in books and such techniques are mostly learned
+through experience. The goal of this book is to explain some of them and to
+make you acquire experience in the process.
+
+[**→ Website**]({{site.baseurl}}/from-python-to-numpy/index.html)  
+[**→ GitHub sources**](https://github.com/rougier/from-python-to-numpy)  
+
+
 ## 100 Numpy exercises (2016)
 
 This lesson gather 100 Numpy exercises ranging from the very easy to the
@@ -72,7 +87,7 @@ as well (personal communication mostly). The goal is both to offer a quick
 reference for new and old users and to provide also a set of exercices for
 those who teach.
 
-[**→ Website**]({{site.baseurl}}/teaching/numpy.100/index.html)  
+[**→ Website**]({{site.baseurl}}/teaching/numpy-100.html)  
 [**→ GitHub sources**](https://github.com/rougier/numpy-100)  
 
 

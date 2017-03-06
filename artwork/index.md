@@ -31,6 +31,7 @@ Here are some scientific illustrations I've made over the years for various
 events or medias but mostly conferences I've organized or contributed to
 organize.
 
+[![]({{site.baseurl}}/thumbnails/SBDM-2017.png){: .artwork-portrait}]({{site.baseurl}}/images/SBDM-2017.pdf)
 [![]({{site.baseurl}}/thumbnails/Poster-CapScience-Calculer.png){: .artwork-portrait}]({{site.baseurl}}/images/Poster-CapScience-Calculer.pdf)
 [![]({{site.baseurl}}/thumbnails/Poster-CapScience-Comprendre.png){: .artwork-portrait}]({{site.baseurl}}/images/Poster-CapScience-Comprendre.pdf)
 [![]({{site.baseurl}}/thumbnails/psyphine-2016.png){: .artwork-portrait}]({{site.baseurl}}/images/psyphine-2016.pdf)

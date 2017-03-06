@@ -47,6 +47,86 @@ performed in each of these structures and what is its impact on the others?
   Institute of Neurodegenerative Diseases (IMN), UMR 5293
 
 
+## First year (2015)
+
+This first year of the associated team has given us the opportunity to exchange
+with our US partners on the various topics mentioned in the program. This
+convinced us to start to explore the role of the OFC in the decision making
+process and the dynamic valuation of stimuli. Furthermore, we (on the French
+side) started to investigate the Emergent software platform in order to check
+if it can be used for our own models that differ a bit in their functional
+hypothesis and basic computational unit. In the same time, we’re also
+investigating how to back port some the Emergent models into the Python/Numpy
+framework such as making the model easily shareable and replicable.
+
+### Record of activities
+
+* Short visit (2 days) of 2 French PhD students (Meropi Topalidou and Charlotte
+  Héricé) in June 2015 for a tutorial on the Emergent software. The goal was to
+  check how easy it would be for the French team to adapt their model to this
+  platform. This is still ongoing work since the port may require additional
+  components to be developed on the US side.
+
+* Short visit (5 days) of Nicolas Rougier, Frédéric Alexandre, Thomas Boraud
+  and Maxime Carrère (PhD student) for the preparation of the upcoming joint
+  NSF-ANR call for proposal (deadline 19/10/2015). The goal was to discuss on
+  how to best organize ourselves to answer the call and to agree on the
+  experimental and modeling part.
+
+
+## Second year (2016)
+
+We mentioned last year that we do not have yet a common platform for sharing
+models. The US team is mostly using the Emergent framework (that they are
+developing) while the French team is mostly using the Python language
+associated with the classical scientific stack (numpy, scipy, matplotib,
+cython). This incompatibility prevents us from sharing models or components and
+represents the main barrier for deeper collaborations. Fortunately, Fabien
+Benureau joined the French partner as a post-doc and has a great experience in
+Python. In cooperation with Jessica Mollick, he started the replication of two
+models (PVLV and bvPVLV) that are representative of the kind of models the US
+partner is doing. This work is not yet finished but early results tend to show
+this will be finished by next year and this should help us to exchange both
+model parts and computational principles underlying those models.
+
+In the meantime, we are also exchanging publications, materials and experience
+on the modeling of the medial prefrontal cortex, a structure known to be
+involved in the estimation of the emotional value of surrounding objects and in
+the evaluation of motivation to act (need, fatigue). Thomas Boraud is also
+active in the discussion since he is currently experimenting electrophysiology
+in this region in monkeys. One important goal of this discussion is to
+precisely define a well-defined and motivated experimental protocol to be
+presented for a proposition of common ANR-NSF project. Both teams are also
+working on the precise understanding of reward prediction errors in a neuronal
+structure called VTA (Ventral Tegmental Area), known to be of utmost importance
+for respondent as well as instrumental conditioning. Furthermore, we’re also
+investigating respective modeling works to compare similar mechanisms and to
+understand when they are complementary. These exchanges were particularly
+fruitful with respect to models of dopamine release even if we disagreed on
+some specific mechanisms.
+
+### Record of activities
+
+* Visit (2 days) of Randall O’Reilly in Bordeaux. Randall was invited as a
+  keynote speaker for the SBDM conference in Paris and came to Bordeaux
+  afterwards. This gave us the opportunity to settle a plan around the Python
+  replication for the Emergent framework.
+
+* Visit (2 weeks) of Jessica Mollick (from Randall O’Reilly’s lab) in
+  August 2016. The goal of this visit was to exchange ideas and comment around
+  the architecture of bvPVLV model (not yet published) which is currently
+  designed by the US team and shares a number of components that are also found
+  in our own models. Jessica was also introduced with our models such that the
+  US team can start replication using the Emergent framework.
+
+* Visit (3 weeks) of Fabien Benureau (from Mnemosyne project) in
+  September 2016. The goal of this visit was to advance the replication of the
+  bvPVLV model that serves as a testbed model for a Python translation of the
+  Emergent framework. The visit was quite successful even though there is still
+  more work to be done. The final goal of this translation is to ease the
+  exchange of models between the two teams.
+
+
 ## References
 
 * Alexander, G.E., DeLong, M.R., Strick, P.L. Parallel Organization of

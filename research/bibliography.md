@@ -18,7 +18,7 @@ All my publications can also be found on the
 ## Journal article
 {% bibliography --query @article[keywords!=popular && keywords!=preprint] %}
 
-## Monograph
+## Book/Thesis
 {% bibliography --query @phdthesis @book %}
 
 ## Book chapter

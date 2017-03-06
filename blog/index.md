@@ -17,9 +17,9 @@ I've more questions than answers, this is why I've become a researcher.
        <h2>
          <a class="post-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
        </h2>
-       <span class="post-meta">{{ post.date | date: "%b %-d, %Y" }}</span>
+       <span class="post-meta">{{ post.date  | date: "%d %B %Y" }}</span>
        • 
-       <span class="post-meta">{{ post.author | Nicolas P. Rougier }}</span>
+       <span class="post-meta">{{ post.author }}</span>
        <br/>
        {% for tag in post.tags %}
           <span class="post-tag">{{tag}}</span>

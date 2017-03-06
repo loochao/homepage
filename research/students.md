@@ -58,7 +58,7 @@ A list of students I've been supervising over the years.
 
 * 2016, **Sabyasachi Shivkumar**, Master (India), Self-organization in the basal ganglia
 * 2015, **Barghav teja Nallapu**, Master (India), Asynchronous decision making
-* 2015 **Aurélien Marie**, Master, Modelling of the mouse Globus Pallidus
+* 2015, **Aurélien Marie**, Master, Modelling of the mouse Globus Pallidus
 * 2014, **Hima Metha**, Master (India), High-scale decision making neural models
 * 2013, **Meropi Topalidou**, Master (Greece), Touch and the body
 * 2012, **Mathieu Zimmer**, License (Nancy), consciousness and metarepresentation

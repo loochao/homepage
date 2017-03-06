@@ -44,7 +44,7 @@ The preferred way to contact me is via email at
 [Institut des Maladies Neurodégénératives][IMN]  
 146 Rue Léo Saignat  
 33076 Bordeaux  
-Tel: +33 547 304 260
+Tel: +33 533 514 802  
 
 **Alternative office**  
 [Inria Bordeaux Sud-Ouest][BSO]  
