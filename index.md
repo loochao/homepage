@@ -42,8 +42,10 @@ The preferred way to contact me is via email at
 **Main office**  
 [![]({{site.baseurl}}/images/ReScience-moto-500.png){: .medium .right}](http://rescience.github.io)
 [Institut des Maladies Neurodégénératives][IMN]  
-146 Rue Léo Saignat  
-33076 Bordeaux  
+Université de Bordeaux  
+Centre Broca Nouvelle-Aquitaine - 3ème étage   
+146 rue Léo Saignat - CS 61292 - Case 28  
+33076 Bordeaux cedex  
 Tel: +33 533 514 802  
 
 **Alternative office**  

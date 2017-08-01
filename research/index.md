@@ -49,6 +49,11 @@ central clock.
 
 ||
 
+**Member** of the [Open Access Scholarly Publishers Association], [Organization for Computational Neuroscience]
+
+[Open Access Scholarly Publishers Association]: https://oaspa.org/member/rescience/
+[Organization for Computational Neuroscience]: http://www.cnsorg.org
+
 **Reviewer** for
 [Neural Networks],
 [Frontiers in Human Neuroscience],
@@ -64,6 +69,7 @@ central clock.
 [EuroScipy],
 [Scipy],
 [High Performance Graphics],
+[Computers, Environment and Urban Systems]
 [IEEE Transactions on Visualization and Computer Graphics],
 [IEEE Transactions on Image Processing],
 [Journal of Computer Graphics Techniques],
@@ -85,10 +91,12 @@ central clock.
 [High Performance Graphics]: http://www.highperformancegraphics.org/
 [IEEE Transactions on Visualization and Computer Graphics]: http://www.computer.org/web/tvcg
 [IEEE Transactions on Image Processing]: http://www.signalprocessingsociety.org/publications/periodicals/image-processing/
+[Computers, Environment and Urban Systems]: https://www.journals.elsevier.com/computers-environment-and-urban-systems/
 [Journal of Computer Graphics Techniques]: http://jcgt.org/
 [Pack Publishing]: https://www.packtpub.com/
 
 **Reviewer** for the Phd Thesis of 
+**Francesco Giovannini** (2017, Université Lorraine),
 **Timothee Dubuc** (2017, University of Reading, UK),
 **Ganna Pugach** (2017, Université de Cergy Pontoise),
 **Thomas Hecht** (2017, Ensta Paristech, France),
@@ -103,16 +111,20 @@ central clock.
 **Ali Karaouzène** (2017, Université de Cergy Pontoise), 
 
 **Jury member** (hiring selection) for 
-INRIA Saclay (2017),
-INRIA (2016),
-INRIA Paris (2016),
-INRIA Bordeaux (2015),
+INRIA CR2/CR1 (2017),
+INRIA Saclay CR2 (2017),
+INRIA CR2/CR1 (2016),
+INRIA Paris CR2 (2016),
+INRIA Bordeaux CR2 (2015),
 University of Cergy Pontoise (2014),
 University of Cergy Pontoise (2010).
 
 [ANR]: http://www.agence-nationale-recherche.fr
 [BBSRC]: http://www.bbsrc.ac.uk
 [CNRS]: http://cnrs.fr
+
+**PC member** for
+WSOM 2017, Scipy 2017, Euroscipy 2017, Scipy 2016, Euroscipy 2016, etc.
 
 # Current grants
 

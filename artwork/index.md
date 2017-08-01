@@ -101,6 +101,7 @@ These images are now Copyright © 2011 Free Software Foundation, Inc. Thanks to
 baby Tux in Blender, **3D printed versions** are available on
 [GitHub](https://github.com/rougier/baby-gnu-tux).
 
+Sources are available [here]({{site.baseurl}}/downloads/gnu-tux.tgz)
 
 # The Ancient Art of Go
 
@@ -114,7 +115,12 @@ goban feet which possess a very peculiar shape.
 [![]({{site.baseurl}}/thumbnails/Goban2.png){: .artwork-landscape}]({{site.baseurl}}/images/Goban2.png)
 
 If you're interested in re-rendering these images, drop me an email.
+In the meantime, here are some sources related to these renderings:
 
+* [goban.inc]({{site.baseurl}}/downloads/goban.inc)
+* [gobowls.inc]({{site.baseurl}}/downloads/gobowls.inc)
+* [gostones.inc]({{site.baseurl}}/downloads/gostones.inc)
+* [kayawoodmap.inc]({{site.baseurl}}/downloads/kayawoodmap.inc)
 
 # Miscellaneous
 
@@ -133,6 +139,15 @@ Povray.
 [![]({{site.baseurl}}/thumbnails/Ring.jpg){: .artwork-landscape}]({{site.baseurl}}/images/Ring.jpg)
 [![]({{site.baseurl}}/thumbnails/Soledad.jpg){: .artwork-landscape}]({{site.baseurl}}/images/Soledad.jpg)
 [![]({{site.baseurl}}/thumbnails/Mystery.jpg){: .artwork-landscape}]({{site.baseurl}}/images/Mystery.jpg)
+
+
+Sources:
+
+* [blobtree.zip]({{site.baseurl}}/downloads/blobtree.zip)
+* [glass.pov]({{site.baseurl}}/downloads/glass.pov)
+* [ring.pov]({{site.baseurl}}/downloads/ring.pov)
+* [stones.pov]({{site.baseurl}}/downloads/stones.pov)
+* [tiled-sphere.inc]({{site.baseurl}}/downloads/tiled-sphere.inc)
 
 
 # Artistic Nudes

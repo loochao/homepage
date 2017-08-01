@@ -1,3 +1,5 @@
 _site
 .sass-cache
 .jekyll-metadata
+from-python-to-numpy
+.DS_Store
