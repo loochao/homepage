@@ -23,7 +23,7 @@ markdown: kramdown
 future: true
 
 # Jekyll scholar
-gems: ['jekyll/scholar']
+plugins: ['jekyll/scholar']
 
 scholar:
   style: ./_bibliography/ieee-with-url.csl

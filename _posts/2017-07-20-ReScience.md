@@ -3,7 +3,7 @@ author: Nicolas P. Rougier
 layout: post
 title:  The ReScience initiative
 date:   2017-07-20
-tags:   publication gitHub open science
+tags:   preprint gitHub open science
 category: news
 ---
 

@@ -3,7 +3,7 @@ author: Nicolas P. Rougier
 layout: post
 title:  Ten Simple Rules for Scienfitic Fraud & Misconduct
 date:   2017-07-20
-tags:   open science ethics
+tags:   preprint open science ethics
 category: news
 ---
 
