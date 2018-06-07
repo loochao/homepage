@@ -1,6 +1,13 @@
 ---
 ---
 <small>
+
+<!--
+{% if entry.metric %}
+<div class='altmetric-embed' data-badge-type='donut' data-doi="{{entry.doi}}"></div>
+{% endif %}
+-->
+  
 {% if entry.hal_id %}
 <a href="https://hal.archives-ouvertes.fr/{{entry.hal_id}}">HAL</a>
 {% else %}
@@ -24,6 +31,7 @@ HAL
 {% endif %}
 
 | <a data-toggle="collapse" href="javascript:toggleDiv('{{entry.key}}-bibtex')">BibTeX</a>
+
 
 {% if entry.github %}
 | <a href="{{entry.github}}"><i class="fa fa-github-alt"></i> repository</a>

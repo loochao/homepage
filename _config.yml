@@ -42,7 +42,7 @@ scholar:
   replace_strings: true
   join_strings:    true
 
-  use_raw_bibtex_entry: false
+  use_raw_bibtex_entry: true
   bibtex_filters:
   - superscript
   - latex

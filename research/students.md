@@ -16,9 +16,6 @@ A list of students I've been supervising over the years.
 * **Ikram Chraibi Kaadoud**, Phd Student, 2015-2018  
   Bio-inspired approach for hierarchical planification
 
-* **Fabien Benureau**, Post-doc, 2016-2017  
-  Biologically plausible reinforcement learning
-
 
 ## Former PhD students
 
@@ -43,8 +40,11 @@ A list of students I've been supervising over the years.
 
 ## Former Post-Doctoral Fellows
 
+* **Fabien Benureau**, Biologically plausible reinforcement learning, 2016-2017  
+  Fabien is now a post-doc in Japan (Okinawa).
+
 * **Z'hor Ramdane-Cherif**, Neural models of visual attention, 2005-2006,  
-  Z'hor is now an expert engineer at the Imagerie adaptive diasgnostique et interventionelle unit.  
+  Z'hor is now an expert engineer at the Imagerie adaptive diagnostique et interventionelle unit.  
 
 * **Rémi Coulom**, Behavior planning, 2003-2004,  
   Rémi is now an associate professor of computer science at the Université Lille 3 and a member of the SequeL research group.  
@@ -56,6 +56,7 @@ A list of students I've been supervising over the years.
 
 ## Former Students
 
+* 2017, **Remya Sankar**, Master (India), Songbird motor learning
 * 2016, **Sabyasachi Shivkumar**, Master (India), Self-organization in the basal ganglia
 * 2015, **Barghav teja Nallapu**, Master (India), Asynchronous decision making
 * 2015, **Aurélien Marie**, Master, Modelling of the mouse Globus Pallidus

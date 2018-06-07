@@ -1,7 +1,7 @@
 ---
 author: Nicolas P. Rougier
 layout: post
-title:  From Action-Outcome to Stimulus-Response
+title:  Dual Competition inside the brain
 date:   2017-09-13
 tags:   prepint computational neuroscience
 category: news

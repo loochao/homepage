@@ -111,6 +111,7 @@ central clock.
 **Ali Karaouzène** (2017, Université de Cergy Pontoise), 
 
 **Jury member** (hiring selection) for 
+INRIA CRCN (2018),
 INRIA CR2/CR1 (2017),
 INRIA Saclay CR2 (2017),
 INRIA CR2/CR1 (2016),
@@ -124,15 +125,13 @@ University of Cergy Pontoise (2010).
 [CNRS]: http://cnrs.fr
 
 **PC member** for
-WSOM 2017, Scipy 2017, Euroscipy 2017, Scipy 2016, Euroscipy 2016, etc.
+TEAM 2018, WSOM 2017, Scipy 2017, Euroscipy 2017, Scipy 2016, Euroscipy 2016, ICANN 2016, etc.
 
 # Current grants
 
+| **2018-2021** | | SOMA (ANR)
 | **2016-2019** | | Macaque40 (ANR)
 | **2015-2018** | | [Psyphine project][Psyphine] (France) |
-| **2015-2017** | | [Mimacore] (CNRS Challenge Imag'In) |
-| **2014-2017** | | [Braincraft] associated team (USA) |
-| **2013-2016** | | BGal associated team (India) |
 
 ||
 
@@ -140,8 +139,6 @@ WSOM 2017, Scipy 2017, Euroscipy 2017, Scipy 2016, Euroscipy 2016, etc.
 
 | **2016-2017** | | **Anthony Strock** (Master) |
 |               | | Neural architecture for handling time and context |
-| **2016-2017** | | **Fabien Benureau** (Post-doc) |
-|               | | Biologically plausible reinforcement learning |
 | **2015-2018** | | **Ikram Chraibi Kaadoud** (PhD student) |
 |               | | Bio-inspired approach for hierarchical planification |
 
