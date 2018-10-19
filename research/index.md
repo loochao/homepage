@@ -59,6 +59,8 @@ central clock.
 [Frontiers in Human Neuroscience],
 [Frontiers in Computationial Neuroscience],
 [Frontiers in Neurobotics],
+[Frontiers in Neuroinformatics],
+[JOSS],
 [PLOS One],
 [Biological Cybernetics],
 [ESANN],
@@ -108,7 +110,8 @@ central clock.
 **Adrien Jauffret** (2014, Université de Cergy-Pontoise, France)
 
 **Examiner** for the Phd Thesis of
-**Ali Karaouzène** (2017, Université de Cergy Pontoise), 
+**Ali Karaouzène** (2017, Université de Cergy Pontoise),
+**Federico Tesser** (2018, Université de Bordeaux)
 
 **Jury member** (hiring selection) for 
 INRIA CRCN (2018),
@@ -139,8 +142,9 @@ TEAM 2018, WSOM 2017, Scipy 2017, Euroscipy 2017, Scipy 2016, Euroscipy 2016, IC
 
 | **2016-2017** | | **Anthony Strock** (Master) |
 |               | | Neural architecture for handling time and context |
-| **2015-2018** | | **Ikram Chraibi Kaadoud** (PhD student) |
-|               | | Bio-inspired approach for hierarchical planification |
+
+| 2018          | | **Edwige Cyffers** (ENS) |
+|               | |  Contextual multi-armed bandit |
 
 ||
 

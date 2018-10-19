@@ -12,12 +12,15 @@ A list of students I've been supervising over the years.
 
 * **Anthony Strock**, Master ENS,  2016-2017  
   Neural architecture for handling time and context
-
-* **Ikram Chraibi Kaadoud**, Phd Student, 2015-2018  
-  Bio-inspired approach for hierarchical planification
+  
+* **Edwige Cyffers**, ENS 1st year, 2018  
+  Contextual multi-armed bandit 
 
 
 ## Former PhD students
+
+* **Ikram Chraibi Kaadoud**, Phd Student, 2015-2018  
+  Bio-inspired approach for hierarchical planification
 
 * **Meropi Topalidou**, 2013-2016.  
   Decision making in continuous action space: from motor primitives to actions
