@@ -62,6 +62,7 @@ central clock.
 [Frontiers in Neuroinformatics],
 [JOSS],
 [PLOS One],
+[PLOS Computational Biology],
 [Biological Cybernetics],
 [ESANN],
 [CNS],
@@ -82,6 +83,7 @@ central clock.
 [Frontiers in Computationial Neuroscience]: http://journal.frontiersin.org/journal/computational-neuroscience
 [Frontiers in Neurobotics]: http://journal.frontiersin.org/journal/neurorobotics
 [PLOS One]: http://www.plosone.org/
+[PLOS Computational Biology]: https://journals.plos.org/ploscompbiol/
 [Biological Cybernetics]: http://link.springer.com/journal/422
 [ESANN]: https://www.elen.ucl.ac.be/esann/proceedings/electronicproceedings.htm
 [CNS]: http://www.cnsorg.org/
@@ -110,6 +112,7 @@ central clock.
 **Adrien Jauffret** (2014, Université de Cergy-Pontoise, France)
 
 **Examiner** for the Phd Thesis of
+**Aurélien Nioche** (2018, Sorbonne Université)
 **Ali Karaouzène** (2017, Université de Cergy Pontoise),
 **Federico Tesser** (2018, Université de Bordeaux)
 
@@ -128,7 +131,7 @@ University of Cergy Pontoise (2010).
 [CNRS]: http://cnrs.fr
 
 **PC member** for
-TEAM 2018, WSOM 2017, Scipy 2017, Euroscipy 2017, Scipy 2016, Euroscipy 2016, ICANN 2016, etc.
+TEAM 2018, WSOM 2018, WSOM 2017, Scipy 2017, Euroscipy 2017, Scipy 2016, Euroscipy 2016, ICANN 2016, etc.
 
 # Current grants
 
@@ -140,11 +143,11 @@ TEAM 2018, WSOM 2017, Scipy 2017, Euroscipy 2017, Scipy 2016, Euroscipy 2016, IC
 
 # Current students
 
-| **2016-2017** | | **Anthony Strock** (Master) |
-|               | | Neural architecture for handling time and context |
+| **2018-2021** | | **Remya Sankar** (PhD) |
+|               | | Structural self-organization |
 
-| 2018          | | **Edwige Cyffers** (ENS) |
-|               | |  Contextual multi-armed bandit |
+| **2017-2020** | | **Anthony Strock** (PhD) |
+|               | | Neural architecture for handling time and context |
 
 ||
 

@@ -10,16 +10,16 @@ A list of students I've been supervising over the years.
 
 ## Current students
 
-* **Anthony Strock**, Master ENS,  2016-2017  
+* **Remya Sankar**, PhD Student, 2018-2021  
+  Structural self-organization
+
+* **Anthony Strock**, PhD Student, 2017-2020  
   Neural architecture for handling time and context
   
-* **Edwige Cyffers**, ENS 1st year, 2018  
-  Contextual multi-armed bandit 
-
 
 ## Former PhD students
 
-* **Ikram Chraibi Kaadoud**, Phd Student, 2015-2018  
+* **Ikram Chraibi Kaadoud**, 2015-2018  
   Bio-inspired approach for hierarchical planification
 
 * **Meropi Topalidou**, 2013-2016.  
@@ -59,11 +59,13 @@ A list of students I've been supervising over the years.
 
 ## Former Students
 
-* 2017, **Remya Sankar**, Master (India), Songbird motor learning
-* 2016, **Sabyasachi Shivkumar**, Master (India), Self-organization in the basal ganglia
-* 2015, **Barghav teja Nallapu**, Master (India), Asynchronous decision making
+* 2018, **Edwige Cyffers** (ENS), Contextual multi-armed bandit
+* 2017, **Remya Sankar**, Master (IIIT, India), Songbird motor learning
+* 2017  **Anthony Strock**,(ENS), Neural architecture, time and context
+* 2016, **Sabyasachi Shivkumar**, Master (IIIT, India), Self-organization in the basal ganglia
+* 2015, **Barghav teja Nallapu**, Master (IIIT, India), Asynchronous decision making
 * 2015, **Aurélien Marie**, Master, Modelling of the mouse Globus Pallidus
-* 2014, **Hima Metha**, Master (India), High-scale decision making neural models
+* 2014, **Hima Metha**, Master (IIIT, India), High-scale decision making neural models
 * 2013, **Meropi Topalidou**, Master (Greece), Touch and the body
 * 2012, **Mathieu Zimmer**, License (Nancy), consciousness and metarepresentation
 * 2011, **Zoé Barbanneau** (Ecole Estienne, Paris), design of a poster to explain research in computer science to children.
