@@ -16,6 +16,9 @@ A list of students I've been supervising over the years.
 * **Anthony Strock**, PhD Student, 2017-2020  
   Neural architecture for handling time and context
   
+* **Théophile Boraud**, Master Student, 2018-2019  
+  Temporal sequence learning and prediction
+  
 
 ## Former PhD students
 

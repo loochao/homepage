@@ -41,6 +41,7 @@ central clock.
 # Activities
 
 | **2015-…** | | Co-founder and editor in chief of [ReScience] |
+| **2018-…** | | Editor for [PeerJ][PeerJ] |
 | **2015-…** | | Review editor for [Frontiers in Neurobotics][Frontiers] |
 | **2015-…** | | Member of the steering committee for the [BioComp] CNRS consortium |
 | **2014-…** | | Member (elected) of the national [INRIA evaluation committee][CE] |
@@ -82,6 +83,7 @@ central clock.
 [Frontiers in Human Neuroscience]: http://journal.frontiersin.org/journal/human-neuroscience
 [Frontiers in Computationial Neuroscience]: http://journal.frontiersin.org/journal/computational-neuroscience
 [Frontiers in Neurobotics]: http://journal.frontiersin.org/journal/neurorobotics
+[PeerJ]: https://peerj.com
 [PLOS One]: http://www.plosone.org/
 [PLOS Computational Biology]: https://journals.plos.org/ploscompbiol/
 [Biological Cybernetics]: http://link.springer.com/journal/422
@@ -148,6 +150,9 @@ TEAM 2018, WSOM 2018, WSOM 2017, Scipy 2017, Euroscipy 2017, Scipy 2016, Eurosci
 
 | **2017-2020** | | **Anthony Strock** (PhD) |
 |               | | Neural architecture for handling time and context |
+
+| **2018-2019** | | **Théophile Boraud** |
+|               | | Temporal sequence learning and prediction |
 
 ||
 
